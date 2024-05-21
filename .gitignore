@@ -317,3 +317,4 @@ cython_debug/
 #.idea/
 
 /cache-directory/
+data

@@ -1,4 +1,6 @@
+import argparse
 import os
+import traceback
 
 import requests
 from io import BytesIO
@@ -13,6 +15,7 @@ from src.constants import (
     BASE_URL_DEV,
 )
 
+from src.absolutize import make_paths_absolute
 
 def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes | None:
     """
@@ -119,16 +122,17 @@ def process_workflow_ids(
     :param is_metadata_endpoint: A boolean flag to determine if method should call
         download_and_extract_json_from_zip() or download_and_extract_json_from_metadata_endpoint().
     """
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
+
+    n_successful = 0
 
     try:
         workflows = workflows_data.get("data", [])
 
-        for workflow in workflows:
+        for i_workflow, workflow in enumerate(workflows):
             workflow_id = workflow["id"]
 
-            print(f"Processing workflow ID {workflow_id}")
+            print(f"Processing workflow ID {workflow_id} ({i_workflow + 1}/{len(workflows)})...")
 
             # TODO: Remove dev WorkflowHub URL:
             if is_metadata_endpoint:
@@ -147,13 +151,49 @@ def process_workflow_ids(
                 with open(output_file_path, "wb") as output_file:
                     output_file.write(json_content)
                 print(f"Content saved to {output_file_path}")
+                n_successful += 1
+
+            else:
+                print(f"Failed to process workflow ID {workflow_id}")
+
     except Exception as e:
         print(f"An error occurred while processing workflow IDs. Error: {e}")
+        traceback.print_exc()
 
 
 if __name__ == "__main__":
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument(
+        "--workflows-url",
+        type=str,
+        default=WORKFLOWS_URL,
+        help="URL of the JSON file containing workflow IDs.",
+    )
+    argparser.add_argument(
+        "--worklow-ids",
+        type=str,
+        default="-",
+        help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10.",
+    )
+    args = argparser.parse_args()
+
+    min_workflow_id, max_workflow_id = args.worklow_ids.split("-")    
+
     # Example usage:
-    workflows_ids = download_workflow_ids(WORKFLOWS_URL)
+    workflows_ids = download_workflow_ids(args.workflows_url)
+
+
+    if min_workflow_id != "":
+        workflows_ids["data"] = [
+            workflow for workflow in workflows_ids["data"] 
+            if int(workflow["id"]) >= int(min_workflow_id)]
+    
+    if max_workflow_id != "":
+        workflows_ids["data"] = [
+            workflow for workflow in workflows_ids["data"] 
+            if int(workflow["id"]) <= int(max_workflow_id)]
+                                 
+            
 
     # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:

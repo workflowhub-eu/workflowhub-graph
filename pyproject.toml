@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "workflowhub-graph"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+packages = [
+    { include = "src", from = "." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+arcp = "^0.2.1"
+rdflib = "^6.3.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

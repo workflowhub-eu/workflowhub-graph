@@ -1,21 +1,29 @@
+from io import StringIO, TextIOWrapper
+import json
+import time
+import unittest
 import pytest
 import os
 from unittest.mock import patch, MagicMock
 
+import rdflib
 import requests
 
+from src.absolutize import make_paths_absolute
 from src.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
     download_workflow_ids,
     process_workflow_ids,
 )
+from src.constants import BASE_URL_DEV
 
 
 @pytest.fixture
 def mock_requests_get():
     with patch("requests.get") as mock_get:
         yield mock_get
+
 
 
 @pytest.fixture
@@ -131,3 +139,53 @@ class TestProcessWorkflowIds:
         with open(expected_file_path, "rb") as f:
             content = f.read()
             assert content == b'{"name": "test"}'
+
+
+class TestAbsolutizePaths: #(unittest.TestCase):
+
+    def get_test_data_file(self, filename) -> str:
+        tests_dir = os.path.dirname(os.path.abspath(__file__))
+        return os.path.join(tests_dir, "test_data", filename)
+    
+    def is_all_absolute(self, G: rdflib.Graph) -> bool:
+        for triple in G:
+            for item in triple:
+                if isinstance(item, rdflib.URIRef):
+                    # TODO: is this enough?
+                    if item.startswith("file://"):
+                        return False
+        return True
+
+    # @pytest.mark.parametrize("workfltestow_id", [41, 552, 634, 678])
+    @pytest.mark.parametrize("workflow_id", [41])
+    def test_make_paths_absolute(self, workflow_id):
+        
+        # TODO: complete this mock
+        # def local_urlopen(request):
+        #     r = MagicMock()
+        #     c = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
+        #     r.geturl = MagicMock(return_value="https://w3id.org/ro/crate/1.0/context")
+        #     # r.read = MagicMock(return_value=c)
+        #     r.getByteStream = MagicMock(return_value=TextIOWrapper(StringIO(c)))
+        #     return r
+       
+        # with patch("rdflib.parser.urlopen", local_urlopen):
+        #     rdflib.Graph().parse("https://w3id.org/ro/crate/1.0/context", format="json-ld")
+
+        # return
+
+        with open(self.get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
+            json_data = json.load(f)
+
+        # TODO: 552 already has file:// paths https://dev.workflowhub.eu/workflows/552/ro_crate?version=1
+        # NOTE: ids can not be found, like 634, or forbidden, like 678
+
+        assert not self.is_all_absolute(rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld"))
+
+        json_data_abs_paths = make_paths_absolute(json_data, BASE_URL_DEV, 41)
+
+        G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
+        for s, p, o in G:
+            print(s, p, o) 
+
+        assert self.is_all_absolute(G)
