@@ -318,3 +318,4 @@ cython_debug/
 
 /cache-directory/
 data
+.vscode

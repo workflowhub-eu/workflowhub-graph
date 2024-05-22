@@ -6,7 +6,7 @@ authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 packages = [
-    { include = "src", from = "." },
+    { include = "workflowhub_graph", from = "." },
 ]
 
 [tool.poetry.dependencies]

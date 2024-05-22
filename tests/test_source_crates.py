@@ -161,18 +161,18 @@ class TestAbsolutizePaths: #(unittest.TestCase):
     def test_make_paths_absolute(self, workflow_id):
         
         # TODO: complete this mock
-        # def local_urlopen(request):
-        #     r = MagicMock()
-        #     c = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
-        #     r.geturl = MagicMock(return_value="https://w3id.org/ro/crate/1.0/context")
-        #     # r.read = MagicMock(return_value=c)
-        #     r.getByteStream = MagicMock(return_value=TextIOWrapper(StringIO(c)))
-        #     return r
+        def local_urlopen(request):
+            r = MagicMock()
+            c = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
+            # r.geturl = MagicMock(return_value="https://w3id.org/ro/crate/1.0/context")
+            # r.read = MagicMock(return_value=c)
+            # r.getByteStream = MagicMock(return_value=TextIOWrapper(StringIO(c)))
+            return r
        
-        # with patch("rdflib.parser.urlopen", local_urlopen):
-        #     rdflib.Graph().parse("https://w3id.org/ro/crate/1.0/context", format="json-ld")
+        with patch("rdflib.parser.urlopen", local_urlopen):
+            rdflib.Graph().parse("https://w3id.org/ro/crate/1.0/context", format="json-ld")
 
-        # return
+        return
 
         with open(self.get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
             json_data = json.load(f)
