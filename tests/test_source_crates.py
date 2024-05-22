@@ -1,4 +1,5 @@
 from io import StringIO, TextIOWrapper
+import io
 import json
 import time
 import unittest
@@ -9,14 +10,14 @@ from unittest.mock import patch, MagicMock
 import rdflib
 import requests
 
-from src.absolutize import make_paths_absolute
-from src.source_crates import (
+from workflowhub_graph.absolutize import make_paths_absolute
+from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
     download_workflow_ids,
     process_workflow_ids,
 )
-from src.constants import BASE_URL_DEV
+from workflowhub_graph.constants import BASE_URL_DEV
 
 
 @pytest.fixture
@@ -87,7 +88,7 @@ class TestDownloadAndExtractJsonFromZip:
 
         mock_requests_get.return_value = mock_response
 
-        with patch("src.source_crates.ZipFile") as mock_zipfile:
+        with patch("workflowhub_graph.source_crates.ZipFile") as mock_zipfile:
             mock_zipfile.return_value.__enter__.return_value.namelist.return_value = [
                 "not-json-file.txt"
             ]
@@ -122,7 +123,7 @@ class TestDownloadWorkflowIds:
 
 
 class TestProcessWorkflowIds:
-    @patch("src.source_crates.download_and_extract_json_from_zip")
+    @patch("workflowhub_graph.source_crates.download_and_extract_json_from_zip")
     def test_process_workflow_ids(
         self, mock_download_and_extract_json_from_zip, setup_output_dir
     ):
@@ -156,36 +157,34 @@ class TestAbsolutizePaths: #(unittest.TestCase):
                         return False
         return True
 
-    # @pytest.mark.parametrize("workfltestow_id", [41, 552, 634, 678])
+    # TODO: 552 already has file:// paths https://dev.workflowhub.eu/workflows/552/ro_crate?version=1
+    # NOTE: ids can not be found, like 634, or forbidden, like 678
     @pytest.mark.parametrize("workflow_id", [41])
     def test_make_paths_absolute(self, workflow_id):
         
-        # TODO: complete this mock
         def local_urlopen(request):
-            r = MagicMock()
-            c = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
-            # r.geturl = MagicMock(return_value="https://w3id.org/ro/crate/1.0/context")
-            # r.read = MagicMock(return_value=c)
-            # r.getByteStream = MagicMock(return_value=TextIOWrapper(StringIO(c)))
-            return r
+            class Response(io.StringIO):
+                content_type = "text/html"
+                headers = {"Content-Type": "text/html"}
+
+                def info(self):
+                    return self.headers
+                
+                def geturl(self):
+                    return "https://w3id.org/ro/crate/1.0/context"
+                
+            content = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
+
+            return Response(content)
        
         with patch("rdflib.parser.urlopen", local_urlopen):
-            rdflib.Graph().parse("https://w3id.org/ro/crate/1.0/context", format="json-ld")
+            with open(self.get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
+                json_data = json.load(f)
 
-        return
+            assert not self.is_all_absolute(rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld"))
 
-        with open(self.get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
-            json_data = json.load(f)
+            json_data_abs_paths = make_paths_absolute(json_data, BASE_URL_DEV, 41)
 
-        # TODO: 552 already has file:// paths https://dev.workflowhub.eu/workflows/552/ro_crate?version=1
-        # NOTE: ids can not be found, like 634, or forbidden, like 678
+            G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
 
-        assert not self.is_all_absolute(rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld"))
-
-        json_data_abs_paths = make_paths_absolute(json_data, BASE_URL_DEV, 41)
-
-        G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
-        for s, p, o in G:
-            print(s, p, o) 
-
-        assert self.is_all_absolute(G)
+            assert self.is_all_absolute(G)

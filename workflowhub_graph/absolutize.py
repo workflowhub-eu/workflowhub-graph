@@ -25,8 +25,7 @@ def make_paths_absolute(json_data: dict, workflowhub_url: str, workflow_id: int)
 
     return json_data
 
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description="Make all paths in a JSON file absolute.")
     parser.add_argument("json_file", help="The JSON file to process.")
     parser.add_argument("output_file", help="The output file.")
@@ -45,3 +44,7 @@ if __name__ == "__main__":
     else:
         with open(args.output_file, "w") as f:
             json.dump(processed_json_data, f, indent=2)
+
+
+if __name__ == "__main__":
+    main()

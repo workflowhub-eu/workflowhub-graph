@@ -15,7 +15,7 @@ BASE_URL = BASE_URL_PROD
 WORKFLOWS_URL = WORKFLOWS_URL_PROD
 
 METADATA_ENDPOINT = "/workflows/{w_id}/ro_crate_metadata"
-ZIP_ENDPOINT = "/workflows/{w_id}/ro_crate"
+ZIP_ENDPOINT = "/workflows/{w_id}/ro_crate?version={w_version}"
 
 TARGET_FILE_NAME = "ro-crate-metadata.json"
 

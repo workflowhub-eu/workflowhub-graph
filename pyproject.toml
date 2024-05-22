@@ -14,6 +14,10 @@ python = "^3.10"
 arcp = "^0.2.1"
 rdflib = "^6.3.2"
 
+[tool.poetry.scripts]
+workflowhub-graph-source-crates = "workflowhub_graph.source_crates:main"
+workflowhub-graph-absolutize = "workflowhub_graph.absolutize:main"
+workflowhub-graph-merge = "workflowhub_graph.merge:main"
 
 [build-system]
 requires = ["poetry-core"]

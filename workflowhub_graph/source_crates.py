@@ -6,7 +6,7 @@ import requests
 from io import BytesIO
 from zipfile import ZipFile
 
-from src.constants import (
+from workflowhub_graph.constants import (
     TARGET_FILE_NAME,
     WORKFLOWS_URL,
     METADATA_ENDPOINT,
@@ -15,7 +15,7 @@ from src.constants import (
     BASE_URL_DEV,
 )
 
-from src.absolutize import make_paths_absolute
+from workflowhub_graph.absolutize import make_paths_absolute
 
 def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes | None:
     """
@@ -141,7 +141,8 @@ def process_workflow_ids(
                     BASE_URL_DEV + endpoint
                 )
             else:
-                endpoint = ZIP_ENDPOINT.format(w_id=workflow_id)
+                # TODO: Where does version come from?
+                endpoint = ZIP_ENDPOINT.format(w_id=workflow_id, w_version=1)
                 json_content = download_and_extract_json_from_zip(BASE_URL + endpoint)
 
             if json_content:
@@ -161,7 +162,7 @@ def process_workflow_ids(
         traceback.print_exc()
 
 
-if __name__ == "__main__":
+def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument(
         "--workflows-url",
@@ -182,7 +183,6 @@ if __name__ == "__main__":
     # Example usage:
     workflows_ids = download_workflow_ids(args.workflows_url)
 
-
     if min_workflow_id != "":
         workflows_ids["data"] = [
             workflow for workflow in workflows_ids["data"] 
@@ -192,9 +192,12 @@ if __name__ == "__main__":
         workflows_ids["data"] = [
             workflow for workflow in workflows_ids["data"] 
             if int(workflow["id"]) <= int(max_workflow_id)]
-                                 
-            
 
+                                            
     # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
         process_workflow_ids(workflows_ids, is_metadata_endpoint=True)
+
+
+if __name__ == "__main__":
+    main()
