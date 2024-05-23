@@ -24,5 +24,10 @@ jobs:
             poetry run workflowhub-graph-source-crates
             poetry run workflowhub-graph-merge merged.ttl
             # TODO store artifact, to zenodo? to github release (tag daily, make )? to gh pages?
-            # TODO: make a nice picture
+            # TODO: make a nice picture?
+        - name: Plot the data
+          run: |
+            apt update
+            apt install -y graphviz
+            python <(curl https://raw.githubusercontent.com/oda-hub/rdflib/lesstext/rdflib/tools/rdf2dot.py) merged.ttl  | sfdp -x   -Tpdf > merged.pdf
 

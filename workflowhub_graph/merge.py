@@ -10,9 +10,9 @@ from workflowhub_graph.absolutize import make_paths_absolute
 from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
 
-
+# TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
-    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: None = Optional[dict]
+    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: Optional[dict] = None
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
@@ -22,13 +22,13 @@ def merge_all_files(
     :return: The merged RDF graph.
     """
 
+    if cache_kwargs is None:
+        cache_kwargs = dict()
+
     G = rdflib.Graph()
 
     filenames = glob.glob(pattern)
-
-    # TODO: this can be much accelerated by caching the context
-    # TODO: collect statistics about file:// references
-
+    
     for i, fn in enumerate(filenames):
         with open(fn, "r") as f:
             print(f"Processing {fn}, {i}/{len(filenames)}")
@@ -49,9 +49,15 @@ def main():
     argparser.add_argument(
         "output_filename", help="The output filename.", default="merged.ttl"
     )
+    argparser.add_argument(
+        "-p",
+        "--pattern",
+        help="The pattern to match the files.",
+        default="data/*.json",
+    )
     args = argparser.parse_args()
 
-    G = merge_all_files()
+    G = merge_all_files(pattern=args.pattern)
     G.serialize(args.output_filename, format="ttl")
 
 
