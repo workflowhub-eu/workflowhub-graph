@@ -1,6 +1,25 @@
 import argparse
 import json
+from urllib.parse import urlparse
 import arcp
+import rdflib
+
+
+def is_all_absolute(G: rdflib.Graph) -> bool:
+    for triple in G:
+        for item in triple:
+            if isinstance(item, rdflib.URIRef):
+                # TODO: is this enough?
+                netloc = urlparse(item).netloc
+
+                # we accept file:// with a netloc, even if netloc is not a FQDN,
+                # see https://github.com/workflowhub-eu/workflowhub-graph/issues/1#issuecomment-2127351752
+                if netloc == '':
+                    print(f"found non-absolute path <{item}> {netloc}, {urlparse(item)}")
+                    return False
+                else:
+                    print("this path is absolute", item, urlparse(item))
+    return True
 
 
 def make_paths_absolute(
