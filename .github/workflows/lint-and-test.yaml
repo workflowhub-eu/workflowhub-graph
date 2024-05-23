@@ -19,15 +19,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install poetry pylint mypy 
+        pip install poetry
         poetry install --all-extras -vv
     - name: Analysing the code with pylint
       run: |
-        poetry install --all-extras -vv
-        python -m pytest --version
-        pylint --errors-only $(git ls-files '*.py')
+        poetry run pylint --errors-only $(git ls-files '*.py')
     - name: Testing the code with pytest
       run: |
-        poetry install --all-extras -vv
         poetry run py.test tests
     
