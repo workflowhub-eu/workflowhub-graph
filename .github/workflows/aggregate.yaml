@@ -1,0 +1,26 @@
+name: Aggregate
+
+on: [push]
+    # schedule:
+    # - cron: '0 0 * * *'
+
+
+jobs:
+    aggregate:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - name: Set up Python 3.10
+          uses: actions/setup-python@v3
+          with:
+            python-version: 3.10
+        - name: Install dependencies
+          run: |
+            python -m pip install --upgrade pip
+            pip install poetry
+            poetry install --all-extras -vv
+        - name: Aggregate the data
+          run: |
+            poetry run workflowhub-graph-source-crates
+            poetry run workflowhub-graph-source-pypi merged.ttl
+            # TODO store artifact

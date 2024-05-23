@@ -40,5 +40,11 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
             assert is_all_absolute(G)
 
     def test_merged(self):
-        G = merge_all_files(get_test_data_file("[0-9]*ro-crate*.json"))
+        # G = merge_all_files(get_test_data_file("[0-9]*ro-crate*.json"))
+        G = merge_all_files("data/[0-9]*ro-crate*.json")
         assert is_all_absolute(G)
+
+        print(list(G.triples((None, None, None))))
+
+        for s, o in G.subject_objects(rdflib.URIRef("http://schema.org/author")):
+            print(s, o)

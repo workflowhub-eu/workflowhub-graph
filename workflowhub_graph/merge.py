@@ -37,7 +37,7 @@ def merge_all_files(pattern="data/*.json") -> rdflib.Graph:
     return G
 
 
-if __name__ == "__main__":
+def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument(
         "output_filename", help="The output filename.", default="merged.ttl"
@@ -46,3 +46,7 @@ if __name__ == "__main__":
 
     G = merge_all_files()
     G.serialize(args.output_filename, format="ttl")
+
+
+if __name__ == "__main__":
+    main()
