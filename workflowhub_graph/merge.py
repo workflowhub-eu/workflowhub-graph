@@ -11,10 +11,10 @@ from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
 
 
-def merge_all_files() -> rdflib.Graph:
+def merge_all_files(pattern="data/*.json") -> rdflib.Graph:
     G = rdflib.Graph()
 
-    filenames = glob.glob("data/*.json")
+    filenames = glob.glob(pattern)
 
     # TODO: this can be much accelerated by caching the context
     # TODO: collect statistics about file:// references

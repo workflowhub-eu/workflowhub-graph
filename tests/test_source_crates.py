@@ -1,4 +1,8 @@
 import json
+import time
+import unittest
+from urllib.parse import urlparse
+import pytest
 import os
 from unittest.mock import patch, MagicMock
 
@@ -8,7 +12,7 @@ import requests
 
 from workflowhub_graph.absolutize import make_paths_absolute
 from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
-from workflowhub_graph.constants import BASE_URL
+from workflowhub_graph.merge import merge_all_files
 from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
@@ -159,13 +163,18 @@ class TestAbsolutizePaths: #(unittest.TestCase):
             for item in triple:
                 if isinstance(item, rdflib.URIRef):
                     # TODO: is this enough?
-                    if item.startswith("file://"):
+                    # if item.startswith("file://"):
+                    netloc = urlparse(item).netloc
+                    if netloc == '':
+                        print(f"found non-absolute path <{item}> {netloc}, {urlparse(item)}")
                         return False
+                    else:
+                        print("this path is absolute", item, urlparse(item))
         return True
 
     # TODO: 552 already has file:// paths https://dev.workflowhub.eu/workflows/552/ro_crate?version=1
     # NOTE: ids can not be found, like 634, or forbidden, like 678
-    @pytest.mark.parametrize("workflow_id", [41])
+    @pytest.mark.parametrize("workflow_id", [41, 552])
     def test_make_paths_absolute(self, workflow_id):
         
         with patch_rdflib_urlopen(self.get_test_data_file):
@@ -179,3 +188,8 @@ class TestAbsolutizePaths: #(unittest.TestCase):
             G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
 
             assert self.is_all_absolute(G)
+
+
+    def test_merged(self):
+        G = merge_all_files("data/*21*.json")
+        assert self.is_all_absolute(G)
