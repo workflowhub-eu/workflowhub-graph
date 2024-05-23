@@ -1,14 +1,9 @@
-import io
-import json
 import os
 from unittest.mock import patch, MagicMock
 
 import pytest
-import rdflib
 import requests
 
-# from workflowhub_graph.absolutize import make_paths_absolute
-# from workflowhub_graph.constants import BASE_URL_DEV
 from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
