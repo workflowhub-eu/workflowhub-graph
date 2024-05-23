@@ -163,8 +163,10 @@ class TestAbsolutizePaths: #(unittest.TestCase):
             for item in triple:
                 if isinstance(item, rdflib.URIRef):
                     # TODO: is this enough?
-                    # if item.startswith("file://"):
                     netloc = urlparse(item).netloc
+
+                    # we accept file:// with a netloc, even if netloc is not a FQDN,
+                    # see https://github.com/workflowhub-eu/workflowhub-graph/issues/1#issuecomment-2127351752
                     if netloc == '':
                         print(f"found non-absolute path <{item}> {netloc}, {urlparse(item)}")
                         return False
