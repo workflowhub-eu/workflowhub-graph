@@ -19,9 +19,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install poetry
-        poetry install
-        pip install pylint mypy 
+        pip install poetry pylint mypy 
+        poetry install --all-extras
     - name: Analysing the code with pylint
       run: |
         pylint --errors-only $(git ls-files '*.py')
