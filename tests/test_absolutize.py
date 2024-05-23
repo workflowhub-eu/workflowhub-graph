@@ -19,7 +19,7 @@ def get_test_data_file(filename=""):
 
 class TestAbsolutizePaths:  # (unittest.TestCase):
     # NOTE: ids can not be found, like 634, or forbidden, like 678
-    @pytest.mark.parametrize("workflow_id", [41, 552, 883])
+    @pytest.mark.parametrize("workflow_id", [41, 31, 552, 883])
     def test_make_paths_absolute(self, workflow_id):
         with patch_rdflib_urlopen(get_test_data_file(), write_cache=False):
             with open(
@@ -42,11 +42,19 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
     def test_merged(self):
         G = merge_all_files(
             get_test_data_file("[0-9]*ro-crate*.json"),
-            cache_base_dir=get_test_data_file(),
-            write_cache=False,
+            cache_kwargs=dict(
+                cache_base_dir=get_test_data_file(),
+                write_cache=False,
+            ),
         )
 
         assert is_all_absolute(G)
 
-        for s, o in G.subject_objects(rdflib.URIRef("http://schema.org/author")):
-            print(s, o)
+        authors = set(
+            [o for s, o in G.subject_objects(rdflib.URIRef("http://schema.org/author"))]
+        )
+
+        # checking that we got some useful data about the authors
+        assert authors == set(
+            [rdflib.term.Literal("Arnaud Meng, Maxim Scheremetjew, Michael Crusoe")]
+        )

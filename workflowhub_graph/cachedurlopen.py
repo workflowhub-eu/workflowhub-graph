@@ -8,6 +8,12 @@ from urllib.request import urlopen
 
 
 def url_to_filename(url):
+    """
+    Converts a URL to a filename by removing non-alphanumeric characters and replacing them with dashes.
+    :param url: The URL to convert.
+    :return: The filename.
+    """
+
     parsed = urlparse(url)
     if parsed.scheme not in ["http", "https"]:
         raise ValueError(f"Unsupported scheme {parsed.scheme}")
@@ -21,6 +27,13 @@ def patch_rdflib_urlopen(
     write_cache=True,
     allowed_urls_pattern=r"https://w3id.org/ro/crate/1\.[01]/context",
 ):
+    """
+    Context manager to patch rdflib.parser.urlopen to cache and return the content of a URL.
+    :param cache_base_dir: The base directory to store the cached files.
+    :param write_cache: Whether to write the cache if the file is not found.
+    :param allowed_urls_pattern: A regex pattern to match the allowed URLs to cache.
+    """
+
     allowed_urls_re = re.compile(allowed_urls_pattern)
     if cache_base_dir is None:
         cache_base_dir = "cached_urlopen"

@@ -2,6 +2,7 @@ import argparse
 import glob
 import json
 import os
+from typing import Optional
 
 import rdflib
 
@@ -11,8 +12,16 @@ from workflowhub_graph.constants import BASE_URL
 
 
 def merge_all_files(
-    pattern="data/*.json", base_url=BASE_URL, **cache_kwargs
+    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: None = Optional[dict]
 ) -> rdflib.Graph:
+    """
+    Merges all JSON-LD files in the given pattern into a single RDF graph.
+    :param pattern: The pattern to match the files.
+    :param base_url: The base URL for the WorkflowHub.
+    :param cache_kwargs: Keyword arguments to pass to urllib cache
+    :return: The merged RDF graph.
+    """
+
     G = rdflib.Graph()
 
     filenames = glob.glob(pattern)
