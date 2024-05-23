@@ -1,9 +1,9 @@
 name: Aggregate
 
-on: [push]
-    # schedule:
-    # - cron: '0 0 * * *'
-
+on: 
+    schedule:
+    - cron: '0 0 * * *'
+    
 
 jobs:
     aggregate:
