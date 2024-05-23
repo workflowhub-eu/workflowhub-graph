@@ -13,11 +13,16 @@ packages = [
 python = "^3.10"
 arcp = "^0.2.1"
 rdflib = "^6.3.2"
+requests = "^2.32.2"
+certifi = "^2024.2.2"
 
 [tool.poetry.scripts]
 workflowhub-graph-source-crates = "workflowhub_graph.source_crates:main"
 workflowhub-graph-absolutize = "workflowhub_graph.absolutize:main"
 workflowhub-graph-merge = "workflowhub_graph.merge:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.2.1"
 
 [build-system]
 requires = ["poetry-core"]
