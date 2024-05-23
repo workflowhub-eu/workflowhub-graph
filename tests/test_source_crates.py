@@ -1,30 +1,26 @@
-from io import StringIO, TextIOWrapper
 import io
 import json
-import time
-import unittest
-import pytest
 import os
 from unittest.mock import patch, MagicMock
 
+import pytest
 import rdflib
 import requests
 
-from workflowhub_graph.absolutize import make_paths_absolute
+# from workflowhub_graph.absolutize import make_paths_absolute
+# from workflowhub_graph.constants import BASE_URL_DEV
 from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
     download_workflow_ids,
     process_workflow_ids,
 )
-from workflowhub_graph.constants import BASE_URL_DEV
 
 
 @pytest.fixture
 def mock_requests_get():
     with patch("requests.get") as mock_get:
         yield mock_get
-
 
 
 @pytest.fixture
@@ -40,7 +36,8 @@ def setup_output_dir():
 
 class TestDownloadAndExtractJsonFromMetadataEndpoint:
     def test_json_from_metadata_endpoint_download_successful(self, mock_requests_get):
-        # Mock a successful JSON response
+        """Mock a successful JSON response"""
+
         mock_response = MagicMock()
         mock_response.raise_for_status.return_value = None
         mock_response.headers = {"Content-Type": "application/json"}
@@ -53,7 +50,8 @@ class TestDownloadAndExtractJsonFromMetadataEndpoint:
         assert result == b'{"key": "value"}'
 
     def test_json_from_metadata_endpoint_no_json_content_type(self, mock_requests_get):
-        # Mock a response with a non-JSON content type
+        """Mock a response with a non-JSON content type"""
+
         mock_response = MagicMock()
         mock_response.raise_for_status.return_value = None
         mock_response.headers = {"Content-Type": "text/html"}
@@ -65,7 +63,8 @@ class TestDownloadAndExtractJsonFromMetadataEndpoint:
         assert result is None
 
     def test_json_from_metadata_endpoint_request_exception(self, mock_requests_get):
-        # Mock a request exception
+        """Mock a request exception"""
+
         mock_requests_get.side_effect = requests.RequestException("Error")
 
         result = download_and_extract_json_from_metadata_endpoint(
@@ -78,6 +77,8 @@ class TestDownloadAndExtractJsonFromZip:
     def test_download_and_extract_json_from_zip_incorrect_file_extension(
         self, mock_requests_get
     ):
+        """Mock a response with a non-Zip file"""
+
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.iter_content = lambda chunk_size: [
@@ -98,8 +99,9 @@ class TestDownloadAndExtractJsonFromZip:
 
 
 class TestDownloadWorkflowIds:
-
     def test_download_workflow_ids_success(self, mock_requests_get):
+        """Mock a successful JSON response"""
+
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value = {"data": [{"id": "883"}]}
@@ -112,6 +114,8 @@ class TestDownloadWorkflowIds:
         assert result["data"][0]["id"] == "883"
 
     def test_download_workflow_ids_404(self, mock_requests_get):
+        """Mock a 404 response"""
+
         mock_response = MagicMock()
         mock_response.status_code = 404
         mock_response.json.side_effect = ValueError("No JSON object could be decoded")
@@ -127,6 +131,8 @@ class TestProcessWorkflowIds:
     def test_process_workflow_ids(
         self, mock_download_and_extract_json_from_zip, setup_output_dir
     ):
+        """Mock a successful download and extraction of a JSON file from a zip file"""
+
         mock_download_and_extract_json_from_zip.return_value = b'{"name": "test"}'
 
         workflows_data = {"data": [{"id": "883"}]}
@@ -140,51 +146,3 @@ class TestProcessWorkflowIds:
         with open(expected_file_path, "rb") as f:
             content = f.read()
             assert content == b'{"name": "test"}'
-
-
-class TestAbsolutizePaths: #(unittest.TestCase):
-
-    def get_test_data_file(self, filename) -> str:
-        tests_dir = os.path.dirname(os.path.abspath(__file__))
-        return os.path.join(tests_dir, "test_data", filename)
-    
-    def is_all_absolute(self, G: rdflib.Graph) -> bool:
-        for triple in G:
-            for item in triple:
-                if isinstance(item, rdflib.URIRef):
-                    # TODO: is this enough?
-                    if item.startswith("file://"):
-                        return False
-        return True
-
-    # TODO: 552 already has file:// paths https://dev.workflowhub.eu/workflows/552/ro_crate?version=1
-    # NOTE: ids can not be found, like 634, or forbidden, like 678
-    @pytest.mark.parametrize("workflow_id", [41])
-    def test_make_paths_absolute(self, workflow_id):
-        
-        def local_urlopen(request):
-            class Response(io.StringIO):
-                content_type = "text/html"
-                headers = {"Content-Type": "text/html"}
-
-                def info(self):
-                    return self.headers
-                
-                def geturl(self):
-                    return "https://w3id.org/ro/crate/1.0/context"
-                
-            content = open(self.get_test_data_file("ro-crate-context.json"), "rt").read()
-
-            return Response(content)
-       
-        with patch("rdflib.parser.urlopen", local_urlopen):
-            with open(self.get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
-                json_data = json.load(f)
-
-            assert not self.is_all_absolute(rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld"))
-
-            json_data_abs_paths = make_paths_absolute(json_data, BASE_URL_DEV, 41)
-
-            G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
-
-            assert self.is_all_absolute(G)

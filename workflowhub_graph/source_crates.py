@@ -15,7 +15,6 @@ from workflowhub_graph.constants import (
     BASE_URL_DEV,
 )
 
-from workflowhub_graph.absolutize import make_paths_absolute
 
 def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes | None:
     """
@@ -132,7 +131,9 @@ def process_workflow_ids(
         for i_workflow, workflow in enumerate(workflows):
             workflow_id = workflow["id"]
 
-            print(f"Processing workflow ID {workflow_id} ({i_workflow + 1}/{len(workflows)})...")
+            print(
+                f"Processing workflow ID {workflow_id} ({i_workflow + 1}/{len(workflows)})..."
+            )
 
             # TODO: Remove dev WorkflowHub URL:
             if is_metadata_endpoint:
@@ -178,22 +179,25 @@ def main():
     )
     args = argparser.parse_args()
 
-    min_workflow_id, max_workflow_id = args.worklow_ids.split("-")    
+    min_workflow_id, max_workflow_id = args.worklow_ids.split("-")
 
     # Example usage:
     workflows_ids = download_workflow_ids(args.workflows_url)
 
     if min_workflow_id != "":
         workflows_ids["data"] = [
-            workflow for workflow in workflows_ids["data"] 
-            if int(workflow["id"]) >= int(min_workflow_id)]
-    
+            workflow
+            for workflow in workflows_ids["data"]
+            if int(workflow["id"]) >= int(min_workflow_id)
+        ]
+
     if max_workflow_id != "":
         workflows_ids["data"] = [
-            workflow for workflow in workflows_ids["data"] 
-            if int(workflow["id"]) <= int(max_workflow_id)]
+            workflow
+            for workflow in workflows_ids["data"]
+            if int(workflow["id"]) <= int(max_workflow_id)
+        ]
 
-                                            
     # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
         process_workflow_ids(workflows_ids, is_metadata_endpoint=True)
