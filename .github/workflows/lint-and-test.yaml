@@ -24,6 +24,7 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         poetry install --all-extras -vv
+        python -m pytest --version
         pylint --errors-only $(git ls-files '*.py')
     - name: Testing the code with pytest
       run: |
