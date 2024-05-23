@@ -1,18 +1,10 @@
-import json
-import time
-import unittest
-from urllib.parse import urlparse
 import pytest
 import os
 from unittest.mock import patch, MagicMock
 
 import pytest
-import rdflib
 import requests
 
-from workflowhub_graph.absolutize import make_paths_absolute
-from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
-from workflowhub_graph.merge import merge_all_files
 from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
     download_and_extract_json_from_zip,
