@@ -22,5 +22,5 @@ jobs:
         - name: Aggregate the data
           run: |
             poetry run workflowhub-graph-source-crates
-            poetry run workflowhub-graph-source-pypi merged.ttl
+            poetry run workflowhub-graph-merge merged.ttl
             # TODO store artifact
