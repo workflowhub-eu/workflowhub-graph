@@ -22,7 +22,7 @@ workflowhub-graph-absolutize = "workflowhub_graph.absolutize:main"
 workflowhub-graph-merge = "workflowhub_graph.merge:main"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^8.2.1"
+pytest = ">=8.2.1"
 
 [build-system]
 requires = ["poetry-core"]
