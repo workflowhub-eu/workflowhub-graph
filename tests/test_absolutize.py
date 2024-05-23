@@ -17,23 +17,27 @@ def get_test_data_file(filename):
     return os.path.join(tests_dir, "test_data", filename)
 
 
-class TestAbsolutizePaths: #(unittest.TestCase):
+class TestAbsolutizePaths:  # (unittest.TestCase):
     # NOTE: ids can not be found, like 634, or forbidden, like 678
     @pytest.mark.parametrize("workflow_id", [41, 552])
     def test_make_paths_absolute(self, workflow_id):
-        
         with patch_rdflib_urlopen(get_test_data_file):
-            with open(get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r") as f:
+            with open(
+                get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r"
+            ) as f:
                 json_data = json.load(f)
 
-            assert not is_all_absolute(rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld"))
+            assert not is_all_absolute(
+                rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld")
+            )
 
             json_data_abs_paths = make_paths_absolute(json_data, BASE_URL, 41)
 
-            G = rdflib.Graph().parse(data=json.dumps(json_data_abs_paths), format="json-ld")
+            G = rdflib.Graph().parse(
+                data=json.dumps(json_data_abs_paths), format="json-ld"
+            )
 
             assert is_all_absolute(G)
-
 
     def test_merged(self):
         G = merge_all_files("data/*21*.json")

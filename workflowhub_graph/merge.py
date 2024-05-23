@@ -1,4 +1,3 @@
-
 import argparse
 import glob
 import json
@@ -29,16 +28,20 @@ def merge_all_files(pattern="data/*.json") -> rdflib.Graph:
             json_data = make_paths_absolute(json_data, BASE_URL, w_id)
 
             # TODO: make this actual caching, and pre-populate in the test
-            with patch_rdflib_urlopen(lambda x: "tests/test_data/ro-crate-context-1.0.json"):
+            with patch_rdflib_urlopen(
+                lambda x: "tests/test_data/ro-crate-context-1.0.json"
+            ):
                 G.parse(data=json_data, format="json-ld")
-            
+
     # TODO: set a total version
-    return G    
+    return G
 
 
 if __name__ == "__main__":
     argparser = argparse.ArgumentParser()
-    argparser.add_argument("output_filename", help="The output filename.", default="merged.ttl")
+    argparser.add_argument(
+        "output_filename", help="The output filename.", default="merged.ttl"
+    )
     args = argparser.parse_args()
 
     G = merge_all_files()

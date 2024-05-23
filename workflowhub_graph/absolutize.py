@@ -14,8 +14,10 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
 
                 # we accept file:// with a netloc, even if netloc is not a FQDN,
                 # see https://github.com/workflowhub-eu/workflowhub-graph/issues/1#issuecomment-2127351752
-                if netloc == '':
-                    print(f"found non-absolute path <{item}> {netloc}, {urlparse(item)}")
+                if netloc == "":
+                    print(
+                        f"found non-absolute path <{item}> {netloc}, {urlparse(item)}"
+                    )
                     return False
                 else:
                     print("this path is absolute", item, urlparse(item))
