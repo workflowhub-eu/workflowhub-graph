@@ -23,8 +23,8 @@ jobs:
         poetry install --all-extras -vv
     - name: Analysing the code with pylint
       run: |
-        pylint --errors-only $(git ls-files '*.py')
+        poetry run pylint --errors-only $(git ls-files '*.py')
     - name: Testing the code with pytest
       run: |
-        py.test tests/
+        poetry run py.test tests/
     
