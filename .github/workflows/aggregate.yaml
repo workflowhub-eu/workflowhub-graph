@@ -25,17 +25,3 @@ jobs:
             poetry run workflowhub-graph-merge merged.ttl
             # TODO store artifact, to zenodo? to github release (tag daily, make )? to gh pages?
 
-
-        - name: Get current date
-          id: date
-          run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
-          
-        - name: Create release
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            tag: nightly-tag-${{ steps.date.outputs.date }}
-          run: |
-            gh release create "$tag" \
-                --repo="$GITHUB_REPOSITORY" \
-                --title="${tag#v}" \
-                --generate-notes            
