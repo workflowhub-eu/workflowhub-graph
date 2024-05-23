@@ -10,7 +10,9 @@ from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
 
 
-def merge_all_files(pattern="data/*.json", **cache_kwargs) -> rdflib.Graph:
+def merge_all_files(
+    pattern="data/*.json", base_url=BASE_URL, **cache_kwargs
+) -> rdflib.Graph:
     G = rdflib.Graph()
 
     filenames = glob.glob(pattern)
@@ -22,10 +24,9 @@ def merge_all_files(pattern="data/*.json", **cache_kwargs) -> rdflib.Graph:
         with open(fn, "r") as f:
             print(f"Processing {fn}, {i}/{len(filenames)}")
 
-            json_data = json.load(f)
-            # TODO: store metadata
             w_id = int(os.path.basename(fn).split("_")[0])
-            json_data = make_paths_absolute(json_data, BASE_URL, w_id)
+
+            json_data = make_paths_absolute(json.load(f), base_url, w_id)
 
             with patch_rdflib_urlopen(**cache_kwargs):
                 G.parse(data=json_data, format="json-ld")

@@ -7,12 +7,13 @@ from io import BytesIO
 from zipfile import ZipFile
 
 from workflowhub_graph.constants import (
-    TARGET_FILE_NAME,
-    WORKFLOWS_URL,
-    METADATA_ENDPOINT,
-    BASE_URL,
-    ZIP_ENDPOINT,
     BASE_URL_DEV,
+    BASE_URL_PROD,
+    TARGET_FILE_NAME,
+    METADATA_ENDPOINT,
+    WORKFLOWS_URL_DEV,
+    WORKFLOWS_URL_PROD,
+    ZIP_ENDPOINT,
 )
 
 
@@ -95,6 +96,7 @@ def download_workflow_ids(json_url: str) -> dict | None:
     :param json_url: The URL of the JSON file.
     :return: A dictionary of WorkflowHub IDs, or None if the download failed.
     """
+    print(f"Downloading workflow IDs from {json_url}...")
     try:
         response = requests.get(json_url)
         response.raise_for_status()
@@ -110,7 +112,10 @@ def download_workflow_ids(json_url: str) -> dict | None:
 
 
 def process_workflow_ids(
-    workflows_data: dict, output_dir: str = "data", is_metadata_endpoint: bool = False
+    workflows_data: dict,
+    output_dir: str = "data",
+    is_metadata_endpoint: bool = False,
+    base_url: str = BASE_URL_DEV,
 ) -> None:
     """
     Utilises the JSON file downloaded by download_workflow_ids(). This file is used to download a list
@@ -139,12 +144,12 @@ def process_workflow_ids(
             if is_metadata_endpoint:
                 endpoint = METADATA_ENDPOINT.format(w_id=workflow_id)
                 json_content = download_and_extract_json_from_metadata_endpoint(
-                    BASE_URL_DEV + endpoint
+                    base_url + endpoint
                 )
             else:
                 # TODO: Where does version come from?
                 endpoint = ZIP_ENDPOINT.format(w_id=workflow_id, w_version=1)
-                json_content = download_and_extract_json_from_zip(BASE_URL + endpoint)
+                json_content = download_and_extract_json_from_zip(base_url + endpoint)
 
             if json_content:
                 output_file_path = os.path.join(
@@ -166,23 +171,31 @@ def process_workflow_ids(
 def main():
     argparser = argparse.ArgumentParser()
     argparser.add_argument(
-        "--workflows-url",
-        type=str,
-        default=WORKFLOWS_URL,
-        help="URL of the JSON file containing workflow IDs.",
-    )
-    argparser.add_argument(
         "--worklow-ids",
         type=str,
         default="-",
         help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10.",
     )
+    argparser.add_argument(
+        "--prod",
+        default=False,
+        action="store_true",
+        help="Use the production WorkflowHub.",
+    )
+
     args = argparser.parse_args()
+
+    if args.prod:
+        base_url = BASE_URL_PROD
+        workflows_url = WORKFLOWS_URL_PROD
+    else:
+        base_url = BASE_URL_DEV
+        workflows_url = WORKFLOWS_URL_DEV
 
     min_workflow_id, max_workflow_id = args.worklow_ids.split("-")
 
     # Example usage:
-    workflows_ids = download_workflow_ids(args.workflows_url)
+    workflows_ids = download_workflow_ids(workflows_url)
 
     if min_workflow_id != "":
         workflows_ids["data"] = [
@@ -200,7 +213,9 @@ def main():
 
     # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
-        process_workflow_ids(workflows_ids, is_metadata_endpoint=True)
+        process_workflow_ids(
+            workflows_ids, is_metadata_endpoint=True, base_url=base_url
+        )
 
 
 if __name__ == "__main__":
