@@ -10,7 +10,7 @@ from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
 
 
-def merge_all_files(pattern="data/*.json") -> rdflib.Graph:
+def merge_all_files(pattern="data/*.json", **cache_kwargs) -> rdflib.Graph:
     G = rdflib.Graph()
 
     filenames = glob.glob(pattern)
@@ -27,10 +27,7 @@ def merge_all_files(pattern="data/*.json") -> rdflib.Graph:
             w_id = int(os.path.basename(fn).split("_")[0])
             json_data = make_paths_absolute(json_data, BASE_URL, w_id)
 
-            # TODO: make this actual caching, and pre-populate in the test
-            with patch_rdflib_urlopen(
-                lambda x: "tests/test_data/ro-crate-context-1.0.json"
-            ):
+            with patch_rdflib_urlopen(**cache_kwargs):
                 G.parse(data=json_data, format="json-ld")
 
     # TODO: set a total version
