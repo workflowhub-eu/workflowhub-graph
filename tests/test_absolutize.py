@@ -50,11 +50,15 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
 
         assert is_all_absolute(G)
 
-        authors = set(
-            [o for s, o in G.subject_objects(rdflib.URIRef("http://schema.org/author"))]
-        )
-
         # checking that we got some useful data about the authors
-        assert authors == set(
+
+        bindings = G.query(
+            """SELECT DISTINCT ?author
+            WHERE {
+                ?s <http://schema.org/author> ?author
+            }"""
+        ).bindings
+
+        assert set([b["author"] for b in bindings]) == set(
             [rdflib.term.Literal("Arnaud Meng, Maxim Scheremetjew, Michael Crusoe")]
         )

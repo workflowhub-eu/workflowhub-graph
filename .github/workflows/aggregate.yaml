@@ -24,4 +24,5 @@ jobs:
             poetry run workflowhub-graph-source-crates
             poetry run workflowhub-graph-merge merged.ttl
             # TODO store artifact, to zenodo? to github release (tag daily, make )? to gh pages?
+            # TODO: make a nice picture
 
