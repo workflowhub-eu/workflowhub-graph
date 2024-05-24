@@ -1,0 +1,10 @@
+fastapi
+pydantic
+uvicorn[standard]
+pytest
+requests
+pexpect
+python-multipart
+ontospy
+llama-index
+llama-index-llms-ollama

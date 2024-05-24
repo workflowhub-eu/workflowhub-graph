@@ -1,0 +1,21 @@
+{
+  "name": "randall-graph",
+  "version": "0.0.1",
+  "description": "A graph for visualising a Jena SPARQL enpoint",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "cytoscape": "3.29.2",
+    "express": "4.17.1",
+    "sparqljs": "3.7.1",
+    "ejs": "3.1.10"    
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm install && node app.js"
+  },  
+  "author": "Oliver Woolland",
+  "license": "MIT"
+}
