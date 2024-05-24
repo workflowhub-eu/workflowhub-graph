@@ -22,6 +22,11 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
     return True
 
 
+# TODO: RO-Crate profile validation
+# get information like schema.org domain and check if the graph is compliant with the schema
+# normative schema.org dev docs: https://schema.org/docs/developers.html
+# TODO: make a note for validation of the graph
+
 def make_paths_absolute(
     json_data: dict, workflowhub_url: str, workflow_id: int
 ) -> dict:
