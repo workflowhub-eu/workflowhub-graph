@@ -1,13 +1,9 @@
 name: Aggregate
 
 on: 
-    # schedule:
-    # - cron: '0 0 * * *'
-    [push]
-        
-        
+    schedule:
+    - cron: '12 5 * * *'
     
-
 jobs:
     aggregate:
         runs-on: ubuntu-latest

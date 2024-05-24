@@ -6,6 +6,13 @@ import arcp
 import rdflib
 
 
+# TODO: following https://github.com/workflowhub-eu/workflowhub-graph/issues/12
+#       builing upon is_all_absolute 
+#       add extended RO-Crate profile validation
+#       get information like schema.org domain and check if the graph is compliant with the schema
+#       normative schema.org dev docs: https://schema.org/docs/developers.html
+#       make a note for validation of the graph
+
 def is_all_absolute(G: rdflib.Graph) -> bool:
     for triple in G:
         for item in triple:
@@ -23,10 +30,6 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
     return True
 
 
-# TODO: RO-Crate profile validation
-# get information like schema.org domain and check if the graph is compliant with the schema
-# normative schema.org dev docs: https://schema.org/docs/developers.html
-# TODO: make a note for validation of the graph
 
 
 def make_paths_absolute(
