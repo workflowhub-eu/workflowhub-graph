@@ -1,4 +1,5 @@
 import argparse
+import copy
 import json
 from urllib.parse import urlparse
 import arcp
@@ -40,6 +41,8 @@ def make_paths_absolute(
     :return: The modified JSON content with absolute paths.
     :raises ValueError: If '@context' key is missing or if '@base' key already exists in the JSON content.
     """
+
+    json_data = copy.deepcopy(json_data)
 
     workflow_url = (
         f"{workflowhub_url}/workflows/{workflow_id}/ro_crate?version={workflow_version}"

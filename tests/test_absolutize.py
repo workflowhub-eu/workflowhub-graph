@@ -31,13 +31,24 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
                 rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld")
             )
 
-            json_data_abs_paths = make_paths_absolute(json_data, BASE_URL, 41, 1)
+            subjects = []
+            for version in [1, 2]:
+                json_data_abs_paths = make_paths_absolute(
+                    json_data, BASE_URL, 41, version
+                )
 
-            parsed_graph = rdflib.Graph().parse(
-                data=json.dumps(json_data_abs_paths), format="json-ld"
-            )
+                parsed_graph = rdflib.Graph().parse(
+                    data=json.dumps(json_data_abs_paths), format="json-ld"
+                )
 
-            assert is_all_absolute(parsed_graph)
+                assert is_all_absolute(parsed_graph)
+
+                subject = parsed_graph.query(
+                    "SELECT ?s WHERE { ?s a <http://schema.org/CreativeWork>  }"
+                ).bindings[0]["s"]
+                subjects.append(subject)
+
+            assert subjects[0] != subjects[1]
 
     def test_merged(self):
         graph = merge_all_files(
