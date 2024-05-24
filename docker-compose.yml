@@ -12,22 +12,6 @@ services:
     networks:
       - wfh
 
-  graph:
-    image: "node:22"
-    container_name: ${PROJECT_NAME}-graph
-    user: "node"
-    working_dir: /home/node/app
-    environment:
-      - NODE_ENV=production
-      - FUSEKI_URL=http://${PROJECT_NAME}-fuseki:3030
-    volumes:
-      - ./graph:/home/node/app
-    ports:
-      - "8080:8080"
-    command: "npm start"
-    networks:
-      - wfh
-
   fastapi:
     image: wfh
     container_name: ${PROJECT_NAME}-fastapi
