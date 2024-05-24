@@ -15,7 +15,8 @@ WORKFLOWS_URL_DEV = "https://dev.workflowhub.eu/workflows.json"
 BASE_URL = BASE_URL_DEV
 WORKFLOWS_URL = WORKFLOWS_URL_DEV
 
-METADATA_ENDPOINT = "/workflows/{w_id}/ro_crate_metadata"
+DOT_JSON_ENDPOINT = "/workflows/{w_id}.json"
+METADATA_ENDPOINT = "/workflows/{w_id}/ro_crate_metadata?version={w_version}"
 ZIP_ENDPOINT = "/workflows/{w_id}/ro_crate?version={w_version}"
 
 TARGET_FILE_NAME = "ro-crate-metadata.json"

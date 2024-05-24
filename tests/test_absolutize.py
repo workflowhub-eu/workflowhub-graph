@@ -31,7 +31,7 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
                 rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld")
             )
 
-            json_data_abs_paths = make_paths_absolute(json_data, BASE_URL, 41)
+            json_data_abs_paths = make_paths_absolute(json_data, BASE_URL, 41, 1)
 
             parsed_graph = rdflib.Graph().parse(
                 data=json.dumps(json_data_abs_paths), format="json-ld"

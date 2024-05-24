@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 import traceback
 
@@ -9,12 +10,40 @@ from zipfile import ZipFile
 from workflowhub_graph.constants import (
     BASE_URL_DEV,
     BASE_URL_PROD,
+    DOT_JSON_ENDPOINT,
     TARGET_FILE_NAME,
     METADATA_ENDPOINT,
     WORKFLOWS_URL_DEV,
     WORKFLOWS_URL_PROD,
     ZIP_ENDPOINT,
 )
+
+
+def get_dot_json_endpoint(target_url) -> dict | None:
+    """
+    Returns the endpoint to download a JSON file from WorkflowHub.
+
+    :param workflow_id: The workflow ID.
+    :return: The endpoint to download the JSON file.
+    """
+    try:
+        response = requests.get(target_url)
+        response.raise_for_status()
+
+        if "application/vnd.api+json" in response.headers["Content-Type"]:
+            return response.json()
+        else:
+            print(f"No JSON file found at: '{target_url}'")
+            return None
+
+    except requests.RequestException as e:
+        print(f"Failed to download the JSON file from {target_url}. Error: {e}")
+        return None
+    except Exception as e:
+        print(
+            f"An error occurred while downloading the JSON file from {target_url}. Error: {e}"
+        )
+        return None
 
 
 def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes | None:
@@ -116,6 +145,7 @@ def process_workflow_ids(
     output_dir: str = "data",
     is_metadata_endpoint: bool = False,
     base_url: str = BASE_URL_DEV,
+    all_versions: bool = False,
 ) -> None:
     """
     Utilises the JSON file downloaded by download_workflow_ids(). This file is used to download a list
@@ -141,29 +171,57 @@ def process_workflow_ids(
                 f"Processing workflow ID {workflow_id} ({i_workflow + 1}/{len(workflows)})..."
             )
 
+            workflow_json = get_dot_json_endpoint(
+                base_url + DOT_JSON_ENDPOINT.format(w_id=workflow_id)
+            )
+
+            try:
+                if all_versions:
+                    workflow_versions = [
+                        workflow_version_dict["version"]
+                        for workflow_version_dict in workflow_json["data"][
+                            "attributes"
+                        ]["versions"]
+                    ]
+                else:
+                    workflow_versions = [
+                        workflow_json["data"]["attributes"]["latest_version"]
+                    ]
+            except (KeyError, TypeError):
+                print(
+                    f"Failed to extract workflow versions from:\n",
+                    json.dumps(workflow_json, indent=4),
+                )
+                continue
+
             # TODO: Remove dev WorkflowHub URL:
-            if is_metadata_endpoint:
-                endpoint = METADATA_ENDPOINT.format(w_id=workflow_id)
-                json_content = download_and_extract_json_from_metadata_endpoint(
-                    base_url + endpoint
-                )
-            else:
-                # TODO: Where does version come from?
-                # TODO: make mutliple versions or the latest version
-                endpoint = ZIP_ENDPOINT.format(w_id=workflow_id, w_version=1)
-                json_content = download_and_extract_json_from_zip(base_url + endpoint)
+            for w_version in workflow_versions:
+                if is_metadata_endpoint:
+                    endpoint = METADATA_ENDPOINT.format(
+                        w_id=workflow_id, w_version=w_version
+                    )
+                    json_content = download_and_extract_json_from_metadata_endpoint(
+                        base_url + endpoint
+                    )
+                else:
+                    endpoint = ZIP_ENDPOINT.format(
+                        w_id=workflow_id, w_version=w_version
+                    )
+                    json_content = download_and_extract_json_from_zip(
+                        base_url + endpoint
+                    )
 
-            if json_content:
-                output_file_path = os.path.join(
-                    output_dir, f"{workflow_id}_ro-crate-metadata.json"
-                )
-                with open(output_file_path, "wb") as output_file:
-                    output_file.write(json_content)
-                print(f"Content saved to {output_file_path}")
-                n_successful += 1
+                if json_content:
+                    output_file_path = os.path.join(
+                        output_dir, f"{workflow_id}_{w_version}_ro-crate-metadata.json"
+                    )
+                    with open(output_file_path, "wb") as output_file:
+                        output_file.write(json_content)
+                    print(f"Content saved to {output_file_path}")
+                    n_successful += 1
 
-            else:
-                print(f"Failed to process workflow ID {workflow_id}")
+                else:
+                    print(f"Failed to process workflow ID {workflow_id}")
 
     except Exception as e:
         print(f"An error occurred while processing workflow IDs. Error: {e}")

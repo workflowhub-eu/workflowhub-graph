@@ -27,8 +27,9 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
 # normative schema.org dev docs: https://schema.org/docs/developers.html
 # TODO: make a note for validation of the graph
 
+
 def make_paths_absolute(
-    json_data: dict, workflowhub_url: str, workflow_id: int
+    json_data: dict, workflowhub_url: str, workflow_id: int, workflow_version: int
 ) -> dict:
     """
     Makes all paths in the JSON content absolute by adding an '@base' key to the JSON-LD context.
@@ -40,8 +41,9 @@ def make_paths_absolute(
     :raises ValueError: If '@context' key is missing or if '@base' key already exists in the JSON content.
     """
 
-    # TODO: where version comes from?
-    workflow_url = f"{workflowhub_url}/workflows/{workflow_id}/ro_crate?version=1"
+    workflow_url = (
+        f"{workflowhub_url}/workflows/{workflow_id}/ro_crate?version={workflow_version}"
+    )
 
     if "@context" not in json_data:
         raise ValueError(
@@ -69,7 +71,8 @@ def main():
     )
     parser.add_argument("json_file", help="The JSON file to process.")
     parser.add_argument("output_file", help="The output file.")
-    parser.add_argument("workflow_id", help="The WorkflowHub ID.")
+    parser.add_argument("workflow_id", help="The Workflow ID.")
+    parser.add_argument("workflow_version", help="The Workflow version.")
     parser.add_argument(
         "-u",
         "--workflowhub-url",
@@ -83,7 +86,7 @@ def main():
         json_data = json.load(f)
 
     processed_json_data = make_paths_absolute(
-        json_data, args.workflowhub_url, args.workflow_id
+        json_data, args.workflowhub_url, args.workflow_id, args.workflow_version
     )
 
     if args.output_file == "-":

@@ -123,22 +123,45 @@ class TestDownloadWorkflowIds:
 
 
 class TestProcessWorkflowIds:
+    @patch("workflowhub_graph.source_crates.get_dot_json_endpoint")
     @patch("workflowhub_graph.source_crates.download_and_extract_json_from_zip")
+    @pytest.mark.parametrize("all_versions", [True, False])
     def test_process_workflow_ids(
-        self, mock_download_and_extract_json_from_zip, setup_output_dir
+        self,
+        mock_download_and_extract_json_from_zip,
+        get_dot_json_endpoint,
+        setup_output_dir,
+        all_versions,
     ):
         """Mock a successful download and extraction of a JSON file from a zip file"""
 
         mock_download_and_extract_json_from_zip.return_value = b'{"name": "test"}'
 
+        get_dot_json_endpoint.return_value = {
+            "data": {
+                "attributes": {
+                    "latest_version": 12,
+                    "versions": [{"version": 3}, {"version": 4}],
+                }
+            }
+        }
+
         workflows_data = {"data": [{"id": "883"}]}
 
         output_dir = setup_output_dir
-        process_workflow_ids(workflows_data, output_dir)
+        process_workflow_ids(workflows_data, output_dir, all_versions=all_versions)
 
-        expected_file_path = os.path.join(output_dir, "883_ro-crate-metadata.json")
-        assert os.path.exists(expected_file_path)
+        if all_versions:
+            expected_versions = [3, 4]
+        else:
+            expected_versions = [12]
 
-        with open(expected_file_path, "rb") as f:
-            content = f.read()
-            assert content == b'{"name": "test"}'
+        for version in expected_versions:
+            expected_file_path = os.path.join(
+                output_dir, f"883_{version}_ro-crate-metadata.json"
+            )
+            assert os.path.exists(expected_file_path)
+
+            with open(expected_file_path, "rb") as f:
+                content = f.read()
+                assert content == b'{"name": "test"}'

@@ -2,6 +2,7 @@ import argparse
 import glob
 import json
 import os
+import re
 
 import rdflib
 
@@ -33,9 +34,20 @@ def merge_all_files(
         with open(fn, "r") as f:
             print(f"Processing {fn}, {i}/{len(filenames)}")
 
-            w_id = int(os.path.basename(fn).split("_")[0])
+            basename = os.path.basename(fn)
 
-            json_data = make_paths_absolute(json.load(f), base_url, w_id)
+            if matched := re.match("([0-9]+?)_ro-crate-metadata.json", basename):
+                w_id = int(matched.group(1))
+                w_version = 1
+            elif matched := re.match(
+                "([0-9]+?)_([0-9]+?)_ro-crate-metadata.json", basename
+            ):
+                w_id = int(matched.group(1))
+                w_version = int(matched.group(2))
+            else:
+                raise ValueError(f"Could not match the filename {basename}")
+
+            json_data = make_paths_absolute(json.load(f), base_url, w_id, w_version)
 
             # TODO: Is there an issue here? Linting shows "Expected type 'str | bytes | None', got 'dict' instead"
             with patch_rdflib_urlopen(**cache_kwargs):
