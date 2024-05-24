@@ -125,6 +125,7 @@ def process_workflow_ids(
     :param output_dir: Directory to save the extracted JSON files. By default, this is 'data'.
     :param is_metadata_endpoint: A boolean flag to determine if method should call
         download_and_extract_json_from_zip() or download_and_extract_json_from_metadata_endpoint().
+    :param base_url: The base URL.
     """
     os.makedirs(output_dir, exist_ok=True)
 
@@ -169,21 +170,21 @@ def process_workflow_ids(
 
 
 def main():
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument(
-        "--worklow-ids",
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--workflow-ids",
         type=str,
         default="-",
         help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10.",
     )
-    argparser.add_argument(
+    parser.add_argument(
         "--prod",
         default=False,
         action="store_true",
         help="Use the production WorkflowHub.",
     )
 
-    args = argparser.parse_args()
+    args = parser.parse_args()
 
     if args.prod:
         base_url = BASE_URL_PROD
@@ -192,7 +193,7 @@ def main():
         base_url = BASE_URL_DEV
         workflows_url = WORKFLOWS_URL_DEV
 
-    min_workflow_id, max_workflow_id = args.worklow_ids.split("-")
+    min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
 
     # Example usage:
     workflows_ids = download_workflow_ids(workflows_url)

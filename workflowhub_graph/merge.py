@@ -2,17 +2,17 @@ import argparse
 import glob
 import json
 import os
-from typing import Optional
 
 import rdflib
 
 from workflowhub_graph.absolutize import make_paths_absolute
-from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
+from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
+
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
-    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: Optional[dict] = None
+    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: dict | None = None
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
@@ -25,10 +25,10 @@ def merge_all_files(
     if cache_kwargs is None:
         cache_kwargs = dict()
 
-    G = rdflib.Graph()
+    graph = rdflib.Graph()
 
     filenames = glob.glob(pattern)
-    
+
     for i, fn in enumerate(filenames):
         with open(fn, "r") as f:
             print(f"Processing {fn}, {i}/{len(filenames)}")
@@ -37,28 +37,29 @@ def merge_all_files(
 
             json_data = make_paths_absolute(json.load(f), base_url, w_id)
 
+            # TODO: Is there an issue here? Linting shows "Expected type 'str | bytes | None', got 'dict' instead"
             with patch_rdflib_urlopen(**cache_kwargs):
-                G.parse(data=json_data, format="json-ld")
+                graph.parse(data=json_data, format="json-ld")
 
     # TODO: set a total version
-    return G
+    return graph
 
 
 def main():
-    argparser = argparse.ArgumentParser()
-    argparser.add_argument(
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
         "output_filename", help="The output filename.", default="merged.ttl"
     )
-    argparser.add_argument(
+    parser.add_argument(
         "-p",
         "--pattern",
         help="The pattern to match the files.",
         default="data/*.json",
     )
-    args = argparser.parse_args()
+    args = parser.parse_args()
 
-    G = merge_all_files(pattern=args.pattern)
-    G.serialize(args.output_filename, format="ttl")
+    graph = merge_all_files(pattern=args.pattern)
+    graph.serialize(args.output_filename, format="ttl")
 
 
 if __name__ == "__main__":

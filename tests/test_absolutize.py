@@ -5,7 +5,7 @@ import pytest
 import rdflib
 
 from workflowhub_graph.absolutize import is_all_absolute, make_paths_absolute
-from workflowhub_graph.cachedurlopen import patch_rdflib_urlopen
+from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
 from workflowhub_graph.constants import BASE_URL
 from workflowhub_graph.merge import merge_all_files
 
@@ -33,14 +33,14 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
 
             json_data_abs_paths = make_paths_absolute(json_data, BASE_URL, 41)
 
-            G = rdflib.Graph().parse(
+            parsed_graph = rdflib.Graph().parse(
                 data=json.dumps(json_data_abs_paths), format="json-ld"
             )
 
-            assert is_all_absolute(G)
+            assert is_all_absolute(parsed_graph)
 
     def test_merged(self):
-        G = merge_all_files(
+        graph = merge_all_files(
             get_test_data_file("[0-9]*ro-crate*.json"),
             cache_kwargs=dict(
                 cache_base_dir=get_test_data_file(),
@@ -48,17 +48,17 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
             ),
         )
 
-        assert is_all_absolute(G)
+        assert is_all_absolute(graph)
 
         # checking that we got some useful data about the authors
 
-        bindings = G.query(
+        bindings = graph.query(
             """SELECT DISTINCT ?author
             WHERE {
                 ?s <http://schema.org/author> ?author
             }"""
         ).bindings
 
-        assert set([b["author"] for b in bindings]) == set(
-            [rdflib.term.Literal("Arnaud Meng, Maxim Scheremetjew, Michael Crusoe")]
-        )
+        assert set([b["author"] for b in bindings]) == {
+            rdflib.term.Literal("Arnaud Meng, Maxim Scheremetjew, Michael Crusoe")
+        }
