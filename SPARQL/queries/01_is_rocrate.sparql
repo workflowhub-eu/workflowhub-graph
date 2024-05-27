@@ -13,7 +13,7 @@ PREFIX	wrterm: <https://w3id.org/ro/terms/workflow-run#>
 PREFIX	wikidata: <https://www.wikidata.org/wiki/>
 PREFIX	wfexs: <shttp:///>
 
-SELECT  ?rocratejson ?rootdataset ?rocrateprofile ?wfcrateprofile ?mainentity ?bsworkflowprofile ?wrprocessprofile ?wrwfprofile
+SELECT  ?rocratejson ?rootdataset ?rocrateprofile ?wfcrateprofile ?main_entity ?bsworkflowprofile ?wrprocessprofile ?wrwfprofile
 WHERE   {
     ?rocratejson
         a s:CreativeWork ;
@@ -30,8 +30,8 @@ WHERE   {
         ) .
         OPTIONAL  {
             ?rootdataset
-                s:mainEntity ?mainentity .
-            ?mainentity
+                s:mainEntity ?main_entity .
+            ?main_entity
                 a bs:ComputationalWorkflow ;
                 dcterms:conformsTo ?bsworkflowprofile .
             FILTER (

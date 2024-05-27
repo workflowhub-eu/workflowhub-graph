@@ -30,8 +30,8 @@ WHERE   {
         ?wfcrateprofile = wfhprofile: || STRSTARTS(str(?wfcrateprofile), str(wfcrate:))
     ) .
     ?rootdataset
-        s:mainEntity ?mainentity .
-    ?mainentity
+        s:mainEntity ?main_entity .
+    ?main_entity
         a bs:ComputationalWorkflow ;
         dcterms:conformsTo ?bsworkflowprofile .
     FILTER (
@@ -39,7 +39,7 @@ WHERE   {
     ) .
 
     # This part extracts the different details
-    ?mainentity s:programmingLanguage ?programminglanguage .
+    ?main_entity s:programmingLanguage ?programminglanguage .
     ?programminglanguage
         a s:ComputerLanguage ;
         s:url ?programminglanguage_url .
@@ -55,8 +55,8 @@ WHERE   {
         {
             # The workflow is the original one
             FILTER NOT EXISTS {
-                ?mainentity s:isBasedOn ?origmainentity .
-                ?origmainentity
+                ?main_entity s:isBasedOn ?orig_main_entity .
+                ?orig_main_entity
                     a bs:ComputationalWorkflow ;
                     dcterms:conformsTo ?bsworkflowprofile .
                 FILTER (
@@ -64,43 +64,43 @@ WHERE   {
                 ) .
             }
             OPTIONAL {
-                ?mainentity s:codeRepository ?workflow_repository .
+                ?main_entity s:codeRepository ?workflow_repository .
             }
             OPTIONAL {
-                ?mainentity s:version ?workflow_version .
+                ?main_entity s:version ?workflow_version .
             }
             OPTIONAL {
-                ?mainentity s:url ?workflow_url .
+                ?main_entity s:url ?workflow_url .
             }
             OPTIONAL {
-                ?mainentity s:identifier ?identifier .
+                ?main_entity s:identifier ?identifier .
             }
             OPTIONAL {
-                ?mainentity s:alternateName ?workflow_alternate_name .
+                ?main_entity s:alternateName ?workflow_alternate_name .
             }
         } UNION {
             # The workflow is a derivation of an original one
-            ?mainentity s:isBasedOn ?origmainentity .
-            ?origmainentity
+            ?main_entity s:isBasedOn ?orig_main_entity .
+            ?orig_main_entity
                 a bs:ComputationalWorkflow ;
                 dcterms:conformsTo ?bsworkflowprofile .
             OPTIONAL {
-                ?origmainentity s:codeRepository ?workflow_repository .
+                ?orig_main_entity s:codeRepository ?workflow_repository .
             }
             OPTIONAL {
-                ?origmainentity s:version ?workflow_version .
+                ?orig_main_entity s:version ?workflow_version .
             }
             OPTIONAL {
-                ?origmainentity s:url ?workflow_url .
+                ?orig_main_entity s:url ?workflow_url .
             }
             FILTER (
                 STRSTARTS(str(?bsworkflowprofile), str(bswfprofile:))
             ) .
             OPTIONAL {
-                ?origmainentity s:identifier ?identifier .
+                ?orig_main_entity s:identifier ?identifier .
             }
             OPTIONAL {
-                ?origmainentity s:alternateName ?workflow_alternate_name .
+                ?orig_main_entity s:alternateName ?workflow_alternate_name .
             }
         }
     }

@@ -30,8 +30,8 @@ WHERE   {
         ?wfcrateprofile = wfhprofile: || STRSTARTS(str(?wfcrateprofile), str(wfcrate:))
     ) .
     ?rootdataset
-        s:mainEntity ?mainentity .
-    ?mainentity
+        s:mainEntity ?main_entity .
+    ?main_entity
         a bs:ComputationalWorkflow ;
         dcterms:conformsTo ?bsworkflowprofile .
     FILTER (
@@ -45,7 +45,7 @@ WHERE   {
             ?rootdataset s:mentions ?execution .
             ?execution
                 a s:CreateAction ;
-                s:instrument ?mainentity .
+                s:instrument ?main_entity .
         }
         LIMIT 1
     }

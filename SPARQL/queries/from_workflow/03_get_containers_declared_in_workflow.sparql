@@ -30,8 +30,8 @@ WHERE   {
         ?wfcrateprofile = wfhprofile: || STRSTARTS(str(?wfcrateprofile), str(wfcrate:))
     ) .
     ?rootdataset
-        s:mainEntity ?mainentity .
-    ?mainentity
+        s:mainEntity ?main_entity .
+    ?main_entity
         a bs:ComputationalWorkflow ;
         dcterms:conformsTo ?bsworkflowprofile .
     FILTER (
@@ -42,14 +42,14 @@ WHERE   {
     {
         {
             FILTER NOT EXISTS {
-                ?mainentity s:softwareRequirement ?container.
+                ?main_entity s:softwareRequirement ?container.
             }
-            ?mainentity s:softwareAddOn ?container.
+            ?main_entity s:softwareAddOn ?container.
         } UNION {
             FILTER NOT EXISTS {
-                ?mainentity s:softwareAddOn ?container.
+                ?main_entity s:softwareAddOn ?container.
             }
-            ?mainentity s:softwareRequirements ?container.
+            ?main_entity s:softwareRequirements ?container.
         }
     }
     ?container
