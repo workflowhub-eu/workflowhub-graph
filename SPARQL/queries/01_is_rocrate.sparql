@@ -1,0 +1,52 @@
+PREFIX	dc: <http://purl.org/dc/elements/1.1/>
+PREFIX	dcterms: <http://purl.org/dc/terms/>
+PREFIX	s: <http://schema.org/>
+PREFIX	bs: <https://bioschemas.org/>
+PREFIX	bswfprofile: <https://bioschemas.org/profiles/ComputationalWorkflow/>
+PREFIX	bsworkflow: <https://bioschemas.org/ComputationalWorkflow#>
+PREFIX	rocrate: <https://w3id.org/ro/crate/>
+PREFIX	wfcrate: <https://w3id.org/workflowhub/workflow-ro-crate/>
+PREFIX	wfhprofile: <https://about.workflowhub.eu/Workflow-RO-Crate/>
+PREFIX	wrprocess: <https://w3id.org/ro/wfrun/process/>
+PREFIX	wrwf: <https://w3id.org/ro/wfrun/workflow/>
+PREFIX	wrterm: <https://w3id.org/ro/terms/workflow-run#>
+PREFIX	wikidata: <https://www.wikidata.org/wiki/>
+PREFIX	wfexs: <shttp:///>
+
+SELECT  ?rocratejson ?rootdataset ?rocrateprofile ?wfcrateprofile ?mainentity ?bsworkflowprofile ?wrprocessprofile ?wrwfprofile
+WHERE   {
+    ?rocratejson
+        a s:CreativeWork ;
+        dcterms:conformsTo ?rocrateprofile ;
+        s:about ?rootdataset .
+    ?rootdataset a s:Dataset .
+    FILTER (
+        STRSTARTS(str(?rocrateprofile), str(rocrate:))
+    ) .
+    OPTIONAL {
+        ?rocratejson dcterms:conformsTo ?wfcrateprofile .
+        FILTER (
+            ?wfcrateprofile = wfhprofile: || STRSTARTS(str(?wfcrateprofile), str(wfcrate:))
+        ) .
+        OPTIONAL  {
+            ?rootdataset
+                s:mainEntity ?mainentity .
+            ?mainentity
+                a bs:ComputationalWorkflow ;
+                dcterms:conformsTo ?bsworkflowprofile .
+            FILTER (
+                STRSTARTS(str(?bsworkflowprofile), str(bswfprofile:))
+            ) .
+        }
+        OPTIONAL  {
+            ?rootdataset
+                dcterms:conformsTo ?wfcrateprofile ;
+                dcterms:conformsTo ?wrprocessprofile ;
+                dcterms:conformsTo ?wrwfprofile .
+            FILTER (
+                STRSTARTS(str(?wrprocessprofile), str(wrprocess:)) &&
+                STRSTARTS(str(?wrwfprofile), str(wrwf:))
+            ) .
+        }
+    }
+}
