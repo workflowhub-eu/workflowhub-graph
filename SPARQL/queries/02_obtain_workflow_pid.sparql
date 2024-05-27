@@ -53,6 +53,7 @@ WHERE   {
     }
     {
         {
+            # The workflow is the original one
             FILTER NOT EXISTS {
                 ?mainentity s:isBasedOn ?origmainentity .
                 ?origmainentity
@@ -78,6 +79,7 @@ WHERE   {
                 ?mainentity s:alternateName ?workflow_alternate_name .
             }
         } UNION {
+            # The workflow is a derivation of an original one
             ?mainentity s:isBasedOn ?origmainentity .
             ?origmainentity
                 a bs:ComputationalWorkflow ;
