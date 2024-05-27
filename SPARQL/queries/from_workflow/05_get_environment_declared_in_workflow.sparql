@@ -1,0 +1,91 @@
+PREFIX	dc: <http://purl.org/dc/elements/1.1/>
+PREFIX	dcterms: <http://purl.org/dc/terms/>
+PREFIX	s: <http://schema.org/>
+PREFIX	bs: <https://bioschemas.org/>
+PREFIX	bswfprofile: <https://bioschemas.org/profiles/ComputationalWorkflow/>
+PREFIX	bsworkflow: <https://bioschemas.org/ComputationalWorkflow#>
+PREFIX	rocrate: <https://w3id.org/ro/crate/>
+PREFIX	wfcrate: <https://w3id.org/workflowhub/workflow-ro-crate/>
+PREFIX	wfhprofile: <https://about.workflowhub.eu/Workflow-RO-Crate/>
+PREFIX	wrprocess: <https://w3id.org/ro/wfrun/process/>
+PREFIX	wrwf: <https://w3id.org/ro/wfrun/workflow/>
+PREFIX	wrterm: <https://w3id.org/ro/terms/workflow-run#>
+PREFIX	wikidata: <https://www.wikidata.org/wiki/>
+PREFIX	wfexs: <shttp:///>
+
+SELECT  ?env ?name ?name_env ?envfp ?additional_type ?fileuri ?value ?component ?leaf_type
+WHERE   {
+    # This first part is just matching
+    # Workflow RO-Crates and its main entity
+    ?rocratejson
+        a s:CreativeWork ;
+        dcterms:conformsTo ?rocrateprofile ;
+        s:about ?rootdataset .
+    ?rootdataset a s:Dataset .
+    FILTER (
+        STRSTARTS(str(?rocrateprofile), str(rocrate:))
+    ) .
+    ?rocratejson dcterms:conformsTo ?wfcrateprofile .
+    FILTER (
+        ?wfcrateprofile = wfhprofile: || STRSTARTS(str(?wfcrateprofile), str(wfcrate:))
+    ) .
+    ?rootdataset
+        s:mainEntity ?main_entity .
+    ?main_entity
+        a bs:ComputationalWorkflow ;
+        dcterms:conformsTo ?bsworkflowprofile .
+    FILTER (
+        STRSTARTS(str(?bsworkflowprofile), str(bswfprofile:))
+    ) .
+
+    ?main_entity wrterm:environment ?envfp .
+    ?envfp
+        a bs:FormalParameter ;
+        s:name ?name ;
+        s:additionalType ?additional_type ;
+        s:workExample ?env .
+    {
+        # A file, which is a schema.org MediaObject
+        ?env
+            a s:MediaObject ;
+            s:name ?name_env ;
+            s:contentUrl ?fileuri .
+    } UNION {
+        # A directory, which is a schema.org Dataset
+        ?env
+            a s:Dataset ;
+            s:name ?name_env ;
+            s:contentUrl ?fileuri .
+        FILTER EXISTS { 
+            # subquery to determine it is not an empty Dataset
+            SELECT ?dircomp
+            WHERE { 
+                ?env
+                    s:hasPart+ ?dircomp .
+                ?dircomp
+                    a s:MediaObject .
+            }
+        }
+    } UNION {
+        # A single property value, which can be either Integer, Text, Boolean or Float
+        ?env
+            a s:PropertyValue ;
+            s:name ?name_env ;
+            s:value ?value .
+    } UNION {
+        # A combination of files or directories or property values
+        VALUES ( ?leaf_type ) { ( s:Integer ) ( s:Text ) ( s:Boolean ) ( s:Float ) ( s:MediaObject ) ( s:Dataset ) }
+        ?env
+            a s:Collection ;
+            s:name ?name_env ;
+            s:hasPart+ ?component .
+        ?component
+            a ?leaf_type .
+        OPTIONAL {
+            ?component s:contentUrl ?fileuri .
+        }
+        OPTIONAL {
+            ?component s:value ?value .
+        }
+    }
+}
