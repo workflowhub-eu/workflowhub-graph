@@ -122,7 +122,7 @@ WHERE   {
         }
     }
     OPTIONAL {
-        ?ouputfp
+        ?outputfp
             s:defaultValue ?default_value .
     }
     OPTIONAL {

@@ -44,7 +44,7 @@ WHERE   {
         s:name ?name ;
         s:additionalType ?additional_type .
     OPTIONAL {
-        ?ouputfp
+        ?outputfp
             s:defaultValue ?default_value .
     }
 }
