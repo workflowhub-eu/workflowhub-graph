@@ -10,7 +10,7 @@ import rdflib.plugins.sparql
 import sys
 import urllib.parse
 
-CUSTOM_SCHEME = "rocrate"
+CUSTOM_SCHEME = "rel-rocrate"
 CUSTOM_BASE = CUSTOM_SCHEME + ":"
 
 WRROC_SPARQL_NS = {

@@ -11,7 +11,6 @@ PREFIX	wrprocess: <https://w3id.org/ro/wfrun/process/>
 PREFIX	wrwf: <https://w3id.org/ro/wfrun/workflow/>
 PREFIX	wrterm: <https://w3id.org/ro/terms/workflow-run#>
 PREFIX	wikidata: <https://www.wikidata.org/wiki/>
-PREFIX	wfexs: <shttp:///>
 
 SELECT ?container ?container_additional_type ?type_of_container ?type_of_container_type ?container_registry ?container_name ?container_tag ?container_sha256 ?container_platform ?container_arch
 WHERE   {

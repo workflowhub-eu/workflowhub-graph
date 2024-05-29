@@ -11,7 +11,6 @@ PREFIX	wrprocess: <https://w3id.org/ro/wfrun/process/>
 PREFIX	wrwf: <https://w3id.org/ro/wfrun/workflow/>
 PREFIX	wrterm: <https://w3id.org/ro/terms/workflow-run#>
 PREFIX	wikidata: <https://www.wikidata.org/wiki/>
-PREFIX	wfexs: <shttp:///>
 
 SELECT  ?identifier ?workflow_repository ?workflow_version ?workflow_url ?workflow_alternate_name ?programminglanguage_identifier ?programminglanguage_url ?programminglanguage_version
 WHERE   {
