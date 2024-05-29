@@ -8,13 +8,15 @@ import pyld  # type: ignore[import]
 import rdflib
 import rdflib.plugins.sparql
 import sys
+import urllib.parse
 
-CUSTOM_BASE="shttp:///"
+CUSTOM_SCHEME = "rocrate"
+CUSTOM_BASE = CUSTOM_SCHEME + ":"
 
 WRROC_SPARQL_NS = {
     "dc":  "http://purl.org/dc/elements/1.1/",
     "dcterms":  "http://purl.org/dc/terms/",
-    "wfexs": CUSTOM_BASE,
+    "rocrate": CUSTOM_BASE,
     "s": "http://schema.org/",
     "bs": "https://bioschemas.org/",
     "bsworkflow": "https://bioschemas.org/profiles/ComputationalWorkflow/",
@@ -29,6 +31,10 @@ WRROC_SPARQL_NS = {
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
+        # This is needed to have a behaving urllib.parse
+        urllib.parse.uses_relative.append(CUSTOM_SCHEME)
+        urllib.parse.uses_fragment.append(CUSTOM_SCHEME)
+        
         # First, read the sparql query
         with open(sys.argv[1], mode="r", encoding="utf-8") as qH:
             sparql_query = qH.read()
@@ -50,7 +56,7 @@ if __name__ == "__main__":
             context = input_jld["@context"]
             
             g = rdflib.Graph()
-            parsed = g.parse(data={'@graph': pyld.jsonld.expand(input_jld, {"keepFreeFloatingNodes": True})}, format='json-ld', base="shttp:///")
+            parsed = g.parse(data={'@graph': pyld.jsonld.expand(input_jld, {"keepFreeFloatingNodes": True})}, format='json-ld', base=CUSTOM_BASE)
 
             print(f"File {filename} {parsed} {len(parsed)} {g.connected()} {len(g)} {context}")
             
