@@ -1,0 +1,68 @@
+{
+  "@context": [
+    "https://w3id.org/ro/crate/1.1/context"
+  ],
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-101-everyone/workflows#main_workflow.ga"
+      },
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      }
+    },
+    {
+      "@id": "ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "https://training.galaxyproject.org/training-material/topics/introduction/tutorials/galaxy-intro-101-everyone/workflows#main_workflow.ga",
+      "@type": "Dataset",
+      "name": "GTN Training: Galaxy 101 For Everyone",
+      "description": "Galaxy workflow",
+      "version": "16",
+      "license": "https://spdx.org/licenses/CC-BY-4.0",
+      "datePublished": "2024-03-18T12:38:43.978+01:00",
+      "mainEntity": {
+        "@id": "main_workflow.ga"
+      },
+      "hasPart": [
+        {
+          "@id": "main_workflow.ga"
+        }
+      ]
+    },
+    {
+      "@id": "main_workflow.ga",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "ComputationalWorkflow"
+      ],
+      "author": [
+
+      ],
+      "name": "GTN Training: Galaxy 101 For Everyone",
+      "programmingLanguage": {
+        "@id": "https://w3id.org/workflowhub/workflow-ro-crate#galaxy"
+      }
+    },
+    {
+      "@id": "https://w3id.org/workflowhub/workflow-ro-crate#galaxy",
+      "@type": "ComputerLanguage",
+      "identifier": {
+        "@id": "https://galaxyproject.org/"
+      },
+      "name": "Galaxy",
+      "url": {
+        "@id": "https://galaxyproject.org/"
+      },
+      "version": "23.1"
+    }
+  ]
+}

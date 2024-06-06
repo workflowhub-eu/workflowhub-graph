@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "workflowhub-graph"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+packages = [
+    { include = "workflowhub_graph", from = "." },
+]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+arcp = "^0.2.1"
+rdflib = "^6.3.2"
+requests = "^2.32.2"
+certifi = "^2024.2.2"
+pytest = ">=8.2.1"
+
+[tool.poetry.scripts]
+workflowhub-graph-source-crates = "workflowhub_graph.source_crates:main"
+workflowhub-graph-absolutize = "workflowhub_graph.absolutize:main"
+workflowhub-graph-merge = "workflowhub_graph.merge:main"
+workflowhub-graph-upload = "workflowhub_graph.upload:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = ">=8.2.1"
+pylint = "^3.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
