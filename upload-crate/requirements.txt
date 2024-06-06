@@ -1,0 +1,8 @@
+fastapi
+pydantic
+uvicorn[standard]
+pytest
+requests
+pexpect
+python-multipart
+ontospy

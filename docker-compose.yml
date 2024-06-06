@@ -1,0 +1,33 @@
+services:
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: ${PROJECT_NAME}-fuseki
+    ports:
+      - "3030:3030"
+    environment:
+      ADMIN_PASSWORD: admin
+      FUSEKI_DATASET_1: wfh
+    volumes:
+      - jena-data:/fuseki
+    networks:
+      - wfh
+
+  fastapi:
+    image: wfh
+    container_name: ${PROJECT_NAME}-fastapi
+    build:
+      context: upload-crate
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    environment:
+      - FUSEKI_URL=http://${PROJECT_NAME}-fuseki:3030
+    networks:
+      - wfh
+
+volumes:
+  jena-data:
+
+networks:
+  wfh:    
+    
