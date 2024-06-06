@@ -19,12 +19,12 @@ from workflowhub_graph.constants import (
 )
 
 
-def get_dot_json_endpoint(target_url) -> dict | None:
+def get_dot_json_endpoint(target_url: str) -> dict | None:
     """
     Returns the endpoint to download a JSON file from WorkflowHub.
 
-    :param workflow_id: The workflow ID.
-    :return: The endpoint to download the JSON file.
+    :param target_url: URL of the JSON file.
+    :return: The endpoint to download the JSON file or None.
     """
     try:
         response = requests.get(target_url)
@@ -144,7 +144,7 @@ def process_workflow_ids(
     workflows_data: dict,
     output_dir: str = "data",
     is_metadata_endpoint: bool = False,
-    base_url: str = BASE_URL_DEV,
+    base_url: str = BASE_URL_PROD,
     all_versions: bool = False,
 ) -> None:
     """
@@ -194,7 +194,6 @@ def process_workflow_ids(
                 )
                 continue
 
-            # TODO: Remove dev WorkflowHub URL:
             for w_version in workflow_versions:
                 if is_metadata_endpoint:
                     endpoint = METADATA_ENDPOINT.format(
