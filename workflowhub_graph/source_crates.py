@@ -156,6 +156,7 @@ def process_workflow_ids(
     :param is_metadata_endpoint: A boolean flag to determine if method should call
         download_and_extract_json_from_zip() or download_and_extract_json_from_metadata_endpoint().
     :param base_url: The base URL.
+    :param all_versions: A boolean flag to determine if all versions of a workflow should be processed.
     """
     os.makedirs(output_dir, exist_ok=True)
 
@@ -241,6 +242,12 @@ def main():
         action="store_true",
         help="Use the production WorkflowHub.",
     )
+    parser.add_argument(
+        "--all-versions",
+        default=False,
+        action="store_true",
+        help="Download all versions of an RO Crate. If not set, only the latest version will be downloaded.",
+    )
 
     args = parser.parse_args()
 
@@ -273,7 +280,10 @@ def main():
     # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
         process_workflow_ids(
-            workflows_ids, is_metadata_endpoint=True, base_url=base_url
+            workflows_ids,
+            is_metadata_endpoint=True,
+            base_url=base_url,
+            all_versions=args.all_versions,
         )
 
 
