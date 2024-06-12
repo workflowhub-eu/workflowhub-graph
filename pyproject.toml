@@ -18,10 +18,11 @@ certifi = "^2024.2.2"
 pytest = ">=8.2.1"
 
 [tool.poetry.scripts]
-workflowhub-graph-source-crates = "workflowhub_graph.source_crates:main"
-workflowhub-graph-absolutize = "workflowhub_graph.absolutize:main"
-workflowhub-graph-merge = "workflowhub_graph.merge:main"
-workflowhub-graph-upload = "workflowhub_graph.upload:main"
+source-crates = "workflowhub_graph.source_crates:main"
+absolutize = "workflowhub_graph.absolutize:main"
+merge = "workflowhub_graph.merge:main"
+upload = "workflowhub_graph.upload:main"
+help = "workflowhub_graph.help:main"
 
 [tool.poetry.group.dev.dependencies]
 pytest = ">=8.2.1"

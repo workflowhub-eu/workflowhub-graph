@@ -1,5 +1,38 @@
 # WorkflowHub Knowledge Graph 
 
+## Getting started
+
+### Obtaining workflowhub-graph
+
+workflowhub-graph is available packaged as a Docker container. You can pull the latest version of the container by running:
+
+```bash
+docker pull ghcr.io/uomresearchit/workflowhub-graph:latest
+```
+
+This provides the a wrapper for the executable `workflowhub-graph` which can be used to run the various tools provided by the package.
+
+### Running workflowhub-graph
+
+There are several tools provided by the `workflowhub-graph` package. These are:
+- 'help': Display help information.
+- 'source-crates': Download ROCrates from the WorkflowHub API.
+- 'absolutize': Make all paths in an ROCrate absolute.
+- 'upload': Upload an ROCrate to Zenodo.
+- 'merge': Merge multiple ROCrates into an RDF graph.
+
+To run any of these tools, you can use the following command:
+
+```bash
+docker run ghcr.io/uomresearchit/workflowhub-graph:latest <tool> <args>
+```
+
+For example, to download ROCrates from the WorkflowHub API, you can run:
+
+```bash
+docker run ghcr.io/uomresearchit/workflowhub-graph:latest source-crates
+```
+
 ## Contributing
 
 ### Coding Style
