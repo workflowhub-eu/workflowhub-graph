@@ -1,0 +1,1524 @@
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix ns1: <https://bioschemas.org/ComputationalWorkflow#> .
+@prefix schema1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/> .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/> .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/> .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/> .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/> .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/ro-crate-metadata.json> a schema1:CreativeWork ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1> ;
+    schema1:about <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/> .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/ro-crate-preview.html> a schema1:CreativeWork ;
+    schema1:about <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#genomics___se_variation-inputs-NC_045512> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "NC_045512" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-auto_kmer_choice> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "auto_kmer_choice" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-careful> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "careful" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-cov_cutoff> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "cov_cutoff" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-cov_state> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "cov_state" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq1> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "fastq1" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq1_type> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "fastq1_type" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq2> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "fastq2" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq2_type> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "fastq2_type" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq_file_type> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "fastq_file_type" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-iontorrent> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "iontorrent" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-kmers> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "kmers" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_fwd_rev> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "libraries_fwd_rev" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_metadata> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "libraries_metadata" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_mono> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "libraries_mono" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-mode> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "mode" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-nanopore_reads> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "nanopore_reads" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-onlyassembler> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "onlyassembler" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-pacbio_reads> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "pacbio_reads" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-sanger_reads> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "sanger_reads" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-sc> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "sc" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-trusted_contigs> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "trusted_contigs" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-untrusted_contigs> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "untrusted_contigs" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-all_log_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "all_log_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_graph_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_unicycler> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_graph_unicycler" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_with_scaffolds_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_graph_with_scaffolds_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_image_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_image_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_image_unicycler> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_image_unicycler" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_info_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_info_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_info_unicycler> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_info_unicycler" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_unicycler> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "assembly_unicycler" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_contig_stats_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "out_contig_stats_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_contigs_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "out_contigs_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_scaffold_stats_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "out_scaffold_stats_spades" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_scaffolds_spades> a <https://bioschemas.org/FormalParameter> ;
+    dct:conformsTo "https://bioschemas.org/profiles/FormalParameter/1.0-RELEASE/" ;
+    schema1:name "out_scaffolds_spades" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-1> a schema1:Person ;
+    schema1:name "Dannon Baker" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-10> a schema1:Person ;
+    schema1:name "Björn Grüning" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-11> a schema1:Person ;
+    schema1:name "Delphine Larivière" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-12> a schema1:Person ;
+    schema1:name "Gildas Le Corguillé" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-13> a schema1:Person ;
+    schema1:name "Andrew Lonie" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-14> a schema1:Person ;
+    schema1:name "Nicholas Keener" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-15> a schema1:Person ;
+    schema1:name "Sergei Kosakovsky Pond" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-16> a schema1:Person ;
+    schema1:name "Wolfgang Maier" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-17> a schema1:Person ;
+    schema1:name "Anton Nekrutenko" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-18> a schema1:Person ;
+    schema1:name "James Taylor" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-19> a schema1:Person ;
+    schema1:name "Steven Weaver" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-2> a schema1:Person ;
+    schema1:name "Marius van den Beek" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-3> a schema1:Person ;
+    schema1:name "Dave Bouvier" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-4> a schema1:Person ;
+    schema1:name "John Chilton" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-5> a schema1:Person ;
+    schema1:name "Nate Coraor" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-6> a schema1:Person ;
+    schema1:name "Frederik Coppens" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-7> a schema1:Person ;
+    schema1:name "Bert Droesbeke" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-8> a schema1:Person ;
+    schema1:name "Ignacio Eguinoa" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-9> a schema1:Person ;
+    schema1:name "Simon Gladman" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#cwl> a schema1:ComputerLanguage ;
+    schema1:alternateName "CWL" ;
+    schema1:identifier <https://w3id.org/cwl/v1.0/> ;
+    schema1:name "Common Workflow Language" ;
+    schema1:url <https://www.commonwl.org/> .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#galaxy> a schema1:ComputerLanguage ;
+    schema1:identifier <https://galaxyproject.org/> ;
+    schema1:name "Galaxy" ;
+    schema1:url <https://galaxyproject.org/> .
+
+<https://workflowhub.eu/projects/6> a schema1:Organization,
+        schema1:Project ;
+    schema1:name "CWL workflow SARS-CoV-2" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-1>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-10>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-11>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-12>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-13>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-14>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-15>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-16>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-17>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-18>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-19>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-2>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-3>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-4>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-5>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-6>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-7>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-8>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#creator-9> ;
+    schema1:description "This workflow uses Illumina and Oxford Nanopore reads that were pre-processed to remove human-derived sequences. Two assembly tools are used: spades and unicycler. In addition to assemblies (actual sequences) the two tools produce assembly graphs that can be used for visualization of assembly with bandage. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.cwl>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.ga>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/5?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.ga> ;
+    schema1:name "Research Object Crate for Genomics - Assembly of the genome sequence" ;
+    schema1:sdDatePublished "2024-06-17 10:59:52 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/5/ro_crate?version=1" .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 4086 ;
+    schema1:programmingLanguage <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#cwl> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 15846 ;
+    schema1:creator <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Andrew%20Lonie>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Anton%20Nekrutenko>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Bert%20Droesbeke>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Dannon%20Baker>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Dave%20Bouvier>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Frederik%20Coppens>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Ignacio%20Eguinoa>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#James%20Taylor>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#John%20Chilton>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Nate%20Coraor>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Nicholas%20Keener>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Simon%20Gladman>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Steven%20Weaver>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T12:32:21Z" ;
+    schema1:dateModified "2023-01-16T13:39:53Z" ;
+    schema1:description "This workflow uses Illumina and Oxford Nanopore reads that were pre-processed to remove human-derived sequences. Two assembly tools are used: spades and unicycler. In addition to assemblies (actual sequences) the two tools produce assembly graphs that can be used for visualization of assembly with bandage. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - Assembly of the genome sequence" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/5?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#genomics___assembly_of_the_genome_sequence-inputs-0_Input%20Dataset>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#genomics___assembly_of_the_genome_sequence-inputs-1_Input%20Dataset>,
+        <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/#genomics___assembly_of_the_genome_sequence-inputs-2_Input%20Dataset> .
+
+<arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/Genomics-2-Assembly.svg> a <arcp://uuid,091c9a40-0a37-5917-baa4-a0497d51d2be/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 7739 .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-1>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-10>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-11>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-12>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-13>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-14>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-15>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-16>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-17>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-18>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-19>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-2>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-3>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-4>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-5>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-6>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-7>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-8>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#creator-9> ;
+    schema1:description "Analysis of variation within individual COVID-19 samples using Illumina Single End data. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.cwl>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.ga>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/8?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.ga> ;
+    schema1:name "Research Object Crate for Genomics - SE Variation" ;
+    schema1:sdDatePublished "2024-06-17 10:59:51 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/8/ro_crate?version=1" .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 6391 ;
+    schema1:programmingLanguage <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#cwl> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 33953 ;
+    schema1:creator <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Andrew%20Lonie>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Anton%20Nekrutenko>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Bert%20Droesbeke>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Dannon%20Baker>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Dave%20Bouvier>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Frederik%20Coppens>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Ignacio%20Eguinoa>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#James%20Taylor>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#John%20Chilton>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Nate%20Coraor>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Nicholas%20Keener>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Simon%20Gladman>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Steven%20Weaver>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T12:54:10Z" ;
+    schema1:dateModified "2023-01-16T13:40:12Z" ;
+    schema1:description "Analysis of variation within individual COVID-19 samples using Illumina Single End data. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - SE Variation" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/8?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#genomics___se_variation-inputs-0_Input%20Dataset%20Collection>,
+        <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/#genomics___se_variation-inputs-NC_045512> .
+
+<arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/Genomics-4-SE_Variation.svg> a <arcp://uuid,16edb29d-a94e-5314-9aa5-a082cb6c3da2/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 11562 .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-1>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-10>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-11>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-12>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-13>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-14>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-15>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-16>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-17>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-18>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-19>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-2>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-3>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-4>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-5>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-6>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-7>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-8>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#creator-9> ;
+    schema1:description "This workflow employs a recombination detection algorithm (GARD) developed by Kosakovsky Pond et al. and implemented in the hyphy package. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.cwl>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.ga>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/10?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.ga> ;
+    schema1:name "Research Object Crate for Genomics - Recombination and selection analysis" ;
+    schema1:sdDatePublished "2024-06-17 10:59:50 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/10/ro_crate?version=1" .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 2947 ;
+    schema1:programmingLanguage <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#cwl> .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 14263 ;
+    schema1:creator <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Andrew%20Lonie>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Anton%20Nekrutenko>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Bert%20Droesbeke>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Dannon%20Baker>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Dave%20Bouvier>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Frederik%20Coppens>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Ignacio%20Eguinoa>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#James%20Taylor>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#John%20Chilton>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Nate%20Coraor>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Nicholas%20Keener>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Simon%20Gladman>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Steven%20Weaver>,
+        <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T13:30:37Z" ;
+    schema1:dateModified "2023-01-16T13:40:25Z" ;
+    schema1:description "This workflow employs a recombination detection algorithm (GARD) developed by Kosakovsky Pond et al. and implemented in the hyphy package. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - Recombination and selection analysis" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/10?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/#genomics___recombination_and_selection_analysis-inputs-0_Input%20Dataset> .
+
+<arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/Genomics-6-RecombinationSelection.svg> a <arcp://uuid,1e4756b7-abfa-5dc5-849c-053d538ea341/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 6047 .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-1>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-10>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-11>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-12>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-13>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-14>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-15>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-16>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-17>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-18>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-19>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-2>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-3>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-4>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-5>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-6>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-7>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-8>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#creator-9> ;
+    schema1:description "Analysis of S-protein polymorphism. This workflow includes: obtaining coding sequences of S proteins from a diverse group of coronaviruses and generating amino acid alignments to assess conservation of the polymorphic location. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.cwl>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.ga>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/workflow-diagram-86-1.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/9?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.ga> ;
+    schema1:name "Research Object Crate for Genomics - Analysis of S-protein polymorphism" ;
+    schema1:sdDatePublished "2024-06-17 10:59:51 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/9/ro_crate?version=1" .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 1619 ;
+    schema1:programmingLanguage <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#cwl> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 6982 ;
+    schema1:creator <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Andrew%20Lonie>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Anton%20Nekrutenko>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Bert%20Droesbeke>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Dannon%20Baker>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Dave%20Bouvier>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Frederik%20Coppens>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Ignacio%20Eguinoa>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#James%20Taylor>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#John%20Chilton>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Nate%20Coraor>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Nicholas%20Keener>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Simon%20Gladman>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Steven%20Weaver>,
+        <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T13:00:36Z" ;
+    schema1:dateModified "2023-01-16T13:40:19Z" ;
+    schema1:description "Analysis of S-protein polymorphism. This workflow includes: obtaining coding sequences of S proteins from a diverse group of coronaviruses and generating amino acid alignments to assess conservation of the polymorphic location. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/workflow-diagram-86-1.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - Analysis of S-protein polymorphism" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/Genomics-5-S-analysis.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/9?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/#genomics___analysis_of_s_protein_polymorphism-inputs-0_Input%20Dataset> .
+
+<arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/workflow-diagram-86-1.svg> a <arcp://uuid,35744596-9229-54f6-87f7-b3a7a1f3c3d9/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 3531 .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-1>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-10>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-11>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-12>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-13>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-14>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-15>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-16>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-17>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-18>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-19>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-2>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-3>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-4>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-5>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-6>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-7>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-8>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#creator-9> ;
+    schema1:description "Preprocessing of raw SARS-CoV-2 reads. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.cwl>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.ga>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/2?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.ga> ;
+    schema1:name "Research Object Crate for Genomics - Read pre-processing" ;
+    schema1:sdDatePublished "2024-06-17 10:59:53 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/2/ro_crate?version=1" .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 7753 ;
+    schema1:programmingLanguage <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#cwl> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 41191 ;
+    schema1:creator <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Andrew%20Lonie>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Anton%20Nekrutenko>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Bert%20Droesbeke>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Dannon%20Baker>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Dave%20Bouvier>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Frederik%20Coppens>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Ignacio%20Eguinoa>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#James%20Taylor>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#John%20Chilton>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Nate%20Coraor>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Nicholas%20Keener>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Simon%20Gladman>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Steven%20Weaver>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T10:20:13Z" ;
+    schema1:dateModified "2023-01-16T13:39:40Z" ;
+    schema1:description "Preprocessing of raw SARS-CoV-2 reads. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - Read pre-processing" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/2?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#genomics___read_pre_processing-inputs-0_Input%20Dataset>,
+        <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/#genomics___read_pre_processing-inputs-1_Input%20Dataset> .
+
+<arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/Genomics-1-PreProcessing_with_download.svg> a <arcp://uuid,481d070c-6df1-5c5c-9526-54d7f605e6be/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 12854 .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-1>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-10>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-11>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-12>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-13>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-14>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-15>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-16>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-17>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-18>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-19>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-2>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-3>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-4>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-5>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-6>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-7>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-8>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#creator-9> ;
+    schema1:description "Analysis of variation within individual COVID-19 samples using Illumina Paired End data. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.cwl>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.ga>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/7?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.ga> ;
+    schema1:name "Research Object Crate for Genomics - PE Variation" ;
+    schema1:sdDatePublished "2024-06-17 10:59:52 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/7/ro_crate?version=1" .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 7268 ;
+    schema1:programmingLanguage <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#cwl> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 37131 ;
+    schema1:creator <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Andrew%20Lonie>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Anton%20Nekrutenko>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Bert%20Droesbeke>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Dannon%20Baker>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Dave%20Bouvier>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Frederik%20Coppens>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Ignacio%20Eguinoa>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#James%20Taylor>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#John%20Chilton>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Nate%20Coraor>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Nicholas%20Keener>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Simon%20Gladman>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Steven%20Weaver>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T12:52:22Z" ;
+    schema1:dateModified "2023-05-30T12:07:57Z" ;
+    schema1:description "Analysis of variation within individual COVID-19 samples using Illumina Paired End data. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - PE Variation" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/7?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#genomics___pe_variation-inputs-GenBank%20file%20>,
+        <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/#genomics___pe_variation-inputs-Paired%20Collection%20(fastqsanger)> .
+
+<arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/Genomics-4-PE_Variation.svg> a <arcp://uuid,52c833a3-1414-5a42-8e84-27f6f46bcf74/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 13428 .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-1>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-10>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-11>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-12>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-13>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-14>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-15>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-16>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-17>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-18>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-19>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-2>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-3>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-4>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-5>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-6>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-7>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-8>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#creator-9> ;
+    schema1:description "Preprocessing of raw SARS-CoV-2 reads. This workflow contains an alternate starting point to avoid the data to be downloaded from the NCBI SRA. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.cwl>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.ga>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/4?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.ga> ;
+    schema1:name "Research Object Crate for Genomics - Read pre-processing without downloading from SRA" ;
+    schema1:sdDatePublished "2024-06-17 10:59:53 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/4/ro_crate?version=1" .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 6333 ;
+    schema1:programmingLanguage <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#cwl> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 35202 ;
+    schema1:creator <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Andrew%20Lonie>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Anton%20Nekrutenko>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Bert%20Droesbeke>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Dannon%20Baker>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Dave%20Bouvier>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Frederik%20Coppens>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Ignacio%20Eguinoa>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#James%20Taylor>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#John%20Chilton>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Nate%20Coraor>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Nicholas%20Keener>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Simon%20Gladman>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Steven%20Weaver>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T12:06:00Z" ;
+    schema1:dateModified "2023-01-16T13:39:49Z" ;
+    schema1:description "Preprocessing of raw SARS-CoV-2 reads. This workflow contains an alternate starting point to avoid the data to be downloaded from the NCBI SRA. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - Read pre-processing without downloading from SRA" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/4?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#genomics___read_pre_processing_without_downloading_from_sra-inputs-0_Input%20Dataset%20Collection>,
+        <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/#genomics___read_pre_processing_without_downloading_from_sra-inputs-1_Input%20Dataset%20Collection> .
+
+<arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/Genomics-1-PreProcessing_without_downloading_from_SRA.svg> a <arcp://uuid,79ad9677-244f-5bd2-8f80-330de50ce81f/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 10958 .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:creativeWorkStatus "Stable" ;
+    schema1:description """Virus genome assembly with Unicycler and Spades,\r
+The 2 assemblers works in parallel. The graph  visualization is made with Bandage.\r
+workflow git repository : https://github.com/fjrmoreews/cwl-workflow-SARS-CoV-2/blob/master/Assembly/workflow/assembly-wf-virus.cwl\r
+Based on  https://github.com/galaxyproject/SARS-CoV-2/blob/master/genomics/2-Assembly/as_wf.png\r
+""" ;
+    schema1:hasPart <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/assembly-wf-virus.cwl>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/workflow-3-c03490495899c483a57b2f32b0bce0290c07f08d-diagram.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/3?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/assembly-wf-virus.cwl> ;
+    schema1:name "Research Object Crate for Virus genome assembly with Unicycler and Spades." ;
+    schema1:sdDatePublished "2024-06-17 10:59:50 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/3/ro_crate?version=1" .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/assembly-wf-virus.cwl> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 8602 ;
+    schema1:dateCreated "2020-04-10T10:45:00Z" ;
+    schema1:dateModified "2023-01-16T13:39:45Z" ;
+    schema1:description """Virus genome assembly with Unicycler and Spades,\r
+The 2 assemblers works in parallel. The graph  visualization is made with Bandage.\r
+workflow git repository : https://github.com/fjrmoreews/cwl-workflow-SARS-CoV-2/blob/master/Assembly/workflow/assembly-wf-virus.cwl\r
+Based on  https://github.com/galaxyproject/SARS-CoV-2/blob/master/genomics/2-Assembly/as_wf.png\r
+""" ;
+    schema1:image <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/workflow-3-c03490495899c483a57b2f32b0bce0290c07f08d-diagram.svg> ;
+    schema1:keywords "covid-19, Assembly" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Virus genome assembly with Unicycler and Spades." ;
+    schema1:producer <https://workflowhub.eu/projects/6> ;
+    schema1:programmingLanguage <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#cwl> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:url "https://workflowhub.eu/workflows/3?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-auto_kmer_choice>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-careful>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-cov_cutoff>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-cov_state>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq1>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq1_type>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq2>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq2_type>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-fastq_file_type>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-iontorrent>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-kmers>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_fwd_rev>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_metadata>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-libraries_mono>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-mode>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-nanopore_reads>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-onlyassembler>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-pacbio_reads>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-sanger_reads>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-sc>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-trusted_contigs>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-inputs-untrusted_contigs> ;
+    ns1:output <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-all_log_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_unicycler>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_graph_with_scaffolds_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_image_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_image_unicycler>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_info_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_info_unicycler>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-assembly_unicycler>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_contig_stats_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_contigs_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_scaffold_stats_spades>,
+        <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/#virus_genome_assembly_with_unicycler_and_spades_-outputs-out_scaffolds_spades> .
+
+<arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/workflow-3-c03490495899c483a57b2f32b0bce0290c07f08d-diagram.svg> a <arcp://uuid,8888564f-0cc5-50d7-9d9a-a48dcd6efe3c/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 34311 .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/> a schema1:Dataset ;
+    dct:conformsTo <https://w3id.org/ro/crate/1.1>,
+        <https://w3id.org/workflowhub/workflow-ro-crate/1.0> ;
+    schema1:author <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-1>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-10>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-11>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-12>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-13>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-14>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-15>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-16>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-17>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-18>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-19>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-2>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-3>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-4>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-5>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-6>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-7>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-8>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#creator-9> ;
+    schema1:description "Dating the most recent common ancestor (MRCA) of SARS-CoV-2. The workflow is used to extract full length sequences of SARS-CoV-2, tidy up their names in FASTA files, produce a multiple sequences alignment and compute a maximum likelihood tree. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:hasPart <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.cwl>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.ga>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.svg> ;
+    schema1:identifier "https://workflowhub.eu/workflows/6?version=1" ;
+    schema1:license "MIT" ;
+    schema1:mainEntity <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.ga> ;
+    schema1:name "Research Object Crate for Genomics - MRCA analysis" ;
+    schema1:sdDatePublished "2024-06-17 10:59:52 +0100" ;
+    schema1:url "https://workflowhub.eu/workflows/6/ro_crate?version=1" .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.cwl> a schema1:HowTo,
+        schema1:MediaObject,
+        schema1:SoftwareSourceCode ;
+    schema1:contentSize 3760 ;
+    schema1:programmingLanguage <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#cwl> .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.ga> a schema1:MediaObject,
+        schema1:SoftwareSourceCode,
+        <https://bioschemas.org/ComputationalWorkflow> ;
+    dct:conformsTo "https://bioschemas.org/profiles/ComputationalWorkflow/1.0-RELEASE/" ;
+    schema1:contentSize 17202 ;
+    schema1:creator <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Andrew%20Lonie>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Anton%20Nekrutenko>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Bert%20Droesbeke>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Bj%C3%B6rn%20Gr%C3%BCning>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Dannon%20Baker>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Dave%20Bouvier>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Delphine%20Larivi%C3%A8re>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Frederik%20Coppens>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Gildas%20Le%20Corguill%C3%A9>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Ignacio%20Eguinoa>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#James%20Taylor>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#John%20Chilton>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Marius%20van%20den%20Beek>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Nate%20Coraor>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Nicholas%20Keener>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Sergei%20Kosakovsky%20Pond>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Simon%20Gladman>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Steven%20Weaver>,
+        <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#Wolfgang%20Maier> ;
+    schema1:dateCreated "2020-04-10T12:44:38Z" ;
+    schema1:dateModified "2023-01-16T13:39:57Z" ;
+    schema1:description "Dating the most recent common ancestor (MRCA) of SARS-CoV-2. The workflow is used to extract full length sequences of SARS-CoV-2, tidy up their names in FASTA files, produce a multiple sequences alignment and compute a maximum likelihood tree. More info can be found at https://covid19.galaxyproject.org/genomics/" ;
+    schema1:image <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.svg> ;
+    schema1:keywords "covid-19" ;
+    schema1:license "https://spdx.org/licenses/MIT" ;
+    schema1:name "Genomics - MRCA analysis" ;
+    schema1:producer <https://workflowhub.eu/projects/3> ;
+    schema1:programmingLanguage <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#galaxy> ;
+    schema1:sdPublisher <https://about.workflowhub.eu/> ;
+    schema1:subjectOf <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.cwl> ;
+    schema1:url "https://workflowhub.eu/workflows/6?version=1" ;
+    schema1:version 1 ;
+    ns1:input <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/#genomics___mrca_analysis-inputs-0_Input%20Dataset> .
+
+<arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/Genomics-3-MRCA.svg> a <arcp://uuid,d4aef41c-3fe9-5797-962a-17211fad8f94/WorkflowSketch>,
+        schema1:ImageObject,
+        schema1:MediaObject ;
+    schema1:contentSize 7247 .
+
+<https://workflowhub.eu/projects/3> a schema1:Organization,
+        schema1:Project ;
+    schema1:name "GalaxyProject SARS-CoV-2" .
+
+<https://about.workflowhub.eu/> a schema1:Organization ;
+    schema1:name "WorkflowHub" ;
+    schema1:url "https://about.workflowhub.eu/" .
+

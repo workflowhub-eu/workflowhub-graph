@@ -7,11 +7,12 @@ import rdflib
 
 
 # TODO: following https://github.com/workflowhub-eu/workflowhub-graph/issues/12
-#       builing upon is_all_absolute 
+#       builing upon is_all_absolute
 #       add extended RO-Crate profile validation
 #       get information like schema.org domain and check if the graph is compliant with the schema
 #       normative schema.org dev docs: https://schema.org/docs/developers.html
 #       make a note for validation of the graph
+
 
 def is_all_absolute(G: rdflib.Graph) -> bool:
     for triple in G:
@@ -30,8 +31,6 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
     return True
 
 
-
-
 def make_paths_absolute(
     json_data: dict, workflowhub_url: str, workflow_id: int, workflow_version: int
 ) -> dict:
@@ -41,6 +40,7 @@ def make_paths_absolute(
     :param json_data: The JSON content as a dictionary.
     :param workflowhub_url: The base URL for WorkflowHub.
     :param workflow_id: The workflow ID to construct the absolute paths.
+    :param workflow_version: The workflow version.
     :return: The modified JSON content with absolute paths.
     :raises ValueError: If '@context' key is missing or if '@base' key already exists in the JSON content.
     """

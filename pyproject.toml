@@ -10,7 +10,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.11"
 arcp = "^0.2.1"
 rdflib = "^6.3.2"
 requests = "^2.32.2"

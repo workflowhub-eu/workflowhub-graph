@@ -1,5 +1,6 @@
 import argparse
 
+
 def main():
     parser = argparse.ArgumentParser(
         description="Provide help and examples for the workflowhub graph builder."
@@ -17,6 +18,7 @@ def main():
         - 'merge': Merge multiple ROCrates into an RDF graph.
         """
     )
+
 
 if __name__ == "__main__":
     main()
