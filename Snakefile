@@ -23,9 +23,12 @@ rule source_ro_crates:
         """
         # Create the output directory if it doesn't exist:
         mkdir -p {OUTPUT_DIRS}
+        
+        # Add the current directory to PYTHONPATH, creating it if it doesn't exist
+        export PYTHONPATH="${{PYTHONPATH:+$PYTHONPATH:}}$(pwd)"
 
         # Run the source_crates script to download the RO Crate metadata:
-        python workflowhub_graph/source_crates.py  --workflow-ids 1-10 --prod --all-versions
+        python workflowhub_graph/source_crates.py --workflow-ids 1-10 --prod --all-versions
 
         # After sourcing, check which files were actually created:
         python workflowhub_graph/check_outputs.py --workflow-ids 1-10 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
