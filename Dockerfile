@@ -1,29 +1,44 @@
-FROM python:3.11-slim
+# Stage 1: Build environment
+FROM python:3.11-slim as build-stage
 
-RUN pip install poetry
+# Install build tools and Poetry
+RUN apt-get update && apt-get install -y build-essential \
+    && pip install poetry
 
-# Set the working directory
 WORKDIR /app
 
-# Install build tools for Snakemake (gcc, make, etc.)
-RUN apt-get update && apt-get install -y build-essential
+# Copy dependency files and install dependencies
+COPY pyproject.toml poetry.lock /app/
+RUN poetry config virtualenvs.create false \
+    && poetry install --no-interaction --no-ansi
 
-# Copy the pyproject.toml file
-COPY pyproject.toml /app/
-
-# Install the dependencies
-RUN poetry install --no-root
-
-# Copy the rest of the application files
+# Copy and install the application
 COPY . /app
-
-# Install the package
 RUN poetry install
 
-# Install Snakemake using Poetry
-RUN poetry add snakemake
+# Stage 2: Snakemake runtime environment
+FROM snakemake/snakemake:latest
 
-# Set the entry point for the container
-ENTRYPOINT ["poetry", "run"]
+# Install Poetry
+RUN pip install poetry
 
-CMD ["help"]
+WORKDIR /app
+
+# Copy the application from the build stage
+COPY --from=build-stage /app /app
+
+# Install dependencies
+RUN pip install -r <(poetry export --format requirements.txt --without-hashes) \
+    && pip install -e .
+
+# Set up non-root user
+RUN groupadd -r snakemake && useradd -r -g snakemake snakemake \
+    && chown -R snakemake:snakemake /app
+
+USER snakemake
+
+# Configure Python path
+ENV PYTHONPATH="/app:${PYTHONPATH}"
+
+# Set the entry point
+ENTRYPOINT ["snakemake"]
