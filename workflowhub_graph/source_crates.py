@@ -233,9 +233,17 @@ def main():
     parser.add_argument(
         "--workflow-ids",
         type=str,
-        default="-",
-        help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10.",
+        help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10. "
+        "If not provided, all IDs will be processed.",
     )
+    parser.add_argument(
+        "--zip",
+        default=False,
+        action="store_true",
+        help="Download and extract JSON files from zip archive.",
+    )
+
+    # TODO: Change this to `dev` to use the development WorkflowHub:
     parser.add_argument(
         "--prod",
         default=False,
@@ -258,30 +266,38 @@ def main():
         base_url = BASE_URL_DEV
         workflows_url = WORKFLOWS_URL_DEV
 
-    min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
-
     # Example usage:
     workflows_ids = download_workflow_ids(workflows_url)
 
-    if min_workflow_id != "":
-        workflows_ids["data"] = [
-            workflow
-            for workflow in workflows_ids["data"]
-            if int(workflow["id"]) >= int(min_workflow_id)
-        ]
+    if args.workflow_ids:
+        min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
+        if min_workflow_id != "":
+            workflows_ids["data"] = [
+                workflow
+                for workflow in workflows_ids["data"]
+                if int(workflow["id"]) >= int(min_workflow_id)
+            ]
 
-    if max_workflow_id != "":
-        workflows_ids["data"] = [
-            workflow
-            for workflow in workflows_ids["data"]
-            if int(workflow["id"]) <= int(max_workflow_id)
-        ]
+        if max_workflow_id != "":
+            workflows_ids["data"] = [
+                workflow
+                for workflow in workflows_ids["data"]
+                if int(workflow["id"]) <= int(max_workflow_id)
+            ]
+    # If no workflow_ids argument is provided, we use all IDs
 
-    # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
         process_workflow_ids(
             workflows_ids,
-            is_metadata_endpoint=True,
+            is_metadata_endpoint=not args.zip,
+            base_url=base_url,
+            all_versions=args.all_versions,
+        )
+
+    if workflows_ids and "data" in workflows_ids:
+        process_workflow_ids(
+            workflows_ids,
+            is_metadata_endpoint=not args.zip,
             base_url=base_url,
             all_versions=args.all_versions,
         )
