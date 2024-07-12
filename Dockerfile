@@ -1,5 +1,5 @@
 # Stage 1: Build environment
-FROM python:3.11-slim as build-stage
+FROM python:3.11-slim AS build-stage
 
 # Install build tools and Poetry
 RUN apt-get update && apt-get install -y build-essential \
