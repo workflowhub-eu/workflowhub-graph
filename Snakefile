@@ -1,21 +1,14 @@
-# TODO - Refactor to input args to the Snakemake file
 WORKFLOW_IDS = range(1,11)
 VERSIONS = ['1']
 OUTPUT_DIRS = "data"
 MERGED_FILE = "merged.ttl"
 
 
-def list_expected_files():
-    files = []
-    for wf_id in WORKFLOW_IDS:
-        for ver in VERSIONS:
-            files.append(f"{OUTPUT_DIRS}/{wf_id}_{ver}_ro-crate-metadata.json")
-    return files
-
 rule all:
     input:
         MERGED_FILE
 
+# TODO - Refactor to input args to the Snakemake file. I.e. replace WORKFLOW_IDS and VERSIONS with input args.
 rule source_ro_crates:
     output:
         "created_files.json"
@@ -27,11 +20,16 @@ rule source_ro_crates:
         # Add the current directory to PYTHONPATH, creating it if it doesn't exist
         export PYTHONPATH="${{PYTHONPATH:+$PYTHONPATH:}}$(pwd)"
 
-        # Run the source_crates script to download the RO Crate metadata:
-        python workflowhub_graph/source_crates.py --workflow-ids 1-10 --prod --all-versions
-
-        # After sourcing, check which files were actually created:
-        python workflowhub_graph/check_outputs.py --workflow-ids 1-10 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        # Run the source_crates script to download the RO Crate metadata, 
+        # then check the output files and generate created_files.json:
+        
+        # - all versions of all workflows:
+        python workflowhub_graph/source_crates.py --prod --all-versions
+        python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        
+        # - all versions of first 10 workflows:
+        # python workflowhub_graph/source_crates.py --workflow-ids 1-10 --prod --all-versions
+        # python workflowhub_graph/check_outputs.py --workflow-ids 1-10 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
         """
 
 rule report_created_files:
