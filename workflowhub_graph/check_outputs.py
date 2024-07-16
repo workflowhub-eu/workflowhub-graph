@@ -103,8 +103,7 @@ def main():
     with open("created_files.json", "w") as f:
         json.dump(created_files, f)
 
-    print("Created files list written to created_files.json")
-    print(f"Created files: {created_files}")
+    print("\nFile names written to created_files.json")
 
 
 if __name__ == "__main__":
