@@ -48,7 +48,7 @@ docker run ghcr.io/uomresearchit/workflowhub-graph:latest source-crates
 
 ## Overview
 
-![arch_diagram.png](./docs/images/arch_diagram.png)
+![source ro crates, merge files, all](./docs/images/workflow.svg)
 
 ## License
 
