@@ -1,14 +1,14 @@
-WORKFLOW_IDS = range(1,11)
+from snakemake.io import directory
+
 VERSIONS = ['1']
 OUTPUT_DIRS = "data"
 MERGED_FILE = "merged.ttl"
-
+ro_crate_metadata_dir = "ro-crate-metadata/"
 
 rule all:
     input:
-        MERGED_FILE
+        "ro-crate-metadata"
 
-# TODO - Refactor to input args to the Snakemake file. I.e. replace WORKFLOW_IDS and VERSIONS with input args.
 rule source_ro_crates:
     output:
         "created_files.json"
@@ -28,8 +28,8 @@ rule source_ro_crates:
         python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
         
         # - all versions of first 10 workflows:
-        # python workflowhub_graph/source_crates.py --workflow-ids 1-10 --prod --all-versions
-        # python workflowhub_graph/check_outputs.py --workflow-ids 1-10 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        # python workflowhub_graph/source_crates.py --workflow-ids 1-20 --prod --all-versions
+        # python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
         """
 
 rule report_created_files:
@@ -66,3 +66,36 @@ rule merge_files:
         shell(f"""
             python workflowhub_graph/merge.py {output[0]} -p "data/*.json"
         """)
+
+rule create_ro_crate:
+    input:
+        MERGED_FILE
+    params:
+        workflow_file = "Snakefile"
+    output:
+        directory("ro-crate-metadata/")
+    shell:
+        """
+        # Create a new virtual environment
+        python -m venv rocrate_env
+
+        # Activate the virtual environment
+        source rocrate_env/bin/activate
+
+        # Upgrade pip to avoid any potential issues
+        pip install --upgrade pip
+        
+        # pip uninstall urllib3
+
+        # Install required packages
+        pip install requests urllib3 rocrate rocrate-zenodo
+
+        # Run the create_ro_crate script
+        python workflowhub_graph/create_ro_crate.py {input} {params.workflow_file} {output}
+    
+        # Deactivate the virtual environment
+        deactivate
+
+        # Remove the virtual environment to clean up
+        rm -rf rocrate_env
+        """
