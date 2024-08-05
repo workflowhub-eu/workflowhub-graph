@@ -36,10 +36,10 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         },
     )
 
-    # Linking the data file to the workflow
+    # Linking the data file to the workflow:
     workflow_entity["output"] = data_entity
 
-    # Authors
+    # Authors:
     alice_id = "https://orcid.org/0000-0000-0000-0000"
     bob_id = "https://orcid.org/0000-0000-0000-0001"
     alice = crate.add(
@@ -60,7 +60,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     data_entity["author"] = [alice, bob]
     workflow_entity["author"] = [alice, bob]
 
-    # Writing the RO-Crate metadata
+    # Writing the RO-Crate metadata:
     crate.write(output_dir)
 
 
