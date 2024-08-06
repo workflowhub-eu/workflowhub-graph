@@ -8,12 +8,15 @@ import rdflib
 
 from workflowhub_graph.absolutize import make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
+from workflowhub_graph.cli import update_progress_bar
 from workflowhub_graph.constants import BASE_URL
 
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
-    pattern="data/*.json", base_url: str = BASE_URL, cache_kwargs: dict | None = None
+    pattern: str = "data/*.json",
+    base_url: str = BASE_URL,
+    cache_kwargs: dict | None = None,
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
@@ -32,7 +35,7 @@ def merge_all_files(
 
     for i, fn in enumerate(filenames):
         with open(fn, "r") as f:
-            print(f"Processing {fn}, {i}/{len(filenames)}")
+            update_progress_bar(i + 1, len(filenames))
 
             basename = os.path.basename(fn)
 
@@ -49,7 +52,6 @@ def merge_all_files(
 
             json_data = make_paths_absolute(json.load(f), base_url, w_id, w_version)
 
-            # TODO: Is there an issue here? Linting shows "Expected type 'str | bytes | None', got 'dict' instead"
             with patch_rdflib_urlopen(**cache_kwargs):
                 graph.parse(data=json_data, format="json-ld")
 

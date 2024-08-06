@@ -24,12 +24,12 @@ rule source_ro_crates:
         # then check the output files and generate created_files.json:
         
         # - all versions of all workflows:
-        # python workflowhub_graph/source_crates.py --prod --all-versions
-        # python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        python workflowhub_graph/source_crates.py --prod --all-versions
+        python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
         
         # - all versions of first 10 workflows:
-        python workflowhub_graph/source_crates.py --workflow-ids 1-20 --prod --all-versions
-        python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        # python workflowhub_graph/source_crates.py --workflow-ids 1-20 --prod --all-versions
+        # python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
         """
 
 rule report_created_files:

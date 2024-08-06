@@ -1,0 +1,77 @@
+{
+    "@context": "https://w3id.org/ro/crate/1.1/context",
+    "@graph": [
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "datePublished": "2024-08-05T09:34:27+00:00",
+            "hasPart": [
+                {
+                    "@id": "merged.ttl"
+                },
+                {
+                    "@id": "Snakefile"
+                }
+            ]
+        },
+        {
+            "@id": "ro-crate-metadata.json",
+            "@type": "CreativeWork",
+            "about": {
+                "@id": "./"
+            },
+            "conformsTo": {
+                "@id": "https://w3id.org/ro/crate/1.1"
+            }
+        },
+        {
+            "@id": "merged.ttl",
+            "@type": "File",
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0000-0000-0000"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0000-0000-0001"
+                }
+            ],
+            "description": "This file contains merged RDF triples from multiple RO-Crates sourced from WorkflowHub.",
+            "encodingFormat": "text/turtle",
+            "name": "Merged Data File"
+        },
+        {
+            "@id": "Snakefile",
+            "@type": "File",
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0000-0000-0000"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0000-0000-0001"
+                }
+            ],
+            "description": "This is the Snakemake workflow used to generate the merged RDF triples.",
+            "name": "Snakemake Workflow",
+            "output": {
+                "@id": "merged.ttl"
+            },
+            "programmingLanguage": {
+                "@id": "https://w3id.org/workflowhub/workflow-ro-crate#Snakemake",
+                "name": "Snakemake"
+            },
+            "url": "Snakefile"
+        },
+        {
+            "@id": "https://orcid.org/0000-0000-0000-0000",
+            "@type": "Person",
+            "affiliation": "University of Flatland",
+            "name": "Alice Doe"
+        },
+        {
+            "@id": "https://orcid.org/0000-0000-0000-0001",
+            "@type": "Person",
+            "affiliation": "University of Flatland",
+            "name": "Bob Doe"
+        }
+    ]
+}

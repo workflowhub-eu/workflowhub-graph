@@ -1,12 +1,14 @@
 import argparse
 import json
 import os
+import sys
 import traceback
 
 import requests
 from io import BytesIO
 from zipfile import ZipFile
 
+from workflowhub_graph.cli import update_progress_bar
 from workflowhub_graph.constants import (
     BASE_URL_DEV,
     BASE_URL_PROD,
@@ -168,9 +170,7 @@ def process_workflow_ids(
         for i_workflow, workflow in enumerate(workflows):
             workflow_id = workflow["id"]
 
-            print(
-                f"Processing workflow ID {workflow_id} ({i_workflow + 1}/{len(workflows)})..."
-            )
+            update_progress_bar(i_workflow + 1, len(workflows))
 
             workflow_json = get_dot_json_endpoint(
                 base_url + DOT_JSON_ENDPOINT.format(w_id=workflow_id)
@@ -217,7 +217,7 @@ def process_workflow_ids(
                     )
                     with open(output_file_path, "wb") as output_file:
                         output_file.write(json_content)
-                    print(f"Content saved to {output_file_path}")
+
                     n_successful += 1
 
                 else:
@@ -233,9 +233,17 @@ def main():
     parser.add_argument(
         "--workflow-ids",
         type=str,
-        default="-",
-        help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10.",
+        help="Range of workflow IDs to process. Use a hyphen to specify a range, e.g. 1-10. "
+        "If not provided, all IDs will be processed.",
     )
+    parser.add_argument(
+        "--zip",
+        default=False,
+        action="store_true",
+        help="Download and extract JSON files from zip archive.",
+    )
+
+    # TODO: Change this to `dev` to use the development WorkflowHub:
     parser.add_argument(
         "--prod",
         default=False,
@@ -258,30 +266,30 @@ def main():
         base_url = BASE_URL_DEV
         workflows_url = WORKFLOWS_URL_DEV
 
-    min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
-
     # Example usage:
     workflows_ids = download_workflow_ids(workflows_url)
 
-    if min_workflow_id != "":
-        workflows_ids["data"] = [
-            workflow
-            for workflow in workflows_ids["data"]
-            if int(workflow["id"]) >= int(min_workflow_id)
-        ]
+    if args.workflow_ids:
+        min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
+        if min_workflow_id != "":
+            workflows_ids["data"] = [
+                workflow
+                for workflow in workflows_ids["data"]
+                if int(workflow["id"]) >= int(min_workflow_id)
+            ]
 
-    if max_workflow_id != "":
-        workflows_ids["data"] = [
-            workflow
-            for workflow in workflows_ids["data"]
-            if int(workflow["id"]) <= int(max_workflow_id)
-        ]
+        if max_workflow_id != "":
+            workflows_ids["data"] = [
+                workflow
+                for workflow in workflows_ids["data"]
+                if int(workflow["id"]) <= int(max_workflow_id)
+            ]
+    # If no workflow_ids argument is provided, we use all IDs
 
-    # Check if root key 'data' exists
     if workflows_ids and "data" in workflows_ids:
         process_workflow_ids(
             workflows_ids,
-            is_metadata_endpoint=True,
+            is_metadata_endpoint=not args.zip,
             base_url=base_url,
             all_versions=args.all_versions,
         )

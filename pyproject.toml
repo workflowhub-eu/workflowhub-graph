@@ -16,6 +16,8 @@ rdflib = "^6.3.2"
 requests = "^2.32.2"
 certifi = "^2024.2.2"
 pytest = ">=8.2.1"
+snakemake = "^8.14.0"
+urllib3 = "2.2.2"
 
 [tool.poetry.scripts]
 source-crates = "workflowhub_graph.source_crates:main"

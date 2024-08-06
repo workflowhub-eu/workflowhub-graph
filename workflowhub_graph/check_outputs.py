@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import re
 
 
 def parse_args() -> argparse.Namespace:
@@ -15,7 +16,6 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--workflow-ids",
         type=str,
-        required=True,
         help="Range of workflow IDs to process (e.g., '1-10').",
     )
     parser.add_argument(
@@ -31,6 +31,24 @@ def parse_args() -> argparse.Namespace:
         help="Directory where the output files are stored (default: 'data').",
     )
     return parser.parse_args()
+
+
+def get_max_id_from_files(output_dir: str) -> int:
+    """
+    If no workflow ID parameter is provided, get the maximum workflow ID from the files in the output directory.
+
+    :param output_dir: The directory where output files are stored.
+    :return: The maximum workflow ID.
+    """
+    max_id = 0
+    pattern = re.compile(r"^(\d+)_\d+_ro-crate-metadata\.json$")
+    for filename in os.listdir(output_dir):
+        match = pattern.match(filename)
+        if match:
+            wf_id = int(match.group(1))
+            if wf_id > max_id:
+                max_id = wf_id
+    return max_id
 
 
 def generate_expected_files(
@@ -64,10 +82,15 @@ def verify_created_files(expected_files: list[str]) -> list[str]:
 
 
 def main():
-    # Parse workflow IDs and versions:
     args = parse_args()
-    min_id, max_id = map(int, args.workflow_ids.split("-"))
-    workflow_ids = range(min_id, max_id + 1)
+
+    if args.workflow_ids:
+        min_id, max_id = map(int, args.workflow_ids.split("-"))
+        workflow_ids = range(min_id, max_id + 1)
+    else:
+        max_id = get_max_id_from_files(args.output_dir)
+        workflow_ids = range(1, max_id + 1)
+
     versions = args.versions.split(",")
 
     # Generate expected file paths
@@ -80,8 +103,7 @@ def main():
     with open("created_files.json", "w") as f:
         json.dump(created_files, f)
 
-    print("Created files list written to created_files.json")
-    print(f"Created files: {created_files}")
+    print("\nFile names written to created_files.json")
 
 
 if __name__ == "__main__":
