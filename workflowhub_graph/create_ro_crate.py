@@ -23,41 +23,50 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         },
     )
 
-    workflow_entity = crate.add_file(
-        workflow_file,
+    crate.add_dataset(
+        "./workflowhub_graph/",
         properties={
-            "name": "Snakemake Workflow",
-            "description": "This is the Snakemake workflow used to generate the merged RDF triples.",
-            "programmingLanguage": {
-                "@id": "https://w3id.org/workflowhub/workflow-ro-crate#Snakemake",
-                "name": "Snakemake",
-            },
-            "url": workflow_file,
+            "name": "WorkflowHub Graph",
+            "description": "A directory containing modules used by the workflow.",
         },
     )
 
-    # Linking the data file to the workflow:
-    workflow_entity["output"] = data_entity
+    crate.add_file("./Dockerfile")
+    crate.add_file("./poetry.lock")
+    crate.add_file("./README.md")
+
+    workflow_entity = crate.add_workflow(
+        source=workflow_file,
+        properties={
+            "name": "Snakemake Workflow",
+            "description": "This is the Snakemake workflow used to generate the merged RDF triples.",
+        },
+        main=True,
+        lang="snakemake",
+    )
 
     # Authors:
-    alice_id = "https://orcid.org/0000-0000-0000-0000"
-    bob_id = "https://orcid.org/0000-0000-0000-0001"
     alice = crate.add(
         Person(
             crate,
-            alice_id,
+            "https://orcid.org/0000-0000-0000-0000",
             properties={"name": "Alice Doe", "affiliation": "University of Flatland"},
         )
     )
     bob = crate.add(
         Person(
             crate,
-            bob_id,
+            "https://orcid.org/0000-0000-0000-0001",
             properties={"name": "Bob Doe", "affiliation": "University of Flatland"},
         )
     )
 
+    crate.name = "WorkflowHub Knowledge Graph"
+    crate.description = "Test Description"
+
     data_entity["author"] = [alice, bob]
+
+    workflow_entity["output"] = data_entity
     workflow_entity["author"] = [alice, bob]
 
     # Writing the RO-Crate metadata:
