@@ -4,15 +4,32 @@
         {
             "@id": "./",
             "@type": "Dataset",
-            "datePublished": "2024-08-05T09:34:27+00:00",
+            "datePublished": "2024-08-08T08:29:52+00:00",
+            "description": "Test Description",
             "hasPart": [
                 {
                     "@id": "merged.ttl"
                 },
                 {
+                    "@id": "#12c6426a-fe66-48e6-9863-bde836ce0b16"
+                },
+                {
+                    "@id": "Dockerfile"
+                },
+                {
+                    "@id": "poetry.lock"
+                },
+                {
+                    "@id": "README.md"
+                },
+                {
                     "@id": "Snakefile"
                 }
-            ]
+            ],
+            "mainEntity": {
+                "@id": "Snakefile"
+            },
+            "name": "WorkflowHub Knowledge Graph"
         },
         {
             "@id": "ro-crate-metadata.json",
@@ -20,9 +37,14 @@
             "about": {
                 "@id": "./"
             },
-            "conformsTo": {
-                "@id": "https://w3id.org/ro/crate/1.1"
-            }
+            "conformsTo": [
+                {
+                    "@id": "https://w3id.org/ro/crate/1.1"
+                },
+                {
+                    "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+                }
+            ]
         },
         {
             "@id": "merged.ttl",
@@ -40,8 +62,30 @@
             "name": "Merged Data File"
         },
         {
+            "@id": "#12c6426a-fe66-48e6-9863-bde836ce0b16",
+            "@type": "Dataset",
+            "description": "A directory containing modules used by the workflow.",
+            "name": "WorkflowHub Graph"
+        },
+        {
+            "@id": "Dockerfile",
+            "@type": "File"
+        },
+        {
+            "@id": "poetry.lock",
+            "@type": "File"
+        },
+        {
+            "@id": "README.md",
+            "@type": "File"
+        },
+        {
             "@id": "Snakefile",
-            "@type": "File",
+            "@type": [
+                "File",
+                "SoftwareSourceCode",
+                "ComputationalWorkflow"
+            ],
             "author": [
                 {
                     "@id": "https://orcid.org/0000-0000-0000-0000"
@@ -56,10 +100,19 @@
                 "@id": "merged.ttl"
             },
             "programmingLanguage": {
-                "@id": "https://w3id.org/workflowhub/workflow-ro-crate#Snakemake",
-                "name": "Snakemake"
+                "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake"
+            }
+        },
+        {
+            "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake",
+            "@type": "ComputerLanguage",
+            "identifier": {
+                "@id": "https://doi.org/10.1093/bioinformatics/bts480"
             },
-            "url": "Snakefile"
+            "name": "Snakemake",
+            "url": {
+                "@id": "https://snakemake.readthedocs.io"
+            }
         },
         {
             "@id": "https://orcid.org/0000-0000-0000-0000",
