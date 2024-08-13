@@ -2,7 +2,15 @@
 # TODO: settle on style standards and enforce them
 name: Lint and Test
 
-on: [push]
+on:
+  push:
+    branches: [ "develop" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
 
 jobs:
   build:
