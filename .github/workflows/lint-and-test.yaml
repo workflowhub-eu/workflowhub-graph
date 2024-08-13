@@ -3,11 +3,8 @@ name: Lint and Test
 on:
   push:
     branches: [ "develop" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "develop" ]
-  workflow_dispatch:
 
 
 jobs:
