@@ -12,7 +12,7 @@ on:
 env:
   REGISTRY: ghcr.io
   ACTOR: OliverWoolland
-  IMAGE_NAME: ghcr.io/uomresearchit/workflowhub-graph
+  IMAGE_NAME: uomresearchit/workflowhub-graph
 
 jobs:
   build:
