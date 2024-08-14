@@ -4,14 +4,16 @@
         {
             "@id": "./",
             "@type": "Dataset",
-            "datePublished": "2024-08-08T08:29:52+00:00",
-            "description": "Test Description",
+            "conformsTo": [
+                {
+                    "@id": "https://w3id.org/ro/crate/1.1/context"
+                }
+            ],
+            "datePublished": "2024-08-14T11:05:10+00:00",
+            "description": "This RO-Crate contains the merged RDF triples from multiple RO-Crates sourced from WorkflowHub.",
             "hasPart": [
                 {
-                    "@id": "merged.ttl"
-                },
-                {
-                    "@id": "#12c6426a-fe66-48e6-9863-bde836ce0b16"
+                    "@id": "#95e109d1-6250-4d45-8124-fb98a2a7627b"
                 },
                 {
                     "@id": "Dockerfile"
@@ -21,6 +23,9 @@
                 },
                 {
                     "@id": "README.md"
+                },
+                {
+                    "@id": "merged.ttl"
                 },
                 {
                     "@id": "Snakefile"
@@ -47,29 +52,32 @@
             ]
         },
         {
-            "@id": "merged.ttl",
-            "@type": "File",
-            "author": [
-                {
-                    "@id": "https://orcid.org/0000-0000-0000-0000"
-                },
-                {
-                    "@id": "https://orcid.org/0000-0000-0000-0001"
-                }
-            ],
-            "description": "This file contains merged RDF triples from multiple RO-Crates sourced from WorkflowHub.",
-            "encodingFormat": "text/turtle",
-            "name": "Merged Data File"
+            "@id": "https://orcid.org/0000-0000-0000-0000",
+            "@type": "Person",
+            "affiliation": "University of Flatland",
+            "name": "Alice Doe"
         },
         {
-            "@id": "#12c6426a-fe66-48e6-9863-bde836ce0b16",
+            "@id": "https://orcid.org/0000-0000-0000-0001",
+            "@type": "Person",
+            "affiliation": "University of Flatland",
+            "name": "Bob Doe"
+        },
+        {
+            "@id": "#95e109d1-6250-4d45-8124-fb98a2a7627b",
             "@type": "Dataset",
             "description": "A directory containing modules used by the workflow.",
             "name": "WorkflowHub Graph"
         },
         {
             "@id": "Dockerfile",
-            "@type": "File"
+            "@type": "File",
+            "conformsTo": {
+                "@id": "https://docs.docker.com/reference/dockerfile/"
+            },
+            "description": "The Dockerfile used to build the Docker images for the workflow.",
+            "encodingFormat": "application/yaml",
+            "name": "Dockerfile"
         },
         {
             "@id": "poetry.lock",
@@ -80,6 +88,17 @@
             "@type": "File"
         },
         {
+            "@id": "merged.ttl",
+            "@type": "File",
+            "author": [
+                "https://orcid.org/0000-0000-0000-0000",
+                "https://orcid.org/0000-0000-0000-0001"
+            ],
+            "description": "This file contains merged RDF triples from multiple RO-Crates sourced from WorkflowHub.",
+            "encodingFormat": "text/turtle",
+            "name": "Merged Data File"
+        },
+        {
             "@id": "Snakefile",
             "@type": [
                 "File",
@@ -87,18 +106,12 @@
                 "ComputationalWorkflow"
             ],
             "author": [
-                {
-                    "@id": "https://orcid.org/0000-0000-0000-0000"
-                },
-                {
-                    "@id": "https://orcid.org/0000-0000-0000-0001"
-                }
+                "https://orcid.org/0000-0000-0000-0000",
+                "https://orcid.org/0000-0000-0000-0001"
             ],
             "description": "This is the Snakemake workflow used to generate the merged RDF triples.",
             "name": "Snakemake Workflow",
-            "output": {
-                "@id": "merged.ttl"
-            },
+            "output": "merged.ttl",
             "programmingLanguage": {
                 "@id": "https://w3id.org/workflowhub/workflow-ro-crate#snakemake"
             }
@@ -115,16 +128,17 @@
             }
         },
         {
-            "@id": "https://orcid.org/0000-0000-0000-0000",
-            "@type": "Person",
-            "affiliation": "University of Flatland",
-            "name": "Alice Doe"
-        },
-        {
-            "@id": "https://orcid.org/0000-0000-0000-0001",
-            "@type": "Person",
-            "affiliation": "University of Flatland",
-            "name": "Bob Doe"
+            "@id": "#6075be5c-e748-4c95-995c-5095d5fc7c9d",
+            "@type": "CreateAction",
+            "agent": [
+                "https://orcid.org/0000-0000-0000-0000",
+                "https://orcid.org/0000-0000-0000-0001"
+            ],
+            "description": "Merging RDF triples from sourced crates.",
+            "endTime": "11:05:10.204371",
+            "instrument": "Snakefile",
+            "name": "Merge RDF Triples",
+            "result": "merged.ttl"
         }
     ]
 }
