@@ -19,13 +19,17 @@ def get_test_data_file(filename=""):
 
 class TestAbsolutizePaths:  # (unittest.TestCase):
     # NOTE: ids can not be found, like 634, or forbidden, like 678
-    @pytest.mark.parametrize("workflow_id", [41, 31, 552, 883])
+    @pytest.mark.parametrize("workflow_id", [41, 31, 552, 883, 1046])
     def test_make_paths_absolute(self, workflow_id):
         with patch_rdflib_urlopen(get_test_data_file(), write_cache=False):
             with open(
                 get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r"
             ) as f:
                 json_data = json.load(f)
+            
+            if workflow_id == 1046:
+                # this is a special case where ther are two contexts
+                assert len(json_data["@context"]) == 2
 
             assert not is_all_absolute(
                 rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld")

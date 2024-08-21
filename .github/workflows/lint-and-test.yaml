@@ -1,8 +1,11 @@
-
-# TODO: settle on style standards and enforce them
 name: Lint and Test
 
-on: [push]
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
 
 jobs:
   build:
