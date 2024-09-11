@@ -25,9 +25,10 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     auth_1 = crate.add(
         Person(
             crate,
-            "https://orcid.org/0000-0000-0000-0000",
+            "https://orcid.org/0000-0003-1193-6632",
             properties={
-                "name": "Alexander Hambley",
+                "givenName": "Alexander",
+                "familyName": "Hambley",
                 "affiliation": "University of Manchester",
             },
         )
@@ -37,7 +38,8 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
             crate,
             "https://orcid.org/0000-0002-0035-6475",
             properties={
-                "name": "Eli Chadwick",
+                "givenName": "Eli",
+                "familyName": "Chadwick",
                 "affiliation": "University of Manchester",
             },
         )
@@ -47,7 +49,8 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
             crate,
             "https://orcid.org/0000-0002-4565-9760",
             properties={
-                "name": "Oliver Woolland",
+                "givenName": "Oliver",
+                "familyName": "Woolland",
                 "affiliation": "University of Manchester",
             },
         )
@@ -57,7 +60,8 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
             crate,
             "https://orcid.org/0000-0001-9842-9718",
             properties={
-                "name": "Stian Soiland-Reyes",
+                "givenName": "Stian",
+                "familyName": "Soiland-Reyes",
                 "affiliation": "University of Manchester",
             },
         )
@@ -67,11 +71,14 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
             crate,
             "https://orcid.org/0000-0001-6353-0808",
             properties={
-                "name": "Volodymyr Savchenko",
+                "givenName": "Volodymyr",
+                "familyName": "Savchenko",
                 "affiliation": "University of Geneva",
             },
         )
     )
+
+    crate.root_dataset["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
 
     # Add dataset and files:
     crate.add_dataset(
@@ -139,7 +146,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         )
 
     # Add license:
-    crate.license = "https://opensource.org/license/bsd-2-clause"
+    crate.license = "https://spdx.org/licenses/BSD-2-Clause.html"
 
     # Writing the RO-Crate metadata:
     crate.write(output_dir)
