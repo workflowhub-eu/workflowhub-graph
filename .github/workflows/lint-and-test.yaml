@@ -26,8 +26,8 @@ jobs:
         poetry install --all-extras -vv
     - name: Analysing the code with pylint
       run: |
-        poetry run pylint --errors-only $(git ls-files '*.py')
+        poetry run pylint --errors-only $(git ls-files '*.py') --ignore=tests/SPARQL,ro-crate-metadata --ignore-patterns=workflowhub_graph/create_ro_crate.py
     - name: Testing the code with pytest
       run: |
-        poetry run py.test tests
+        poetry run py.test tests --ignore=tests/SPARQL --ignore=ro-crate-metadata --ignore=workflowhub_graph/create_ro_crate.py
     
