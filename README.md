@@ -1,37 +1,42 @@
-# WorkflowHub Knowledge Graph 
+# WorkflowHub Knowledge Graph
 
-## Getting started
+A tool to generate a knowledge graph from a source of RO Crates. By default, this tool sources and generates an RDF graph of crates from [WorkflowHub](https://workflowhub.eu/). 
 
-### Obtaining workflowhub-graph
+## Getting Started
 
-workflowhub-graph is available packaged as a Docker container. You can pull the latest version of the container by running:
+This tool is run as a Snakemake workflow. We recommend building a Docker container to run the workflow:
 
-```bash
-docker pull ghcr.io/uomresearchit/workflowhub-graph:latest
+```bash 
+docker build -t knowledgegraph .
 ```
 
-This provides the a wrapper for the executable `workflowhub-graph` which can be used to run the various tools provided by the package.
-
-### Running workflowhub-graph
-
-There are several tools provided by the `workflowhub-graph` package. These are:
-- 'help': Display help information.
-- 'source-crates': Download ROCrates from the WorkflowHub API.
-- 'absolutize': Make all paths in an ROCrate absolute.
-- 'upload': Upload an ROCrate to Zenodo.
-- 'merge': Merge multiple ROCrates into an RDF graph.
-
-To run any of these tools, you can use the following command:
+Then, you can run the workflow using the following command:
 
 ```bash
-docker run ghcr.io/uomresearchit/workflowhub-graph:latest <tool> <args>
+docker run --rm -v $(pwd):/app -w /app knowledgegraph --cores 4 -s /app/Snakefile
 ```
 
-For example, to download ROCrates from the WorkflowHub API, you can run:
+This command runs a Docker container using the `knowledgegraph` image. It mounts the working directory to `/app` 
+inside the container, sets `/app` as the working directory, and then runs the workflow. Once the workflow completes, 
+the container is automatically removed.
 
-```bash
-docker run ghcr.io/uomresearchit/workflowhub-graph:latest source-crates
+## Structure
+
+```mermaid
+flowchart TD
+    A[Source RO Crates] --> B[Check Outputs];
+    B[Check Outputs] --> C[Report Downloaded RO Crates];
+    B[Check Outputs]-->D[Merge RO Crates];
+    D[Merge RO Crates]-->E[Create Merged Workflow Run RO Crate]
 ```
+
+- **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) and then checks 
+the output (`check_outputs.py`). This generates a list of expected file paths based on the workflow IDs and versions to 
+facilitate the workflow.
+
+- **`report_created_files`**: Optional. This rule reports the downloaded RO crates to the user.
+- **`merge_files`**: This rule merges the downloaded RO crates into a single RDF graph (`merge_ro_crates.py`).
+- **`create_ro_crate`**: This rule creates a merged workflow run RO crate from the merged RDF graph (`create_ro_crate.py`).
 
 ## Contributing
 
@@ -45,10 +50,6 @@ docker run ghcr.io/uomresearchit/workflowhub-graph:latest source-crates
 - **Branch Naming**: When working on a new feature or bug fix, create a branch from `develop`. e.g. `feature/description` or `bugfix/description`.
 - **Development Branch**: The `develop` branch is currently our main integration branch. Features and fixes should target `develop` through PRs.
 - **Feature Branches**: These feature branches should be short-lived and focused. Once done, please create a pull request to merge it into `develop`.
-
-## Overview
-
-![arch_diagram.png](./docs/images/arch_diagram.png)
 
 ## License
 

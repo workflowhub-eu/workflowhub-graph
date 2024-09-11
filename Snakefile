@@ -88,7 +88,7 @@ rule create_ro_crate:
         # pip uninstall urllib3
 
         # Install required packages
-        pip install requests urllib3 rocrate rocrate-zenodo
+        pip install requests urllib3 rocrate
 
         # Run the create_ro_crate script
         python workflowhub_graph/create_ro_crate.py {input} {params.workflow_file} {output}
