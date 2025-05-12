@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y build-essential \
 WORKDIR /app
 
 # Copy dependency files and install dependencies
-COPY pyproject.toml poetry.lock /app/
+COPY pyproject.toml poetry.lock README.md Snakefile /app/
+COPY workflowhub_graph /app/workflowhub_graph/
 RUN poetry config virtualenvs.create false
 
 # Copy and install the application
-COPY . /app
 RUN poetry install --no-interaction --no-ansi
 
 # Stage 2: Snakemake runtime environment
