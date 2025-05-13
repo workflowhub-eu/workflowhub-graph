@@ -9,12 +9,11 @@ WORKDIR /app
 
 # Copy dependency files and install dependencies
 COPY pyproject.toml poetry.lock /app/
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-interaction --no-ansi
+RUN poetry config virtualenvs.create false
 
 # Copy and install the application
 COPY . /app
-RUN poetry install
+RUN poetry install --no-interaction --no-ansi
 
 # Stage 2: Snakemake runtime environment
 FROM snakemake/snakemake:latest
