@@ -1,9 +1,6 @@
 from snakemake.io import directory
 
 VERSIONS = ['1']
-OUTPUT_DIRS = "data"
-MERGED_FILE = "merged.ttl"
-ro_crate_metadata_dir = "ro-crate-metadata/"
 
 rule all:
     input:
@@ -11,50 +8,53 @@ rule all:
 
 rule source_ro_crates:
     output:
-        "created_files.json"
+        f"{OUTPUT_DIR}{CREATED_FILE}"
     shell:
-        """
+        f"""
         # Create the output directory if it doesn't exist:
-        mkdir -p {OUTPUT_DIRS}
+        mkdir -p {OUTPUT_DIR}
         
         # Add the current directory to PYTHONPATH, creating it if it doesn't exist
         export PYTHONPATH="${{PYTHONPATH:+$PYTHONPATH:}}$(pwd)"
 
         # Run the source_crates script to download the RO Crate metadata, 
-        # then check the output files and generate created_files.json:
+        # then check the output files and generate CREATED_FILE:
         
         # - all versions of all workflows:
         # python workflowhub_graph/source_crates.py --prod --all-versions
-        # python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        # python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output {output}
         
         # - all versions of first 10 workflows:
         python workflowhub_graph/source_crates.py --workflow-ids 1-20 --prod --all-versions
-        python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output-dir {OUTPUT_DIRS}
+        python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output {output}
         """
 
 rule report_created_files:
     input:
-        "created_files.json"
+        f"{OUTPUT_DIR}{CREATED_FILE}"
     shell:
         """
         echo "Files created:"
-        cat created_files.json
+        cat {input}
         """
 
 rule merge_files:
     input:
-        "created_files.json"
+        f"{OUTPUT_DIR}{CREATED_FILE}"
     output:
-        MERGED_FILE
+        f"{OUTPUT_DIR}{MERGED_FILE}"
     run:
         import json
         import os
 
         # Load the list of created files:
-        with open("created_files.json") as f:
+        print(f"OWDB {input}")
+        with open(f"{input}") as f:
             created_files = json.load(f)
+            print(f"OWDB Created files {created_files}")
 
-        files_to_merge = [f"data/{os.path.basename(file)}" for file in created_files]
+        print(f"OWDB ls {os.listdir(OUTPUT_DIR)})
+        files_to_merge = [f"{OUTPUT_DIR}{os.path.basename(file)}" for file in created_files]
 
         # If no files are available to merge, raise an exception:
         if not files_to_merge:
@@ -64,12 +64,12 @@ rule merge_files:
 
         # Merge the JSON-LD files into a single RDF graph and output as a TTL file
         shell(f"""
-            python workflowhub_graph/merge.py {output[0]} -p "data/*.json"
+            python workflowhub_graph/merge.py {output[0]} -p "{OUTPUT_DIR}/*.json"
         """)
 
 rule create_ro_crate:
     input:
-        MERGED_FILE
+        f"{OUTPUT_DIR}{MERGED_FILE}"
     params:
         workflow_file = "Snakefile"
     output:
