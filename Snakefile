@@ -7,28 +7,14 @@ rule all:
         # Final output file
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}",
 
-rule source_ro_crates:
-    output:
-        f"{OUTPUT_DIR}{CREATED_FILE}"
-    shell:
-        f"""
-        # Create the output directory if it doesn't exist:
-        mkdir -p {OUTPUT_DIR}
-        
-        # Add the current directory to PYTHONPATH, creating it if it doesn't exist
-        export PYTHONPATH="${{PYTHONPATH:+$PYTHONPATH:}}$(pwd)"
+        # Metadata
+        directory(f"{config['paths']['run-metadata']}/"),
 
-        # Run the source_crates script to download the RO Crate metadata, 
-        # then check the output files and generate CREATED_FILE:
-        
-        # - all versions of all workflows:
-        # python workflowhub_graph/source_crates.py --prod --all-versions
-        # python workflowhub_graph/check_outputs.py --versions {VERSIONS} --output {output}
-        
-        # - all versions of first 10 workflows:
-        python workflowhub_graph/source_crates.py --workflow-ids 1-20 --prod --all-versions
-        python workflowhub_graph/check_outputs.py --workflow-ids 1-20 --versions {VERSIONS} --output {output}
-        """
+rule prepare_metadata_dir:
+    output:
+        directory(config["paths"]["run-metadata"])
+    shell:
+        "mkdir -p {output}"
 
 rule report_created_files:
     input:
