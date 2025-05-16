@@ -14,13 +14,13 @@ from workflowhub_graph.constants import BASE_URL
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
-    pattern: str = "data/*.json",
+    input_file: str | None = None,
     base_url: str = BASE_URL,
     cache_kwargs: dict | None = None,
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
-    :param pattern: The pattern to match the files.
+    :param input_file: A file containing a list of files to merge.
     :param base_url: The base URL for the WorkflowHub.
     :param cache_kwargs: Keyword arguments to pass to urllib cache
     :return: The merged RDF graph.
@@ -31,7 +31,9 @@ def merge_all_files(
 
     graph = rdflib.Graph()
 
-    filenames = glob.glob(pattern)
+    if input_file:
+        with open(input_file, "r") as f:
+            filenames = [line.strip() for line in f.readlines()]
 
     for i, fn in enumerate(filenames):
         with open(fn, "r") as f:
@@ -65,14 +67,13 @@ def main():
         "output_filename", help="The output filename.", default="merged.ttl"
     )
     parser.add_argument(
-        "-p",
-        "--pattern",
-        help="The pattern to match the files.",
-        default="data/*.json",
+        "-i",
+        "--input-file",
+        help="A file containing a list of files to merge."
     )
     args = parser.parse_args()
 
-    graph = merge_all_files(pattern=args.pattern)
+    graph = merge_all_files(input_file=args.input_file)
     graph.serialize(args.output_filename, format="ttl")
 
 
