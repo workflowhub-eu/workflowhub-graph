@@ -48,4 +48,6 @@ rule create_graph:
     output:
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}"
     shell:
-        "python workflowhub_graph/merge.py {output} -i '{input}'"
+        "python workflowhub_graph/merge.py "
+        "{output} "
+        "-i '{input}'"
