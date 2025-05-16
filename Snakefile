@@ -29,9 +29,9 @@ rule source_ro_crates:
 
 rule validate_ro_crates:
     input:
-        directory(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
+        expand(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
     output:
-        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+        directory(f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}")
     params: 
         max_workflow_id = config['constraints']['max-workflow-id'],
         versions = config['constraints']['versions'],
@@ -44,7 +44,7 @@ rule validate_ro_crates:
 
 rule create_graph:
     input:
-        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+        expand(f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}")
     output:
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}"
     shell:
