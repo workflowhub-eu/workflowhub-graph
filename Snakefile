@@ -16,73 +16,36 @@ rule prepare_metadata_dir:
     shell:
         "mkdir -p {output}"
 
-rule report_created_files:
-    input:
-        f"{OUTPUT_DIR}{CREATED_FILE}"
-    shell:
-        """
-        echo "Files created:"
-        cat {input}
-        """
-
-rule merge_files:
-    input:
-        f"{OUTPUT_DIR}{CREATED_FILE}"
+rule source_ro_crates:
     output:
-        f"{OUTPUT_DIR}{MERGED_FILE}"
-    run:
-        import json
-        import os
-
-        # Load the list of created files:
-        print(f"OWDB {input}")
-        with open(f"{input}") as f:
-            created_files = json.load(f)
-            print(f"OWDB Created files {created_files}")
-
-        print(f"OWDB ls {os.listdir(OUTPUT_DIR)})
-        files_to_merge = [f"{OUTPUT_DIR}{os.path.basename(file)}" for file in created_files]
-
-        # If no files are available to merge, raise an exception:
-        if not files_to_merge:
-            raise ValueError("No files in to merge in data directory.")
-
-        file_patterns = " ".join(files_to_merge)
-
-        # Merge the JSON-LD files into a single RDF graph and output as a TTL file
-        shell(f"""
-            python workflowhub_graph/merge.py {output[0]} -p "{OUTPUT_DIR}/*.json"
-        """)
-
-rule create_ro_crate:
-    input:
-        f"{OUTPUT_DIR}{MERGED_FILE}"
-    params:
-        workflow_file = "Snakefile"
-    output:
-        directory("ro-crate-metadata/")
+        directory(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
+    params: 
+        max_workflow_id = config['constraints']['max-workflow-id']
     shell:
-        """
-        # Create a new virtual environment
-        python -m venv rocrate_env
+        "python workflowhub_graph/source_crates.py "
+        "--workflow-ids 1-{params.max_workflow_id} "
+        "--prod "
+        "--all-versions"
 
-        # Activate the virtual environment
-        source rocrate_env/bin/activate
+rule validate_ro_crates:
+    input:
+        directory(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
+    output:
+        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+    params: 
+        max_workflow_id = config['constraints']['max-workflow-id'],
+        versions = config['constraints']['versions'],
+        output_dir = config['paths']['output-dir']
+    shell:
+        "python workflowhub_graph/check_outputs.py "
+        "--workflow-ids 1-{params.max_workflow_id} "
+        "--versions {params.versions} "
+        "--output {params.output_dir}"
 
-        # Upgrade pip to avoid any potential issues
-        pip install --upgrade pip
-        
-        # pip uninstall urllib3
-
-        # Install required packages
-        pip install requests urllib3 rocrate
-
-        # Run the create_ro_crate script
-        python workflowhub_graph/create_ro_crate.py {input} {params.workflow_file} {output}
-    
-        # Deactivate the virtual environment
-        deactivate
-
-        # Remove the virtual environment to clean up
-        rm -rf rocrate_env
-        """
+rule create_graph:
+    input:
+        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+    output:
+        f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}"
+    shell:
+        "python workflowhub_graph/merge.py {output} -i '{input}'"
