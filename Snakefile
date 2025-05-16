@@ -3,8 +3,9 @@ from snakemake.io import directory
 configfile: "config.yaml"
 
 rule all:
-    input:
-        "ro-crate-metadata"
+    output:
+        # Final output file
+        f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}",
 
 rule source_ro_crates:
     output:
