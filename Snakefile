@@ -1,6 +1,6 @@
 from snakemake.io import directory
 
-VERSIONS = ['1']
+configfile: "config.yaml"
 
 rule all:
     input:
