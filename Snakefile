@@ -12,12 +12,14 @@ rule all:
 
 rule source_ro_crates:
     output:
-        directory(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
+        f"{config['paths']['output-dir']}/{config['filenames']['sourced-list']}"
     params: 
-        max_workflow_id = config['constraints']['max-workflow-id']
+        max_workflow_id = config['constraints']['max-workflow-id'],
+        output_dir = config['paths']['output-dir']
     shell:
         "python workflowhub_graph/source_crates.py "
         "--workflow-ids 1-{params.max_workflow_id} "
+        "--output-dir {params.output_dir} "
         "--prod "
         "--all-versions"
 
