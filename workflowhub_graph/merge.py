@@ -31,10 +31,16 @@ def merge_all_files(
 
     graph = rdflib.Graph()
 
-    if input_file:
-        with open(input_file, "r") as f:
-            filenames = [line.strip() for line in f.readlines()]
 
+    # Read the input file containing the list of filenames
+    with open(input_file, "r") as f:
+        try:
+            filenames = json.load(f)
+        except json.JSONDecodeError as e:
+            print(f"Error reading {input_file}: {e}")
+            print("Ensure the file contains a valid JSON array of filenames.")
+            return None
+        
     for i, fn in enumerate(filenames):
         with open(fn, "r") as f:
             update_progress_bar(i + 1, len(filenames))
