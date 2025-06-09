@@ -13,10 +13,10 @@ paths:
   run-metadata: "run-metadata"
   
 filenames:
-  # List of extracted RO Crate manifests to merge
-  extracted-crates: "extracted-crates"
-
-  # List of validated RO Create manifests
+  # list of sourced RO Crates
+  sourced-list: "manifest.json"
+  
+  # List of validated RO Crate manifests
   validated-list: "valid-rocrate-list.json"
 
   # The final merged graph
