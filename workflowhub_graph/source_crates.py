@@ -163,6 +163,7 @@ def process_workflow_ids(
     os.makedirs(output_dir, exist_ok=True)
 
     n_successful = 0
+    manifest = []
 
     try:
         workflows = workflows_data.get("data", [])
@@ -212,12 +213,15 @@ def process_workflow_ids(
                     )
 
                 if json_content:
+                    filename = f"{workflow_id}_{w_version}_ro-crate-metadata.json"
                     output_file_path = os.path.join(
-                        output_dir, f"{workflow_id}_{w_version}_ro-crate-metadata.json"
+                        output_dir, filename
                     )
                     with open(output_file_path, "wb") as output_file:
                         output_file.write(json_content)
 
+                    # Append filename to the manifest
+                    manifest.append(filename)
                     n_successful += 1
 
                 else:
@@ -226,6 +230,12 @@ def process_workflow_ids(
     except Exception as e:
         print(f"An error occurred while processing workflow IDs. Error: {e}")
         traceback.print_exc()
+
+    finally:
+        # Save the manifest to a JSON file
+        manifest_file_path = os.path.join(output_dir, "manifest.json")
+        with open(manifest_file_path, "w") as manifest_file:
+            json.dump(manifest, manifest_file, indent=4)
 
 
 def main():
@@ -241,6 +251,12 @@ def main():
         default=False,
         action="store_true",
         help="Download and extract JSON files from zip archive.",
+    )
+    parser.add_argument(
+        "--output-dir",
+        type=str,
+        default="data",
+        help="Directory to save the extracted JSON files. By default, this is 'data'.",
     )
 
     # TODO: Change this to `dev` to use the development WorkflowHub:
@@ -292,6 +308,7 @@ def main():
             is_metadata_endpoint=not args.zip,
             base_url=base_url,
             all_versions=args.all_versions,
+            output_dir=args.output_dir,
         )
 
 
