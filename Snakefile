@@ -3,7 +3,7 @@ from snakemake.io import directory
 configfile: "config.yaml"
 
 rule all:
-    output:
+    input:
         # Final output file
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}",
 
