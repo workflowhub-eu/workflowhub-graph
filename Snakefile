@@ -8,7 +8,7 @@ rule all:
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}",
 
         # Metadata
-        directory(f"{config['paths']['run-metadata']}/"),
+        #directory(f"{config['paths']['run-metadata']}/"),
 
 rule prepare_metadata_dir:
     output:
