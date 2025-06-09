@@ -25,22 +25,23 @@ rule source_ro_crates:
 
 rule validate_ro_crates:
     input:
-        expand(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
+        f"{config['paths']['output-dir']}/{config['filenames']['sourced-list']}"
     output:
-        directory(f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}")
+        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
     params: 
         max_workflow_id = config['constraints']['max-workflow-id'],
         versions = config['constraints']['versions'],
-        output_dir = config['paths']['output-dir']
+        output_dir = config['paths']['output-dir'],
+        validated_list = config['filenames']['validated-list']
     shell:
         "python workflowhub_graph/check_outputs.py "
         "--workflow-ids 1-{params.max_workflow_id} "
         "--versions {params.versions} "
-        "--output {params.output_dir}"
+        "--output {params.output_dir}/{params.validated_list} "
 
 rule create_graph:
     input:
-        expand(f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}")
+        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
     output:
         f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}"
     shell:
