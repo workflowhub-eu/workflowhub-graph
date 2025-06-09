@@ -14,7 +14,7 @@ from workflowhub_graph.constants import BASE_URL
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
-    input_file: str | None = None,
+    input_file: str,
     base_url: str = BASE_URL,
     cache_kwargs: dict | None = None,
 ) -> rdflib.Graph:
