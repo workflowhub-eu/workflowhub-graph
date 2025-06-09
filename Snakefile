@@ -10,12 +10,6 @@ rule all:
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
 
-rule prepare_metadata_dir:
-    output:
-        directory(config["paths"]["run-metadata"])
-    shell:
-        "mkdir -p {output}"
-
 rule source_ro_crates:
     output:
         directory(f"{config['paths']['output-dir']}/{config['filenames']['extracted-crates']}")
