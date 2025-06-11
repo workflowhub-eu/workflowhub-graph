@@ -21,7 +21,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}/output:/app/workflow-output \
             knowledgegraph \
-            --config max-workflow-id=0
+            --config max-workflow-id=10
 
       - name: Upload TTL artifact
         uses: actions/upload-artifact@v4
