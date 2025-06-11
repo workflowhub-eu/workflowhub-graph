@@ -16,9 +16,6 @@ authors = [
 dependencies = [
     "arcp >=0.2.1",
     "rdflib >=6.3.2",
-    "requests >=2.32.2",
-    "certifi >=2024.2.2",
-    "urllib3 >=2.2.2",
 ]
 
 [project.scripts]
