@@ -1,4 +1,5 @@
 FROM snakemake/snakemake:latest
+ARG BUILD_TEST=false # Override at build time to install test dependencies
 
 # Working directory
 WORKDIR /app
@@ -6,6 +7,9 @@ WORKDIR /app
 # Copy the python scripts and install as a module
 COPY workflowhub_graph/ /app/workflowhub_graph/
 RUN pip install /app/workflowhub_graph
+
+# Install additional dependencies if specified
+RUN if [ "$BUILD_TEST" = "true" ]; then pip install /app/workflowhub_graph[test]; fi
 
 # Copy the Snakefile and config file
 COPY Snakefile /app/Snakefile
