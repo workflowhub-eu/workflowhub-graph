@@ -42,7 +42,10 @@ def merge_all_files(
             return None
         
     for i, fn in enumerate(filenames):
-        with open(fn, "r") as f:
+        base_path = cache_kwargs.get("cache_base_dir", "")
+        full_path = f"{base_path}{fn}" 
+
+        with open(full_path, "r") as f:
             update_progress_bar(i + 1, len(filenames))
 
             basename = os.path.basename(fn)
