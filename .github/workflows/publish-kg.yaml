@@ -1,0 +1,30 @@
+name: Build and publish knowledge graph
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "develop" ]
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t knowledgegraph
+
+      - name: Run container to generate TTL
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/output:/app/workflow-output \
+            knowledgegraph \
+            --config max-workflow-id=0
+
+      - name: Upload TTL artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-ttl
+          path: output/merged.ttl
