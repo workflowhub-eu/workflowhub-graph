@@ -25,3 +25,10 @@ merge = "workflowhub_graph.merge:main"
 upload = "workflowhub_graph.upload:main"
 help = "workflowhub_graph.help:main"
 check-outputs = "workflowhub_graph.check_outputs:main"
+
+[project.optional-dependencies]
+test = [
+  "pytest >=8.0",
+  "pytest-cov",
+  "pylint",
+]
