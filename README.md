@@ -13,12 +13,10 @@ docker build -t knowledgegraph .
 Then, you can run the workflow using the following command:
 
 ```bash
-docker run --rm knowledgegraph 
+docker run --rm -v ./workflow-output:/app/output --user $(id -u):$(id -g) knowledgegraph
 ```
 
-This command runs a Docker container using the `knowledgegraph` image. It mounts the working directory to `/app` 
-inside the container, sets `/app` as the working directory, and then runs the workflow. Once the workflow completes, 
-the container is automatically removed.
+Where `./workflow-output` is the directory where the output will be stored (already created for you in this repo) and the `--user` flag ensures that the output files are created with the correct permissions.
 
 ## Structure
 

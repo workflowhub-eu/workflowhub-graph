@@ -12,4 +12,5 @@ COPY Snakefile /app/Snakefile
 COPY config.yaml /app/config.yaml
 
 # Set the entry point
-ENTRYPOINT ["snakemake", "--snakefile", "Snakefile", "--configfile", "config.yaml", "--cores", "all"]
+ENV XDG_CACHE_HOME=/app/output/
+ENTRYPOINT ["snakemake", "--snakefile", "Snakefile", "--configfile", "config.yaml", "--cores", "all", "--directory", "/app/output"]
