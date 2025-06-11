@@ -77,5 +77,5 @@ def patch_rdflib_urlopen(
 
         return Response(content)
 
-    with patch("rdflib.parser.urlopen", cached_urlopen):
+    with patch("urllib.request.urlopen", new=cached_urlopen):
         yield
