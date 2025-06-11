@@ -13,7 +13,7 @@ docker build -t knowledgegraph .
 Then, you can run the workflow using the following command:
 
 ```bash
-docker run --rm knowledgegraph --cores 4 -s /app/Snakefile
+docker run --rm knowledgegraph 
 ```
 
 This command runs a Docker container using the `knowledgegraph` image. It mounts the working directory to `/app` 
