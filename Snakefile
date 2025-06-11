@@ -5,17 +5,17 @@ configfile: "config.yaml"
 rule all:
     input:
         # Final output file
-        f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}",
+        f"{config['output-dir']}/{config['output-graph']}",
 
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
 
 rule source_ro_crates:
     output:
-        f"{config['paths']['output-dir']}/{config['filenames']['sourced-list']}"
+        f"{config['output-dir']}/{config['sourced-list']}"
     params: 
-        max_workflow_id = config['constraints']['max-workflow-id'],
-        output_dir = config['paths']['output-dir']
+        max_workflow_id = config['max-workflow-id'],
+        output_dir = config['output-dir']
     shell:
         "source-crates "
         "--workflow-ids 1-{params.max_workflow_id} "
@@ -25,14 +25,14 @@ rule source_ro_crates:
 
 rule validate_ro_crates:
     input:
-        f"{config['paths']['output-dir']}/{config['filenames']['sourced-list']}"
+        f"{config['output-dir']}/{config['sourced-list']}"
     output:
-        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+        f"{config['output-dir']}/{config['validated-list']}"
     params: 
-        max_workflow_id = config['constraints']['max-workflow-id'],
-        versions = config['constraints']['versions'],
-        output_dir = config['paths']['output-dir'],
-        validated_list = config['filenames']['validated-list']
+        max_workflow_id = config['max-workflow-id'],
+        versions = config['versions'],
+        output_dir = config['output-dir'],
+        validated_list = config['validated-list']
     shell:
         "check-outputs "
         "--workflow-ids 1-{params.max_workflow_id} "
@@ -41,9 +41,9 @@ rule validate_ro_crates:
 
 rule create_graph:
     input:
-        f"{config['paths']['output-dir']}/{config['filenames']['validated-list']}"
+        f"{config['output-dir']}/{config['validated-list']}"
     output:
-        f"{config['paths']['output-dir']}/{config['filenames']['output-graph']}"
+        f"{config['output-dir']}/{config['output-graph']}"
     shell:
         "merge "
         "{output} "
