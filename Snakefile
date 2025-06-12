@@ -7,6 +7,9 @@ rule all:
         # Final output file
         f"{config['output-dir']}/{config['output-graph']}",
 
+        # Enrichment outputs
+        expand("{output_dir}/{strategy}.ttl", output_dir=config['enrichment-output-dir'], strategy=config['enrichment-strategies']),
+
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
 
@@ -48,3 +51,16 @@ rule create_graph:
         "merge "
         "{output} "
         "-i '{input}'"
+
+rule enrich_graph:
+    input:
+        f"{config['output-dir']}/{config['output-graph']}"
+    output:
+        f"{config['enrichment-output-dir']}/{{strategy}}.ttl"
+    shell:
+        """
+        enrich-graph \
+        --graph {input} \
+        --strategy {wildcards.strategy} \
+        --output {output}
+        """

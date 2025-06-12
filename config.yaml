@@ -28,3 +28,13 @@ validated-list: "valid-rocrate-list.json"
 # The final merged graph
 output-graph: "workflowhub-graph.ttl"
 
+################################################################################
+## Enrichment options
+
+# Enrichment strategies to apply to the graph
+enrichment-strategies: ["a", "b", "c"]
+
+# Directory for enrichment outputs
+enrichment-output-dir: "graph-enrichments"
+
+
