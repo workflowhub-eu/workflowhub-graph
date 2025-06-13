@@ -21,8 +21,8 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}/output:/app/workflow-output \
             knowledgegraph \
-            --config max-workflow-id=10
-            --config output-graph="workflowhub-graph.ttl"
+            --config max-workflow-id=10 \
+            --config output-graph="workflowhub-graph.ttl" \
             --config output-dir=output
 
       - name: Upload TTL artifact
