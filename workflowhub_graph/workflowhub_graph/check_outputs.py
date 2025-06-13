@@ -25,10 +25,10 @@ def parse_args() -> argparse.Namespace:
         help="Comma-separated list of versions to process (e.g., '1,2,3').",
     )
     parser.add_argument(
-        "--output-dir",
+        "--output",
         type=str,
-        default="data",
-        help="Directory where the output files are stored (default: 'data').",
+        default="data/created_files.json",
+        help="Path to output file (default: 'data/created_files.json').",
     )
     return parser.parse_args()
 
@@ -83,27 +83,28 @@ def verify_created_files(expected_files: list[str]) -> list[str]:
 
 def main():
     args = parse_args()
+    output_dir = os.path.dirname(args.output)
 
     if args.workflow_ids:
         min_id, max_id = map(int, args.workflow_ids.split("-"))
         workflow_ids = range(min_id, max_id + 1)
     else:
-        max_id = get_max_id_from_files(args.output_dir)
+        max_id = get_max_id_from_files(output_dir)
         workflow_ids = range(1, max_id + 1)
 
     versions = args.versions.split(",")
 
     # Generate expected file paths
-    expected_files = generate_expected_files(args.output_dir, workflow_ids, versions)
+    expected_files = generate_expected_files(output_dir, workflow_ids, versions)
 
     # Check which files were actually created
     created_files = verify_created_files(expected_files)
 
     # Output the list of created files to a JSON file
-    with open("created_files.json", "w") as f:
+    with open(args.output, "w") as f:
         json.dump(created_files, f)
 
-    print("\nFile names written to created_files.json")
+    print(f"Created files saved to {args.output}")
 
 
 if __name__ == "__main__":

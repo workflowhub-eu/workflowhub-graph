@@ -1,43 +1,20 @@
-# Stage 1: Build environment
-FROM python:3.11-slim AS build-stage
-
-# Install build tools and Poetry
-RUN apt-get update && apt-get install -y build-essential \
-    && pip install poetry
-
-WORKDIR /app
-
-# Copy dependency files and install dependencies
-COPY pyproject.toml poetry.lock /app/
-RUN poetry config virtualenvs.create false
-
-# Copy and install the application
-COPY . /app
-RUN poetry install --no-interaction --no-ansi
-
-# Stage 2: Snakemake runtime environment
 FROM snakemake/snakemake:latest
+ARG BUILD_TEST=false # Override at build time to install test dependencies
 
-# Install Poetry
-RUN pip install poetry
-
+# Working directory
 WORKDIR /app
 
-# Copy the application from the build stage
-COPY --from=build-stage /app /app
+# Copy the python scripts and install as a module
+COPY workflowhub_graph/ /app/workflowhub_graph/
+RUN pip install /app/workflowhub_graph
 
-# Install dependencies
-RUN pip install -r <(poetry export --format requirements.txt --without-hashes) \
-    && pip install -e .
+# Install additional dependencies if specified
+RUN if [ "$BUILD_TEST" = "true" ]; then pip install /app/workflowhub_graph[test]; fi
 
-# Set up non-root user
-RUN groupadd -r snakemake && useradd -r -g snakemake snakemake \
-    && chown -R snakemake:snakemake /app
-
-USER snakemake
-
-# Configure Python path
-ENV PYTHONPATH="/app:${PYTHONPATH}"
+# Copy the Snakefile and config file
+COPY Snakefile /app/Snakefile
+COPY config.yaml /app/config.yaml
 
 # Set the entry point
-ENTRYPOINT ["snakemake"]
+ENV XDG_CACHE_HOME=/app/output/
+ENTRYPOINT ["snakemake", "--snakefile", "Snakefile", "--configfile", "config.yaml", "--cores", "all", "--directory", "/app/output"]

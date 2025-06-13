@@ -5,29 +5,20 @@ on:
     branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
-
+  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.11"]
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
-      with:
-        python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install poetry
-        poetry install --all-extras -vv
-    - name: Analysing the code with pylint
-      run: |
-        poetry run pylint -v --errors-only .
-    - name: Testing the code with pytest
-      run: |
-        poetry run py.test tests --ignore=tests/SPARQL --ignore=ro-crate-metadata --ignore=workflowhub_graph/create_ro_crate.py
-    
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build --build-arg BUILD_TEST=true -t knowledgegraph .
+
+      - name: Run linter
+        run: docker run --entrypoint '' -v ${{ github.workspace }}/tests:/app/tests knowledgegraph pylint -v --errors-only workflowhub_graph/workflowhub_graph
+
+      - name: Run tests
+        run: docker run --entrypoint '' -v ${{ github.workspace }}/tests:/app/tests knowledgegraph pytest

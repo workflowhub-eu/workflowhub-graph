@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "workflowhub_graph"
+version = "0.1.0"
+description = "Tools for working with WorkflowHub RO-Crates"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+  { name = "Alexander Hambley", email = "alexander.hambley@manchester.ac.uk" },
+  { name = "Oliver Woolland", email = "oliver.woolland@manchester.ac.uk"},
+]
+
+dependencies = [
+    "arcp >=0.2.1",
+    "rdflib >=6.3.2",
+]
+
+[project.scripts]
+source-crates = "workflowhub_graph.source_crates:main"
+absolutize = "workflowhub_graph.absolutize:main"
+merge = "workflowhub_graph.merge:main"
+upload = "workflowhub_graph.upload:main"
+help = "workflowhub_graph.help:main"
+check-outputs = "workflowhub_graph.check_outputs:main"
+
+[project.optional-dependencies]
+test = [
+  "pytest >=8.0",
+  "pytest-cov",
+  "pylint",
+]
