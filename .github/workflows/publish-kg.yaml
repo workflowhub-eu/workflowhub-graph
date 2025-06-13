@@ -22,9 +22,11 @@ jobs:
             -v ${{ github.workspace }}/output:/app/workflow-output \
             knowledgegraph \
             --config max-workflow-id=10
+            --config output-graph="workflowhub-graph.ttl"
+            --config output-dir=output
 
       - name: Upload TTL artifact
         uses: actions/upload-artifact@v4
         with:
-          name: merged-ttl
-          path: output/merged.ttl
+          name: "workflowhub-graph.ttl"
+          path: output/workflowhub-graph.ttl
