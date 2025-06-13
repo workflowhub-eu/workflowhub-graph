@@ -25,6 +25,10 @@ jobs:
             --config output-graph="workflowhub-graph.ttl" \
             --config output-dir=output
 
+      - name: debug file location
+        run: |
+          tree ${{ github.workspace }}
+
       - name: Upload TTL artifact
         uses: actions/upload-artifact@v4
         with:
