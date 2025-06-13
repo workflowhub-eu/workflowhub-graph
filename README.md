@@ -2,6 +2,10 @@
 
 A tool to generate a knowledge graph from a source of RO Crates. By default, this tool sources and generates an RDF graph of crates from [WorkflowHub](https://workflowhub.eu/). 
 
+[![Docker build and push](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/push-docker.yaml/badge.svg)](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/push-docker.yaml)
+[![Python linting and tests](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/lint-and-test.yaml/badge.svg)](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/lint-and-test.yaml)
+[![Build and publish knowledge graph](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/publish-kg.yaml/badge.svg)](https://github.com/workflowhub-eu/workflowhub-graph/actions/workflows/publish-kg.yaml)
+
 ## Getting Started
 
 This tool is run as a Snakemake workflow. We recommend building a Docker container to run the workflow:
