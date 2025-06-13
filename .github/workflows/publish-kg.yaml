@@ -19,7 +19,7 @@ jobs:
       - name: Run container to generate TTL
         run: |
           docker run --rm \
-            -v ${{ github.workspace }}/output:/app/workflow-output \
+            -v ${{ github.workspace }}/workflow-output:/app/workflow-output \
             knowledgegraph \
             --config max-workflow-id=10 \
             --config output-graph="workflowhub-graph.ttl" \
@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: "workflowhub-graph.ttl"
-          path: ${{ github.workspace }}/output/workflowhub-graph.ttl
+          path: ${{ github.workspace }}/workflow-output/output/workflowhub-graph.ttl
