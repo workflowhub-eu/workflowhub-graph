@@ -54,9 +54,9 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
             assert subjects[0] != subjects[1]
 
     def test_merged(self):
-        manifiest_file = get_test_data_file("manifest.json")
+        manifest_file = get_test_data_file("manifest.json")
         graph = merge_all_files(
-            manifiest_file,
+            manifest_file,
             cache_kwargs=dict(
                 cache_base_dir=get_test_data_file(),
                 write_cache=False,
