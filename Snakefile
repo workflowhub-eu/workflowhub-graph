@@ -8,7 +8,9 @@ rule all:
         f"{config['output-dir']}/{config['output-graph']}",
 
         # Enrichment outputs
-        expand("{output_dir}/{strategy}.ttl", output_dir=config['enrichment-output-dir'], strategy=config['enrichment-strategies']),
+        expand("{output_dir}/{strategy}.ttl",
+               output_dir=config['output-dir'],
+               strategy=config['enrichment-strategies']),
 
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
