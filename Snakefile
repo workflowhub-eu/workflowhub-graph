@@ -56,7 +56,7 @@ rule enrich_graph:
     input:
         f"{config['output-dir']}/{config['output-graph']}"
     output:
-        f"{config['enrichment-output-dir']}/{{strategy}}.ttl"
+        f"{config['output-dir']}/{{strategy}}.ttl"
     shell:
         """
         enrich-graph \
