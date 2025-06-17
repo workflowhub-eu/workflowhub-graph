@@ -1,19 +1,28 @@
 import argparse
+import os
 
 def main():
     argparse.ArgumentParser()
     parser = argparse.ArgumentParser(description="Enrich RDF graph with additional data.")
     parser.add_argument(
-        "--graph", help="The RDF graph file to enrich.", default="graph.ttl"
-    )
-    parser.add_argument(
-        "--strategy", help="The enrichment strategy to apply."
+        "--graph",
+        help="The RDF graph file to enrich.",
+        default="graph.ttl",
+        required=True
     )
     parser.add_argument(
         "-o",
         "--output-file",
         help="The output filename for the enriched graph.",
-        default="enriched_graph.ttl"
+        default="enriched_graph.ttl",
+        required=True
+    )
+
+    parser.add_argument(
+        "-s",
+        "--strategy",
+        help="The enrichment strategy to use",
+        required=True
     )
 
     args = parser.parse_args()
