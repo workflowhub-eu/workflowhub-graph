@@ -96,6 +96,4 @@ class ConsolidateWorkflowLanguages(EnrichmentABC):
                    OWL.sameAs,
                    rdflib.URIRef(f"https://www.wikidata.org/entity/{wikidata_id}")))
 
-
-
-        return True
+        return None
