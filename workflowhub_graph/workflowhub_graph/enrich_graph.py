@@ -4,19 +4,16 @@ import os
 from workflowhub_graph.enrichment_strategies import STRATEGY_REGISTRY
 
 def main():
-    argparse.ArgumentParser()
     parser = argparse.ArgumentParser(description="Enrich RDF graph with additional data.")
     parser.add_argument(
         "--graph",
         help="The RDF graph file to enrich.",
-        default="graph.ttl",
         required=True
     )
     parser.add_argument(
         "-o",
         "--output-file",
         help="The output filename for the enriched graph.",
-        default="enriched_graph.ttl",
         required=True
     )
 
@@ -24,11 +21,13 @@ def main():
         "-s",
         "--strategy",
         help="The enrichment strategy to use",
-        required=True
+        required=True,
     )
 
+    # Parse the command line arguments
     args = parser.parse_args()
 
+    # Extract the arguments
     graph_file = args.graph
     enrichment_strategy = args.strategy
     output_file = args.output_file
