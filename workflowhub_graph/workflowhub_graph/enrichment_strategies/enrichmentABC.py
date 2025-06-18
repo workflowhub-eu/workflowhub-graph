@@ -1,6 +1,5 @@
 from abc import ABC, abstractmethod
 
-import argparse
 import rdflib
 
 class EnrichmentABC(ABC):
@@ -55,6 +54,9 @@ class EnrichmentABC(ABC):
         for enrichment.
 
         e.g. Query the base graph for OrcID data
+
+        Returns:
+            str: A SPARQL query string to retrieve data from the base graph.
         """
         pass
 
@@ -63,16 +65,14 @@ class EnrichmentABC(ABC):
         """
         Perform the enrichment action on the queried data.
 
-        This method should be implemented by subclasses to define how to
-        enrich the data obtained from the base graph.
-        
-        It should return the enriched data that will be inserted back into the
-        graph.
-
-        e.g. Make an API call to enrich the OrcID data with additional metadata
+        Takes the data obtained from the base graph and populates self.enrichment_graph
+        with enriched data based on the base_data.
 
         Args:
             base_data (object): The data obtained from the base graph to be enriched.
+
+        Returns:
+            None: The method modifies self.enrichment_graph directly.
         """
         pass
 
