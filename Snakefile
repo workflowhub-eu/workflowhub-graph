@@ -48,7 +48,7 @@ rule create_graph:
     input:
         f"{config['output-dir']}/{config['validated-list']}"
     output:
-        f"{config['output-dir']}/{config['output-graph']}"
+        f"{config['output-dir']}/{config['base-graph']}"
     shell:
         "merge "
         "{output} "
@@ -56,7 +56,7 @@ rule create_graph:
 
 rule enrich_graph:
     input:
-        f"{config['output-dir']}/{config['output-graph']}"
+        f"{config['output-dir']}/{config['base-graph']}"
     output:
         f"{config['output-dir']}/{{strategy}}.ttl"
     shell:
@@ -65,4 +65,19 @@ rule enrich_graph:
         --graph {input} \
         --strategy {wildcards.strategy} \
         --output {output}
+        """
+
+rule merge_graphs:
+    input:
+        base=f"{config['output-dir']}/{config['base-graph']}",
+        fragments=expand(
+            f"{config['output-dir']}/{{strategy}}.ttl",
+            strategy=config['enrichment-strategies']
+        )
+    output:
+        merged=f"{config['output-dir']}/{config['output-graph']}"
+    shell:
+        """
+        rdfpipe --input-format=turtle --output-format=turtle \
+            {input.base} {input.fragments} > {output.merged}
         """
