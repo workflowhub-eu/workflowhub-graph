@@ -24,10 +24,13 @@ def query_wikidata(label):
     }
 
     # Make the request to WikiData
-    resp = requests.get(url, params=params)
-    resp.raise_for_status()
-    
-    data = resp.json()
+    try:
+        resp = requests.get(url, params=params, timeout=5)
+        resp.raise_for_status()
+        data = resp.json()
+    except requests.RequestException as e:
+        print(f"Request failed for label '{label}': {e}")
+        return None
 
     # Get and return the ID
     search_results = data.get("search", [])
