@@ -11,7 +11,7 @@ for _, module_name, _ in pkgutil.iter_modules(__path__):
     if module_name == "enrichmentABC":
         continue
 
-    # Import the targetr module dynamically
+    # Import the target module dynamically
     module = importlib.import_module(f".{module_name}", package=__name__)
 
     # Inspect module for subclasses of EnrichmentABC and register them
