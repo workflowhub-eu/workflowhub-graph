@@ -1,29 +1,26 @@
-import enrichmentABC
-import rdflib
+from .enrichmentABC import EnrichmentABC
 
-class ConsolidateWorkflowLanguages(enrichmentABC.EnrichmentABC):
+class ConsolidateWorkflowLanguages(EnrichmentABC):
     """
     Class to consolidate and enrich workflow languages in a graph.
     """
     
-    def query_base_graph(self, input_file):
+    def enrichment_base_query(self):
         """
-        Perform a SPARQL query for workflow languages in the base graph.
-
-        Returns a graph object or data structure containing the queried
+        Query for workflow languages
         """
 
-        # Load the base graph
-        g = rdflib.Graph()
-        g.parse(input_file, format='turtle')
-
-        # Define a SPARQL query to get workflow languages
         query = """
-        SELECT *
+        PREFIX schema: <http://schema.org/> 
+        SELECT ?identifier ?name ?url
         WHERE {
-          ?s ?p ?o .
+        ?s ?p schema:ComputerLanguage ;
+            schema:identifier ?identifier ;
+            schema:name ?name ;
+            schema:url ?url .     
         }
         """
+        return query
     
     def enrichment_action(self):
         """

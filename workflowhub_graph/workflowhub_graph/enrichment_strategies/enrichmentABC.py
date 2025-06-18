@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
+
 import argparse
+import rdflib
 
 class EnrichmentABC(ABC):
     """
@@ -24,22 +26,46 @@ class EnrichmentABC(ABC):
             base_graph (object): The base graph to be enriched.
         """
 
-        base_data = self.query_base_graph(base_graph)
+        print("OWDB EnrichmentABC initializing...")
+
+        # ----------------------------------------------------------------------
+        # Fetch and execute the query to retrieve data from the base graph
+
+        # Read the input file into an rdf graph
+        g = rdflib.Graph()
+        g.parse(base_graph, format="turtle")
+        print(f"OWDB EnrichmentABC base graph loaded from {base_graph}")
+
+        # Fetch the base query defined by the subclass and execute it
+        enrichment_query = self.enrichment_base_query()
+        enrichment_base_data = g.query(enrichment_query)
+        print("OWDB EnrichmentABC base query executed.")
+
+        # serialise base data to a string for debugging
+        for line in enrichment_base_data:
+            output_string = str(line)
+            print(f"OWDB Enrichment base data line: {output_string}")
+
+        # ----------------------------------------------------------------------
+        # Perform the enrichment action on the queried data
+        
         enrichment_data = self.enrichment_action(base_data)
-        self.insert_enrichment(enrichment_data)
+
+        # ----------------------------------------------------------------------
+        # Insert the enriched data back into the graph and write it out
+        
+        output_graph = self.insert_enrichment(enrichment_data)
+        print(f"Enrichment output graph: {output_graph}")
+        g += output_graph
+        
 
     @abstractmethod
-    def query_base_graph(self):
+    def enrichment_base_query(self):
         """
-        Query the base graph for data.
+        Defines a SPARQL query to retrieve data from the base graph used
+        for enrichment.
 
-        This method should be implemented by subclasses to define how to query
-        the base graph.
-        
-        It should return a graph object or data structure that contains the
-        queried information which is used for enrichment.
-
-        e.g. SPARQL query to get the OrcID of all users in the graph
+        e.g. Query the base graph for OrcID data
         """
         pass
 

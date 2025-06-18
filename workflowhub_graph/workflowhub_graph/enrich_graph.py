@@ -1,6 +1,8 @@
 import argparse
 import os
 
+from workflowhub_graph.enrichment_strategies import STRATEGY_REGISTRY
+
 def main():
     argparse.ArgumentParser()
     parser = argparse.ArgumentParser(description="Enrich RDF graph with additional data.")
@@ -31,13 +33,20 @@ def main():
     enrichment_strategy = args.strategy
     output_file = args.output_file
 
-    print(f"Enriching graph from {graph_file} using strategy {enrichment_strategy}...")
-    with open(output_file, "w") as out_f:
-        # Here you would implement the logic to enrich the graph based on the strategy
-        # For now, we just write a placeholder message
-        out_f.write(f"Enriched graph from {graph_file} using strategy {enrichment_strategy}\n")
+    print(f"OWDB Enriching graph from {graph_file} using strategy {enrichment_strategy}...")
+    print(f"OWDB Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
 
-    print(f"Enriched graph written to {output_file}")
+    if enrichment_strategy not in STRATEGY_REGISTRY:
+        raise ValueError(f"Enrichment strategy '{enrichment_strategy}' is not recognized. Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
+
+    enrichment_results = STRATEGY_REGISTRY[enrichment_strategy](graph_file)
+    
+    # with open(output_file, "w") as out_f:
+    #     # Here you would implement the logic to enrich the graph based on the strategy
+    #     # For now, we just write a placeholder message
+    #     out_f.write(f"Enriched graph from {graph_file} using strategy {enrichment_strategy}\n")
+
+    # print(f"Enriched graph written to {output_file}")
 
 if __name__ == "__main__":
     main()
