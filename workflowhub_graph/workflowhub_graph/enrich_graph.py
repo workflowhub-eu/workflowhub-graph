@@ -39,12 +39,9 @@ def main():
     if enrichment_strategy not in STRATEGY_REGISTRY:
         raise ValueError(f"Enrichment strategy '{enrichment_strategy}' is not recognized. Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
 
-    enrichment_results = STRATEGY_REGISTRY[enrichment_strategy](graph_file)
-    
-    # with open(output_file, "w") as out_f:
-    #     # Here you would implement the logic to enrich the graph based on the strategy
-    #     # For now, we just write a placeholder message
-    #     out_f.write(f"Enriched graph from {graph_file} using strategy {enrichment_strategy}\n")
+    # Create the strategy instance to perform enrichment
+    enrichment_obj = STRATEGY_REGISTRY[enrichment_strategy](graph_file)
+    enrichment_results = enrichment_obj.enrichment_graph
 
     # print(f"Enriched graph written to {output_file}")
 
