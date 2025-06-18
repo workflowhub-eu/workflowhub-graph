@@ -46,7 +46,7 @@ class EnrichmentABC(ABC):
         # ----------------------------------------------------------------------
         # Perform the enrichment action on the queried data
         
-        enrichment_graph = self.enrichment_action(enrichment_base_data)
+        self.enrichment_action(enrichment_base_data)
 
     @abstractmethod
     def enrichment_base_query(self):
