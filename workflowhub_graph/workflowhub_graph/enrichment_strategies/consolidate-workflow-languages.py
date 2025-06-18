@@ -68,7 +68,8 @@ class ConsolidateWorkflowLanguages(EnrichmentABC):
         
         # Allow the addition of sameAs predicates
         OWL = rdflib.Namespace("http://www.w3.org/2002/07/owl#")
-        g.bind("owl", "http://www.w3.org/2002/07/owl#")
+        if "owl" not in g.namespaces():
+            g.bind("owl", "http://www.w3.org/2002/07/owl#")
 
         # Create an object to hold mappings in case they can be reused
         mappings = {}
