@@ -43,7 +43,8 @@ def main():
     enrichment_obj = STRATEGY_REGISTRY[enrichment_strategy](graph_file)
     enrichment_results = enrichment_obj.enrichment_graph
 
-    # print(f"Enriched graph written to {output_file}")
+    # Serialise to output file
+    enrichment_results.serialize(destination=output_file, format="turtle")
 
 if __name__ == "__main__":
     main()
