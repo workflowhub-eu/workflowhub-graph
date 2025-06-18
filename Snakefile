@@ -64,7 +64,7 @@ rule enrich_graph:
         enrich-graph \
         --graph {input} \
         --strategy {wildcards.strategy} \
-        --output {output}
+        --output-file {output}
         """
 
 rule merge_graphs:
