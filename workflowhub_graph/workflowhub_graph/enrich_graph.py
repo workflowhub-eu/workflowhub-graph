@@ -32,14 +32,13 @@ def main():
     enrichment_strategy = args.strategy
     output_file = args.output_file
 
-    print(f"Enriching graph from {graph_file} using strategy {enrichment_strategy}...")
-    print(f"Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
-
+    # Error if the strategy is not recognized
     if enrichment_strategy not in STRATEGY_REGISTRY:
         raise ValueError(f"Enrichment strategy '{enrichment_strategy}' is not recognized. Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
 
     # Create the strategy instance to perform enrichment
-    enrichment_obj = STRATEGY_REGISTRY[enrichment_strategy](graph_file)
+    enrichment_obj = STRATEGY_REGISTRY[enrichment_strategy]()
+
     enrichment_results = enrichment_obj.enrichment_graph
 
     # Serialise to output file
