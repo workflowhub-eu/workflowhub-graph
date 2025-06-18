@@ -9,9 +9,6 @@ class EnrichmentABC(ABC):
     This class defines the interface for enrichment operations that can be
     performed on a graph.
 
-    Subclasses should implement the methods to query the base graph and perform
-    enrichment actions
-
     Upon instantiation, the enrichment process is run automatically:
       query_base_graph -> enrichment_action 
 
@@ -19,14 +16,21 @@ class EnrichmentABC(ABC):
         base_graph (object): The base graph to be enriched.
     """
 
-    def __init__(self, base_graph):
+    def __init__(self):
         """
-        Perform the enrichment operation defined by the subclass.
-        Args:
-            base_graph (object): The base graph to be enriched.
+        Initializes the enrichment operation and executes the enrichment
         """
-
         self.enrichment_graph = rdflib.Graph()
+
+    def _run(self, base_graph):
+        """
+        Runs the enrichment operation on the provided base graph.
+
+        Args:
+            base_graph (str): The path to the base graph file in Turtle format.
+
+        N.B: This method should not be overridden by subclasses.
+        """
 
         # ----------------------------------------------------------------------
         # Fetch and execute the query to retrieve data from the base graph

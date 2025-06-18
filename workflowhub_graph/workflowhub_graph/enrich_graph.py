@@ -39,6 +39,8 @@ def main():
     # Create the strategy instance to perform enrichment
     enrichment_obj = STRATEGY_REGISTRY[enrichment_strategy]()
 
+    # Run the enrichment operation
+    enrichment_obj._run(graph_file)
     enrichment_results = enrichment_obj.enrichment_graph
 
     # Serialise to output file
