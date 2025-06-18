@@ -33,8 +33,8 @@ def main():
     enrichment_strategy = args.strategy
     output_file = args.output_file
 
-    print(f"OWDB Enriching graph from {graph_file} using strategy {enrichment_strategy}...")
-    print(f"OWDB Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
+    print(f"Enriching graph from {graph_file} using strategy {enrichment_strategy}...")
+    print(f"Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
 
     if enrichment_strategy not in STRATEGY_REGISTRY:
         raise ValueError(f"Enrichment strategy '{enrichment_strategy}' is not recognized. Available strategies: {', '.join(STRATEGY_REGISTRY.keys())}")
