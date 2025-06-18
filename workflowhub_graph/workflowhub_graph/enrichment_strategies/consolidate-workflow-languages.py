@@ -70,13 +70,20 @@ class ConsolidateWorkflowLanguages(EnrichmentABC):
         OWL = rdflib.Namespace("http://www.w3.org/2002/07/owl#")
         g.bind("owl", "http://www.w3.org/2002/07/owl#")
 
+        # Create an object to hold mappings in case they can be reused
+        mappings = {}
+
         # Iterate over results and enrich with WikiData
         for line in base_data:
             identifier = str(line.identifier)
             name = str(line.name)
 
             # Query WikiData for the language name
-            wikidata_id = query_wikidata(name)
+            if identifier in mappings:
+                wikidata_id = mappings[identifier]
+            else:
+                wikidata_id = query_wikidata(name)
+                mappings[identifier] = wikidata_id
 
             # Check if we got a result from WikiData, continue if not
             if not wikidata_id:
@@ -87,5 +94,7 @@ class ConsolidateWorkflowLanguages(EnrichmentABC):
             g.add((rdflib.URIRef(line.crate),
                    OWL.sameAs,
                    rdflib.URIRef(f"https://www.wikidata.org/entity/{wikidata_id}")))
+
+
 
         return True
