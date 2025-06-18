@@ -1,4 +1,42 @@
 from .enrichmentABC import EnrichmentABC
+import rdflib
+
+def query_wikidata(label):
+    """
+    Query WikiData for a given label.
+
+    Args:
+        label (str): The label to search for in WikiData.
+
+    Returns:
+        dict: The search results from WikiData.
+    """
+    import requests
+
+    # Construct the API request to WikiData
+    url = "https://www.wikidata.org/w/api.php"
+    params = {
+        "action": "wbsearchentities",
+        "search": label,
+        "language": "en",
+        "format": "json",
+        "limit": 1
+    }
+
+    # Make the request to WikiData
+    resp = requests.get(url, params=params)
+    resp.raise_for_status()
+    
+    data = resp.json()
+
+    # Get and return the ID
+    search_results = data.get("search", [])
+    if search_results:
+        page_id = search_results[0].get("id")
+    else:
+        page_id = None
+    
+    return page_id
 
 class ConsolidateWorkflowLanguages(EnrichmentABC):
     """
@@ -12,40 +50,42 @@ class ConsolidateWorkflowLanguages(EnrichmentABC):
 
         query = """
         PREFIX schema: <http://schema.org/> 
-        SELECT ?identifier ?name ?url
+        SELECT ?crate ?identifier ?name
         WHERE {
-        ?s ?p schema:ComputerLanguage ;
+        ?crate ?p schema:ComputerLanguage ;
             schema:identifier ?identifier ;
-            schema:name ?name ;
-            schema:url ?url .     
+            schema:name ?name .
         }
         """
         return query
     
-    def enrichment_action(self):
+    def enrichment_action(self, base_data):
         """
-        Perform the enrichment action on the queried data.
-
-        This method should be implemented by subclasses to define how to
-        enrich the data obtained from the base graph.
+        Query WikiData for workflow languages and create consolidated data.
+        """
         
-        It should return the enriched data that will be inserted back into the
-        graph.
-
-        e.g. Make an API call to enrich the OrcID data with additional metadata
-        """
-        pass
-    
-    def insert_enrichment(self):
-        """
-        Insert the enriched data back into the graph.
-
-        This method should be implemented by subclasses to define how to insert
-        the enriched data back into the base graph.
+        g = self.enrichment_graph
         
-        It should handle any necessary transformations or formatting of the
-        enriched data before insertion.
+        # Allow the addition of sameAs predicates
+        OWL = rdflib.Namespace("http://www.w3.org/2002/07/owl#")
+        g.bind("owl", "http://www.w3.org/2002/07/owl#")
 
-        e.g. Insert the enriched OrcID data back into the graph
-        """
-        pass
+        # Iterate over results and enrich with WikiData
+        for line in base_data:
+            identifier = str(line.identifier)
+            name = str(line.name)
+
+            # Query WikiData for the language name
+            wikidata_id = query_wikidata(name)
+
+            # Check if we got a result from WikiData, continue if not
+            if not wikidata_id:
+                print(f"No WikiData results for {name} ({identifier})")
+                continue
+
+            # Create RDF triples for the workflow language
+            g.add((rdflib.URIRef(line.crate),
+                   OWL.sameAs,
+                   rdflib.URIRef(f"https://www.wikidata.org/entity/{wikidata_id}")))
+
+        return True
