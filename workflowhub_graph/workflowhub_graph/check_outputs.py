@@ -87,6 +87,8 @@ def main():
 
     if args.workflow_ids:
         min_id, max_id = map(int, args.workflow_ids.split("-"))
+        if max_id == 0:
+            max_id = get_max_id_from_files(output_dir)
         workflow_ids = range(min_id, max_id + 1)
     else:
         max_id = get_max_id_from_files(output_dir)
