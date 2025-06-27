@@ -21,7 +21,7 @@ jobs:
           docker run --rm \
             -v ${{ github.workspace }}/workflow-output:/app/output \
             knowledgegraph \
-            --config max-workflow-id=10 \
+            --config max-workflow-id=0 \
             --config output-graph="workflowhub-graph.ttl" \
             --config output-dir=output
 
