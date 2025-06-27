@@ -292,11 +292,11 @@ def main():
         max_workflow_id = int(max_str) if max_str else None
         
         if (max_workflow_id != 0): # no filtering if max id 0
-            filtered_workflows = [
-                workflow for workflow in alL_workflow_ids
-                if (min_id is None or int(wf["id"]) >= min_id)
-                and (max_id is None or int(wf["id"]) <= max_id)                
-            ]
+            filtered_workflows = []
+            for workflow in all_workflow_ids["data"]:
+                w_id = int(workflow["id"])
+                if (w_id >= min_workflow_id) and (w_id <= max_workflow_id):
+                    filtered_workflows.append(workflow)
 
     if not filtered_workflows:
         raise ValueError("No workflows matched the provided workflow ID range.")
