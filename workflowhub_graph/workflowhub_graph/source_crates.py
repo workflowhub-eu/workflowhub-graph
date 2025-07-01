@@ -283,33 +283,31 @@ def main():
         workflows_url = WORKFLOWS_URL_DEV
 
     # Example usage:
-    workflows_ids = download_workflow_ids(workflows_url)
+    all_workflow_ids = download_workflow_ids(workflows_url)
+    filtered_workflows = all_workflow_ids["data"] # initialise with all workflows
 
-    if args.workflow_ids:
-        min_workflow_id, max_workflow_id = args.workflow_ids.split("-")
-        if min_workflow_id != "":
-            workflows_ids["data"] = [
-                workflow
-                for workflow in workflows_ids["data"]
-                if int(workflow["id"]) >= int(min_workflow_id)
-            ]
+    if args.workflow_ids: # no filtering if option not used
+        min_str, max_str = args.workflow_ids.split("-")
+        min_workflow_id = int(min_str) if min_str else None
+        max_workflow_id = int(max_str) if max_str else None
+        
+        if (max_workflow_id != 0): # no filtering if max id 0
+            filtered_workflows = []
+            for workflow in all_workflow_ids["data"]:
+                w_id = int(workflow["id"])
+                if (w_id >= min_workflow_id) and (w_id <= max_workflow_id):
+                    filtered_workflows.append(workflow)
 
-        if max_workflow_id != "":
-            workflows_ids["data"] = [
-                workflow
-                for workflow in workflows_ids["data"]
-                if int(workflow["id"]) <= int(max_workflow_id)
-            ]
-    # If no workflow_ids argument is provided, we use all IDs
-
-    if workflows_ids and "data" in workflows_ids:
-        process_workflow_ids(
-            workflows_ids,
-            is_metadata_endpoint=not args.zip,
-            base_url=base_url,
-            all_versions=args.all_versions,
-            output_dir=args.output_dir,
-        )
+    if not filtered_workflows:
+        raise ValueError("No workflows matched the provided workflow ID range.")
+    
+    process_workflow_ids(
+        {"data": filtered_workflows},
+        is_metadata_endpoint=not args.zip,
+        base_url=base_url,
+        all_versions=args.all_versions,
+        output_dir=args.output_dir,
+    )
 
 
 if __name__ == "__main__":

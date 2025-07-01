@@ -7,6 +7,11 @@ rule all:
         # Final output file
         f"{config['output-dir']}/{config['output-graph']}",
 
+        # Enrichment outputs
+        expand("{output_dir}/{strategy}.ttl",
+               output_dir=config['output-dir'],
+               strategy=config['enrichment-strategies']),
+
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
 
@@ -43,8 +48,36 @@ rule create_graph:
     input:
         f"{config['output-dir']}/{config['validated-list']}"
     output:
-        f"{config['output-dir']}/{config['output-graph']}"
+        f"{config['output-dir']}/{config['base-graph']}"
     shell:
         "merge "
         "{output} "
         "-i '{input}'"
+
+rule enrich_graph:
+    input:
+        f"{config['output-dir']}/{config['base-graph']}"
+    output:
+        f"{config['output-dir']}/{{strategy}}.ttl"
+    shell:
+        """
+        enrich-graph \
+        --graph {input} \
+        --strategy {wildcards.strategy} \
+        --output-file {output}
+        """
+
+rule merge_graphs:
+    input:
+        base=f"{config['output-dir']}/{config['base-graph']}",
+        fragments=expand(
+            f"{config['output-dir']}/{{strategy}}.ttl",
+            strategy=config['enrichment-strategies']
+        )
+    output:
+        merged=f"{config['output-dir']}/{config['output-graph']}"
+    shell:
+        """
+        rdfpipe --input-format=turtle --output-format=turtle \
+            {input.base} {input.fragments} > {output.merged}
+        """

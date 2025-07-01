@@ -25,6 +25,19 @@ sourced-list: "manifest.json"
 # List of validated RO Crate manifests
 validated-list: "valid-rocrate-list.json"
 
-# The final merged graph
+# The base graph (prior to enrichments)
+base-graph: "workflowhub-graph-base.ttl"
+
+# The final merged graph (with enrichments)
 output-graph: "workflowhub-graph.ttl"
+
+################################################################################
+## Enrichment options
+
+# Enrichment strategies to apply to the graph
+enrichment-strategies: ["consolidate-workflow-languages"]
+
+# Directory for enrichment outputs
+enrichment-output-dir: "graph-enrichments"
+
 
