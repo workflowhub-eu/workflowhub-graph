@@ -16,17 +16,17 @@ jobs:
       - name: Build Docker image
         run: docker build -t knowledgegraph .
 
-      - name: Run container to generate TTL
+      - name: Run container to generate graph
         run: |
           docker run --rm \
             -v ${{ github.workspace }}/workflow-output:/app/output \
             knowledgegraph \
             --config max-workflow-id=10 \
-            --config output-graph="workflowhub-graph.ttl" \
+            --config output-graph="workflowhub-graph.trig" \
             --config output-dir=output
 
-      - name: Upload TTL artifact
+      - name: Upload TRIG artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "workflowhub-graph.ttl"
-          path: ${{ github.workspace }}/workflow-output/output/workflowhub-graph.ttl
+          name: "workflowhub-graph.trig"
+          path: ${{ github.workspace }}/workflow-output/output/workflowhub-graph.trig

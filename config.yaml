@@ -26,5 +26,5 @@ sourced-list: "manifest.json"
 validated-list: "valid-rocrate-list.json"
 
 # The final merged graph
-output-graph: "workflowhub-graph.ttl"
+output-graph: "workflowhub-graph.trig"
 

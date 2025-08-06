@@ -29,8 +29,7 @@ def merge_all_files(
     if cache_kwargs is None:
         cache_kwargs = dict()
 
-    graph = rdflib.Graph()
-
+    graph = rdflib.ConjunctiveGraph()
 
     # Read the input file containing the list of filenames
     with open(input_file, "r") as f:
@@ -45,7 +44,7 @@ def merge_all_files(
         base_path = cache_kwargs.get("cache_base_dir", "")
         full_path = f"{base_path}{fn}" 
 
-        with open(full_path, "r") as f:
+        with open(full_path, "r") as crate_file:
             update_progress_bar(i + 1, len(filenames))
 
             basename = os.path.basename(fn)
@@ -61,10 +60,8 @@ def merge_all_files(
             else:
                 raise ValueError(f"Could not match the filename {basename}")
 
-            json_data = make_paths_absolute(json.load(f), base_url, w_id, w_version)
-
-            with patch_rdflib_urlopen(**cache_kwargs):
-                graph.parse(data=json_data, format="json-ld")
+            sub_graph_name = rdflib.URIRef(f"urn:graph:{full_path}")
+            graph.get_context(sub_graph_name).parse(crate_file, format="json-ld")
 
     # TODO: set a total version
     return graph
@@ -73,7 +70,7 @@ def merge_all_files(
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "output_filename", help="The output filename.", default="merged.ttl"
+        "output_filename", help="The output filename.", default="merged.trig"
     )
     parser.add_argument(
         "-i",
@@ -83,7 +80,7 @@ def main():
     args = parser.parse_args()
 
     graph = merge_all_files(input_file=args.input_file)
-    graph.serialize(args.output_filename, format="ttl")
+    graph.serialize(args.output_filename, format="trig")
 
 
 if __name__ == "__main__":
