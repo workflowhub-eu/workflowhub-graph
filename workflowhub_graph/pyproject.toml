@@ -16,6 +16,7 @@ authors = [
 dependencies = [
     "arcp >=0.2.1",
     "rdflib >=6.3.2",
+    "rocrate >=0.14.0",
 ]
 
 [project.scripts]
@@ -26,6 +27,7 @@ upload = "workflowhub_graph.upload:main"
 help = "workflowhub_graph.help:main"
 check-outputs = "workflowhub_graph.check_outputs:main"
 enrich-graph = "workflowhub_graph.enrich_graph:main"
+create-ro-crate = "workflowhub_graph.create_ro_crate:main"
 
 [project.optional-dependencies]
 test = [

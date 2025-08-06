@@ -1,9 +1,38 @@
+import argparse
 import sys
 import uuid
 from datetime import datetime
 
 from rocrate.model import ContextEntity, Person
 from rocrate.rocrate import ROCrate
+
+AUTHORS = {
+    "https://orcid.org/0000-0003-1193-6632": {
+        "givenName": "Alexander",
+        "familyName": "Hambley",
+        "affiliation": "University of Manchester",
+    },
+    "https://orcid.org/0000-0002-0035-6475": {
+        "givenName": "Eli",
+        "familyName": "Chadwick",
+        "affiliation": "University of Manchester",
+    },
+    "https://orcid.org/0000-0002-4565-9760": {
+        "givenName": "Oliver",
+        "familyName": "Woolland",
+        "affiliation": "University of Manchester",
+    },
+    "https://orcid.org/0000-0001-9842-9718": {
+        "givenName": "Stian",
+        "familyName": "Soiland-Reyes",
+        "affiliation": "University of Manchester",
+    },
+    "https://orcid.org/0000-0001-6353-0808": {
+        "givenName": "Volodymyr",
+        "familyName": "Savchenko",
+        "affiliation": "University of Geneva",
+    },
+}
 
 
 def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> None:
@@ -22,63 +51,15 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     )
 
     # Add authors:
-    auth_1 = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0003-1193-6632",
-            properties={
-                "givenName": "Alexander",
-                "familyName": "Hambley",
-                "affiliation": "University of Manchester",
-            },
+    for a in AUTHORS.keys():
+        author = crate.add(
+            Person(
+                crate,
+                a,
+                properties=AUTHORS[a],
+            )
         )
-    )
-    auth_2 = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0002-0035-6475",
-            properties={
-                "givenName": "Eli",
-                "familyName": "Chadwick",
-                "affiliation": "University of Manchester",
-            },
-        )
-    )
-    auth_3 = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0002-4565-9760",
-            properties={
-                "givenName": "Oliver",
-                "familyName": "Woolland",
-                "affiliation": "University of Manchester",
-            },
-        )
-    )
-    auth_4 = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0001-9842-9718",
-            properties={
-                "givenName": "Stian",
-                "familyName": "Soiland-Reyes",
-                "affiliation": "University of Manchester",
-            },
-        )
-    )
-    auth_5 = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0001-6353-0808",
-            properties={
-                "givenName": "Volodymyr",
-                "familyName": "Savchenko",
-                "affiliation": "University of Geneva",
-            },
-        )
-    )
-
-    crate.root_dataset["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
+        crate.root_dataset.append_to("author", author)
 
     # Add dataset and files:
     crate.add_dataset(
@@ -124,7 +105,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         },
     )
 
-    data_entity["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
+    # data_entity["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
     data_entity["isBasedOn"] = created_files
 
     workflow_entity = crate.add_workflow(
@@ -137,7 +118,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         lang="snakemake",
     )
 
-    workflow_entity["author"] = [auth_1, auth_2, auth_3, auth_4]
+    # workflow_entity["author"] = [auth_1, auth_2, auth_3, auth_4]
     workflow_entity["output"] = data_entity
 
     if "conformsTo" not in crate.root_dataset:
@@ -152,7 +133,36 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     crate.write(output_dir)
 
 
-if __name__ == "__main__":
-    create_ro_crate(
-        input_file=sys.argv[1], workflow_file=sys.argv[2], output_dir=sys.argv[3]
+def main():
+
+    parser = argparse.ArgumentParser(description="Create RO-Crate for the RDF graph.")
+    parser.add_argument("-i", "--input-file", help="The RDF graph file.", required=True)
+    parser.add_argument(
+        "-o",
+        "--output-dir",
+        help="The output directory for the RO-Crate.",
+        required=True,
     )
+
+    parser.add_argument(
+        "-w",
+        "--workflow-file",
+        help="The workflow file used to generate the RDF graph.",
+        required=True,
+    )
+
+    # Parse the command line arguments
+    args = parser.parse_args()
+
+    # Extract the arguments
+    input_file = args.input_file
+    workflow_file = args.workflow_file
+    output_dir = args.output_dir
+
+    create_ro_crate(
+        input_file=input_file, workflow_file=workflow_file, output_dir=output_dir
+    )
+
+
+if __name__ == "__main__":
+    main()

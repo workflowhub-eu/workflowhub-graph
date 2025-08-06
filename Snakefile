@@ -15,6 +15,9 @@ rule all:
         # Metadata
         #directory(f"{config['paths']['run-metadata']}/"),
 
+        # RO-Crate
+        f"{config['output-dir']}/ro-crate-metadata.json"
+
 rule source_ro_crates:
     output:
         f"{config['output-dir']}/{config['sourced-list']}"
@@ -81,3 +84,20 @@ rule merge_graphs:
         rdfpipe --input-format=turtle --output-format=turtle \
             {input.base} {input.fragments} > {output.merged}
         """
+
+rule create_ro_crate:
+    input:
+        f"{config['output-dir']}/{config['output-graph']}"
+    params:
+        workflow_file = "Snakefile",
+        output_dir = f"{config['output-dir']}"
+    output:
+        f"{config['output-dir']}/ro-crate-metadata.json"
+    shell:
+        """
+        create-ro-crate \
+        --input-file {input} \
+        --workflow-file {params.workflow_file} \
+        --output-dir {params.output_dir}
+        """
+        
