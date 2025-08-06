@@ -1,0 +1,55 @@
+services:
+  fuseki:
+    image: stain/jena-fuseki
+    container_name: wfh-fuseki
+    ports:
+      - "3030:3030"
+    environment:
+      ADMIN_PASSWORD: admin
+    volumes:
+      - jena-data:/fuseki
+      - ./fuseki-config.ttl:/fuseki/config.ttl
+      - ./fuseki-vocabulary.ttl:/fuseki/vocabulary.ttl
+      - /home/owool/scratch/blueprint-config/_blueprint-ui-config.ttl:/fuseki/blueprint.ttl
+      - ../workflow-output/output/workflowhub-graph.ttl:/fuseki/data.ttl
+    networks:
+      - wfh
+
+  trifid:
+    image: ghcr.io/zazuko/trifid
+    container_name: wfh-trifid
+    environment:
+      - DATASET_BASE_URL=
+      - SPARQL_ENDPOINT_URL=http://wfh-fuseki:3030/wfh/query
+      - SPARQL_USER=admin
+      - SPARQL_PASSWORD=admin
+    ports:
+      - "8080:8080"
+    depends_on:
+      - fuseki
+    networks:
+      - wfh
+      
+  blueprint:
+    image: ghcr.io/zazuko/blueprint
+    container_name: wfh-blueprint
+    environment:
+      # Set up for local dev / demo but can be adapted by using an externally
+      # resolvable URL e.g. ENDPOINT_URL=https://trifid.oliver-woolland-rse.uk/query
+      - ENDPOINT_URL=http://localhost:8080/query
+      - SPARQL_CONSOLE_URL=http://localhost:8080/sparql#query
+      - GRAPH_EXPLORER_URL=http://localhost:8080/graph-explorer/?resource
+      - FULL_TEXT_SEARCH_DIALECT=fuseki
+    ports:
+      - "4200:80"
+    depends_on:
+      - trifid
+    networks:
+      - wfh
+
+volumes:
+  jena-data:
+    name: jena-data
+
+networks:
+  wfh:
