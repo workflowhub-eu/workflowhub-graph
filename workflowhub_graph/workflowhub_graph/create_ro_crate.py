@@ -1,4 +1,6 @@
 import argparse
+import os
+import shutil
 import sys
 import uuid
 from datetime import datetime
@@ -63,7 +65,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
 
     # Add dataset and files:
     crate.add_dataset(
-        "./workflowhub_graph/",
+        "/app/workflowhub_graph/",
         properties={
             "name": "WorkflowHub Graph",
             "description": "A directory containing modules used by the workflow.",
@@ -71,7 +73,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     )
 
     crate.add_file(
-        "./Dockerfile",
+        "/app/Dockerfile",
         properties={
             "@type": "File",
             "name": "Dockerfile",
@@ -81,19 +83,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         },
     )
 
-    created_files = crate.add_file(
-        "./created_files.json",
-        properties={
-            "@type": "File",
-            "name": "created_files.json",
-            "encodingFormat": "application/json",
-            "description": "A JSON file containing the list of files sourced by the workflow.",
-            "conformsTo": {"@id": "https://docs.docker.com/reference/dockerfile/"},
-        },
-    )
-
-    crate.add_file("./poetry.lock")
-    crate.add_file("./README.md")
+    crate.add_file("/app/README.md")
 
     # Add data and workflow entities:
     data_entity = crate.add_file(
@@ -106,7 +96,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
     )
 
     # data_entity["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
-    data_entity["isBasedOn"] = created_files
+    # data_entity["isBasedOn"] = created_files
 
     workflow_entity = crate.add_workflow(
         source=workflow_file,
@@ -118,7 +108,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         lang="snakemake",
     )
 
-    # workflow_entity["author"] = [auth_1, auth_2, auth_3, auth_4]
+    # workflow_entity["author"] = [auth_1, auth_2, auth_3, auth_4] # TODO
     workflow_entity["output"] = data_entity
 
     if "conformsTo" not in crate.root_dataset:
@@ -131,6 +121,12 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
 
     # Writing the RO-Crate metadata:
     crate.write(output_dir)
+
+    # remove package build files from crate
+    shutil.rmtree(os.path.join(output_dir, "workflowhub_graph", "build"))
+    shutil.rmtree(
+        os.path.join(output_dir, "workflowhub_graph", "workflowhub_graph.egg-info")
+    )
 
 
 def main():

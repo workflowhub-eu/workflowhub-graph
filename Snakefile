@@ -16,7 +16,7 @@ rule all:
         #directory(f"{config['paths']['run-metadata']}/"),
 
         # RO-Crate
-        f"{config['output-dir']}/ro-crate-metadata.json"
+        f"{config['output-dir']}/crate/ro-crate-metadata.json"
 
 rule source_ro_crates:
     output:
@@ -89,10 +89,10 @@ rule create_ro_crate:
     input:
         f"{config['output-dir']}/{config['output-graph']}"
     params:
-        workflow_file = "Snakefile",
-        output_dir = f"{config['output-dir']}"
+        workflow_file = "/app/Snakefile",
+        output_dir = f"{config['output-dir']}/crate"
     output:
-        f"{config['output-dir']}/ro-crate-metadata.json"
+        f"{config['output-dir']}/crate/ro-crate-metadata.json"
     shell:
         """
         create-ro-crate \
