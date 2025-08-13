@@ -1,3 +1,6 @@
+# disable pylint check which triggers when setting properties on Entity objects
+# pylint: disable=unsupported-assignment-operation
+
 import argparse
 import os
 import shutil
