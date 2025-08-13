@@ -8,8 +8,9 @@ rule all:
         f"{config['output-dir']}/{config['output-graph']}",
 
         # Enrichment outputs
-        expand("{output_dir}/{strategy}.ttl",
+        expand("{output_dir}/{enrichment_dir}/{strategy}.ttl",
                output_dir=config['output-dir'],
+               enrichment_dir=config['enrichment-output-dir'],
                strategy=config['enrichment-strategies']),
 
         # Metadata
@@ -61,7 +62,7 @@ rule enrich_graph:
     input:
         f"{config['output-dir']}/{config['base-graph']}"
     output:
-        f"{config['output-dir']}/{{strategy}}.ttl"
+        f"{config['output-dir']}/{config['enrichment-output-dir']}/{{strategy}}.ttl"
     shell:
         """
         enrich-graph \
@@ -74,7 +75,7 @@ rule merge_graphs:
     input:
         base=f"{config['output-dir']}/{config['base-graph']}",
         fragments=expand(
-            f"{config['output-dir']}/{{strategy}}.ttl",
+            f"{config['output-dir']}/{config['enrichment-output-dir']}/{{strategy}}.ttl",
             strategy=config['enrichment-strategies']
         )
     output:
@@ -87,8 +88,10 @@ rule merge_graphs:
 
 rule create_ro_crate:
     input:
-        f"{config['output-dir']}/{config['output-graph']}"
+        full_graph = f"{config['output-dir']}/{config['output-graph']}",
+        base_graph = f"{config['output-dir']}/{config['base-graph']}"
     params:
+        enrichments_dir = f"{config['output-dir']}/{config['enrichment-output-dir']}/",
         workflow_file = "/app/Snakefile",
         output_dir = f"{config['output-dir']}/crate"
     output:
@@ -96,7 +99,9 @@ rule create_ro_crate:
     shell:
         """
         create-ro-crate \
-        --input-file {input} \
+        --full-graph {input.full_graph} \
+        --base-graph {input.base_graph} \
+        --enrichments-dir {params.enrichments_dir} \
         --workflow-file {params.workflow_file} \
         --output-dir {params.output_dir}
         """
