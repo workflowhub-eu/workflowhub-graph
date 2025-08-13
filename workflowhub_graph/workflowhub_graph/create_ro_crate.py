@@ -8,34 +8,6 @@ from datetime import datetime
 from rocrate.model import ContextEntity, Person
 from rocrate.rocrate import ROCrate
 
-AUTHORS = {
-    "https://orcid.org/0000-0003-1193-6632": {
-        "givenName": "Alexander",
-        "familyName": "Hambley",
-        "affiliation": "University of Manchester",
-    },
-    "https://orcid.org/0000-0002-0035-6475": {
-        "givenName": "Eli",
-        "familyName": "Chadwick",
-        "affiliation": "University of Manchester",
-    },
-    "https://orcid.org/0000-0002-4565-9760": {
-        "givenName": "Oliver",
-        "familyName": "Woolland",
-        "affiliation": "University of Manchester",
-    },
-    "https://orcid.org/0000-0001-9842-9718": {
-        "givenName": "Stian",
-        "familyName": "Soiland-Reyes",
-        "affiliation": "University of Manchester",
-    },
-    "https://orcid.org/0000-0001-6353-0808": {
-        "givenName": "Volodymyr",
-        "familyName": "Savchenko",
-        "affiliation": "University of Geneva",
-    },
-}
-
 
 def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> None:
     """
@@ -52,16 +24,95 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         "WorkflowHub."
     )
 
-    # Add authors:
-    for a in AUTHORS.keys():
-        author = crate.add(
-            Person(
-                crate,
-                a,
-                properties=AUTHORS[a],
-            )
+    org_uniman = crate.add(
+        ContextEntity(
+            crate,
+            "https://ror.org/027m9bs27",
+            properties={"@type": "Organization", "name": "University of Manchester"},
         )
-        crate.root_dataset.append_to("author", author)
+    )
+    org_geneva = crate.add(
+        ContextEntity(
+            crate,
+            "https://ror.org/01swzsf04",
+            properties={"@type": "Organization", "name": "University of Geneva"},
+        )
+    )
+    org_epfl = crate.add(
+        ContextEntity(
+            crate,
+            "https://ror.org/02s376052",
+            properties={
+                "@type": "Organization",
+                "name": "École Polytechnique Fédérale de Lausanne",
+            },
+        )
+    )
+
+    # Add authors:
+    auth_alex = crate.add(
+        Person(
+            crate,
+            "https://orcid.org/0000-0003-1193-6632",
+            properties={
+                "givenName": "Alexander",
+                "familyName": "Hambley",
+            },
+        )
+    )
+    auth_alex["affiliation"] = org_uniman
+    auth_eli = crate.add(
+        Person(
+            crate,
+            "https://orcid.org/0000-0002-0035-6475",
+            properties={
+                "givenName": "Eli",
+                "familyName": "Chadwick",
+            },
+        )
+    )
+    auth_eli["affiliation"] = org_uniman
+    auth_oliver = crate.add(
+        Person(
+            crate,
+            "https://orcid.org/0000-0002-4565-9760",
+            properties={
+                "givenName": "Oliver",
+                "familyName": "Woolland",
+            },
+        )
+    )
+    auth_oliver["affiliation"] = org_uniman
+    auth_stian = crate.add(
+        Person(
+            crate,
+            "https://orcid.org/0000-0001-9842-9718",
+            properties={
+                "givenName": "Stian",
+                "familyName": "Soiland-Reyes",
+            },
+        )
+    )
+    auth_stian["affiliation"] = org_uniman
+    auth_volodymyr = crate.add(
+        Person(
+            crate,
+            "https://orcid.org/0000-0001-6353-0808",
+            properties={
+                "givenName": "Volodymyr",
+                "familyName": "Savchenko",
+            },
+        )
+    )
+    auth_volodymyr["affiliation"] = [org_geneva, org_epfl]
+
+    crate.root_dataset["author"] = [
+        auth_alex,
+        auth_eli,
+        auth_oliver,
+        auth_stian,
+        auth_volodymyr,
+    ]
 
     # Add dataset and files:
     crate.add_dataset(
@@ -95,7 +146,13 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         },
     )
 
-    # data_entity["author"] = [auth_1, auth_2, auth_3, auth_4, auth_5]
+    data_entity["author"] = [
+        auth_alex,
+        auth_eli,
+        auth_oliver,
+        auth_stian,
+        auth_volodymyr,
+    ]
     # data_entity["isBasedOn"] = created_files
 
     workflow_entity = crate.add_workflow(
@@ -108,7 +165,7 @@ def create_ro_crate(input_file: str, workflow_file: str, output_dir: str) -> Non
         lang="snakemake",
     )
 
-    # workflow_entity["author"] = [auth_1, auth_2, auth_3, auth_4] # TODO
+    workflow_entity["author"] = [auth_alex, auth_eli, auth_oliver, auth_stian]
     workflow_entity["output"] = data_entity
 
     if "conformsTo" not in crate.root_dataset:
