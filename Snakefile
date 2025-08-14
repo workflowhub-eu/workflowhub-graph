@@ -34,13 +34,14 @@ rule validate_ro_crates:
     output:
         f"{config['output-dir']}/{config['validated-list']}"
     params: 
+        min_workflow_id = config['min-workflow-id'],
         max_workflow_id = config['max-workflow-id'],
         versions = config['versions'],
         output_dir = config['output-dir'],
         validated_list = config['validated-list']
     shell:
         "check-outputs "
-        "--workflow-ids 1-{params.max_workflow_id} "
+        "--workflow-ids {params.min_workflow_id}-{params.max_workflow_id} "
         "--versions {params.versions} "
         "--output {params.output_dir}/{params.validated_list} "
 
