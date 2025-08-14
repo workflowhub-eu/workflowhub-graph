@@ -9,13 +9,12 @@ import rdflib
 from workflowhub_graph.absolutize import make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
 from workflowhub_graph.cli import update_progress_bar
-from workflowhub_graph.constants import BASE_URL
 
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
     input_file: str,
-    base_url: str = BASE_URL,
+    base_url: str,
     cache_kwargs: dict | None = None,
 ) -> rdflib.Graph:
     """
@@ -80,9 +79,19 @@ def main():
         "--input-file",
         help="A file containing a list of files to merge."
     )
+    parser.add_argument(
+        "-b",
+        "--base-url",
+        type=str,
+        default="https://dev.workflowhub.eu",
+        help="The WorkflowHub URL to use.",
+    )
     args = parser.parse_args()
 
-    graph = merge_all_files(input_file=args.input_file)
+    graph = merge_all_files(
+        input_file=args.input_file,
+        base_url=args.base_url
+    )
     graph.serialize(args.output_filename, format="ttl")
 
 

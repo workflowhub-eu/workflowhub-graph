@@ -20,12 +20,13 @@ rule source_ro_crates:
         f"{config['output-dir']}/{config['sourced-list']}"
     params: 
         max_workflow_id = config['max-workflow-id'],
-        output_dir = config['output-dir']
+        output_dir = config['output-dir'],
+        base_url = config['base-url']
     shell:
         "source-crates "
         "--workflow-ids 1-{params.max_workflow_id} "
         "--output-dir {params.output_dir} "
-        "--prod "
+        "--base-url {params.base_url} "
         "--all-versions"
 
 rule validate_ro_crates:
@@ -50,10 +51,13 @@ rule create_graph:
         f"{config['output-dir']}/{config['validated-list']}"
     output:
         f"{config['output-dir']}/{config['base-graph']}"
+    params: 
+        base_url = config['base-url']
     shell:
         "merge "
         "{output} "
-        "-i '{input}'"
+        "-i '{input}' "
+        "--base-url '{params.base_url}' "
 
 rule enrich_graph:
     input:

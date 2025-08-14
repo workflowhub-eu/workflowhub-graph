@@ -10,13 +10,9 @@ from zipfile import ZipFile
 
 from workflowhub_graph.cli import update_progress_bar
 from workflowhub_graph.constants import (
-    BASE_URL_DEV,
-    BASE_URL_PROD,
     DOT_JSON_ENDPOINT,
     TARGET_FILE_NAME,
     METADATA_ENDPOINT,
-    WORKFLOWS_URL_DEV,
-    WORKFLOWS_URL_PROD,
     ZIP_ENDPOINT,
 )
 
@@ -146,7 +142,7 @@ def process_workflow_ids(
     workflows_data: dict,
     output_dir: str = "data",
     is_metadata_endpoint: bool = False,
-    base_url: str = BASE_URL_PROD,
+    base_url: str = "https://dev.workflowhub.eu",
     all_versions: bool = False,
 ) -> None:
     """
@@ -261,10 +257,11 @@ def main():
 
     # TODO: Change this to `dev` to use the development WorkflowHub:
     parser.add_argument(
-        "--prod",
-        default=False,
-        action="store_true",
-        help="Use the production WorkflowHub.",
+        "-b",
+        "--base-url",
+        type=str,
+        default="https://dev.workflowhub.eu",
+        help="The WorkflowHub URL to use.",
     )
     parser.add_argument(
         "--all-versions",
@@ -275,13 +272,9 @@ def main():
 
     args = parser.parse_args()
 
-    if args.prod:
-        base_url = BASE_URL_PROD
-        workflows_url = WORKFLOWS_URL_PROD
-    else:
-        base_url = BASE_URL_DEV
-        workflows_url = WORKFLOWS_URL_DEV
-
+    # Set workflow URL
+    workflows_url = f"{args.base_url}/workflows.json"
+    
     # Example usage:
     all_workflow_ids = download_workflow_ids(workflows_url)
     filtered_workflows = all_workflow_ids["data"] # initialise with all workflows
@@ -304,7 +297,7 @@ def main():
     process_workflow_ids(
         {"data": filtered_workflows},
         is_metadata_endpoint=not args.zip,
-        base_url=base_url,
+        base_url=args.base_url,
         all_versions=args.all_versions,
         output_dir=args.output_dir,
     )

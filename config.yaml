@@ -1,4 +1,11 @@
 ################################################################################
+## URLs
+
+# Choose the workflowhub URL to fetch from
+# e.g. https://workflowhub.eu or https://dev.workflowhub.eu
+base-url: "https://workflowhub.eu"
+
+################################################################################
 ## Constraints
 
 # Restrict graph to first versions of workflows only
