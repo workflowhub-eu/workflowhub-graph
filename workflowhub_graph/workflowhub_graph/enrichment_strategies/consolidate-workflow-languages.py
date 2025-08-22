@@ -68,7 +68,6 @@ def create_canonical(g, wikidata_id):
     g.add((wiki_uri, RDF.type, SCHEMA.ComputerLanguage))
 
     # Add additional metadata to node
-    print(bindings)
     for binding in bindings:
         if "wikidata_idLabel" in binding:
             g.add((wiki_uri,
