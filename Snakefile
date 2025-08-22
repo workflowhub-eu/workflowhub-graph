@@ -80,9 +80,22 @@ rule merge_graphs:
             strategy=config['enrichment-strategies']
         )
     output:
-        merged=f"{config['output-dir']}/{config['output-graph']}"
+        merged=f"{config['output-dir']}/{config['merged-graph']}"
     shell:
         """
         rdfpipe --input-format=turtle --output-format=turtle \
             {input.base} {input.fragments} > {output.merged}
         """
+
+rule consolidate:
+    input:
+        merged=f"{config['output-dir']}/{config['merged-graph']}"
+    output:
+        consolidated=f"{config['output-dir']}/{config['output-graph']}"
+    shell:
+        """
+        consolidate \
+        --input-file {input.merged} \
+        --output-file {output.consolidated}
+        """
+        

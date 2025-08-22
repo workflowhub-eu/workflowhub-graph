@@ -36,7 +36,10 @@ validated-list: "valid-rocrate-list.json"
 # The base graph (prior to enrichments)
 base-graph: "workflowhub-graph-base.ttl"
 
-# The final merged graph (with enrichments)
+# The merged graph (prior to consolidation)
+merged-graph: "workflowhub-graph-merged.ttl"
+
+# The final merged graph (consolidated, with enrichments)
 output-graph: "workflowhub-graph.ttl"
 
 ################################################################################
