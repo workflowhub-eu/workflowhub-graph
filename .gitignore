@@ -319,4 +319,13 @@ cython_debug/
 /cache-directory/
 data
 .vscode
+
+
+# Workflow outputs
 workflow-output
+.snakemake/
+cached_urlopen/
+merged.pdf
+merged.png
+orcid_cache/
+output/

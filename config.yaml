@@ -35,7 +35,7 @@ output-graph: "workflowhub-graph.ttl"
 ## Enrichment options
 
 # Enrichment strategies to apply to the graph
-enrichment-strategies: ["consolidate-workflow-languages"]
+enrichment-strategies: ["consolidate-workflow-languages", "orcid"]
 
 # Directory for enrichment outputs
 enrichment-output-dir: "graph-enrichments"
