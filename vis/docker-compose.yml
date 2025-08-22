@@ -10,7 +10,7 @@ services:
       - jena-data:/fuseki
       - ./fuseki-config.ttl:/fuseki/config.ttl
       - ./fuseki-vocabulary.ttl:/fuseki/vocabulary.ttl
-      #- ../workflow-output/output/workflowhub-graph.ttl:/fuseki/data.ttl
+      - ../workflow-output/output/workflowhub-graph.ttl:/fuseki/data.ttl
     networks:
       - wfh
     healthcheck:
@@ -35,27 +35,28 @@ services:
     networks:
       - wfh
 
-  # blueprint-configurator:
-  #   build:
-  #     context: blueprint-ui-config-initializer
-  #     dockerfile_inline: |
-  #       FROM node:24
-  #       WORKDIR configurator
-  #       COPY . .
-  #       RUN npm ci
-  #       ENTRYPOINT ./run.sh
-  #   container_name: wfh-blueprint-config
-  #   environment:
-  #     - SPARQL_ENDPOINT=http://wfh-fuseki:3030/wfh/query
-  #     - SPARQL_USER=admin
-  #     - SPARQL_PASS=admin
-  #   volumes:
-  #     - jena-data:/config/
-  #   depends_on:
-  #     fuseki:
-  #       condition: service_healthy
-  #   networks:
-  #     - wfh
+  blueprint-configurator:
+    build:
+      context: blueprint-ui-config-initializer
+      dockerfile_inline: |
+        FROM node:24
+        WORKDIR configurator
+        COPY . .
+        RUN npm ci
+        ENTRYPOINT ./run.sh
+    container_name: wfh-blueprint-config
+    environment:
+      - SPARQL_ENDPOINT=http://wfh-fuseki:3030/wfh/query
+      - SPARQL_UPLOAD_ENDPOINT=http://wfh-fuseki:3030/wfh/data
+      - SPARQL_USER=admin
+      - SPARQL_PASS=admin
+    volumes:
+      - jena-data:/config/
+    depends_on:
+      fuseki:
+        condition: service_healthy
+    networks:
+      - wfh
       
   blueprint:
     image: ghcr.io/zazuko/blueprint
@@ -70,8 +71,12 @@ services:
     ports:
       - "4200:80"
     depends_on:
-      - trifid
-      #- blueprint-configurator
+      trifid:
+        condition:
+          service_healthy
+      blueprint-configurator:
+        condition:
+          service_completed_successfully
     networks:
       - wfh
 
