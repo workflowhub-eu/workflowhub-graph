@@ -48,7 +48,7 @@ def make_paths_absolute(
     json_data = copy.deepcopy(json_data)
 
     workflow_url = (
-        f"{workflowhub_base_url}/workflows/{workflow_id}"
+        f"{workflowhub_base_url}/workflows/{workflow_id}/ro_crate?version={workflow_version}/"
     )
 
     if "@context" not in json_data:
