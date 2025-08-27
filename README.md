@@ -40,6 +40,25 @@ facilitate the workflow.
 - **`merge_files`**: This rule merges the downloaded RO crates into a single RDF graph (`merge_ro_crates.py`).
 - **`create_ro_crate`**: This rule creates a merged workflow run RO crate from the merged RDF graph (`create_ro_crate.py`).
 
+## Visualisation / exploration 
+
+Bundled in this repo is a stack which allows the knowledge graph to be explored visually and interactively.
+
+The containers in the stack provide:
+- A triplestore to make SPARQL queries against
+- A visualisation tool
+- A one-shot tool to configure the visualisation tool
+
+To view the visualisation run:
+
+```bash
+# run the workflow as above
+cd vis
+docker compose down -v # clears configuration, skip if first run, refine if confident with Docker
+docker compose up
+# View visualisation on localhost:4200
+```
+
 ## Contributing
 
 ### Coding Style
