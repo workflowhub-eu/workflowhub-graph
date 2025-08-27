@@ -96,6 +96,6 @@ rule consolidate:
         """
         consolidate \
         --input-file {input.merged} \
-        --output-file {output.consolidated}
+        --output-filename {output.consolidated}
         """
         
