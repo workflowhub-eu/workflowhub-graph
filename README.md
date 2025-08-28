@@ -27,8 +27,6 @@ Where `./workflow-output` is the directory where the output will be stored (alre
 ![workflow dag](docs/images/mdag.svg)
 
 - **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) 
-- **`validate_ro_creates`**: checks 
-the output (`check_outputs.py`). This generates a list of expected file paths based on the workflow IDs
 - **`create_graph`**: This rule merges the individual RO crates into a single RDF graph
 - **`enrich_graph`**: This rule processes the base graph and adds additional metadata from external sources e.g. WikiData, Orcid
 - **`merge_graphs`**: This rule merges the base graph and enrichment graphs
