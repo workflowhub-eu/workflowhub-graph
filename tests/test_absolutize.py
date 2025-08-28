@@ -6,9 +6,9 @@ import rdflib
 
 from workflowhub_graph.absolutize import is_all_absolute, make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
-from workflowhub_graph.constants import BASE_URL
 from workflowhub_graph.merge import merge_all_files
 
+BASE_URL = "https://dev.workflowhub.eu"
 
 def get_test_data_file(filename=""):
     """Returns the path to a test data file given it's relative path."""
@@ -57,6 +57,7 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
         manifest_file = get_test_data_file("manifest.json")
         graph = merge_all_files(
             manifest_file,
+            base_url=BASE_URL,
             cache_kwargs=dict(
                 cache_base_dir=get_test_data_file(),
                 write_cache=False,
