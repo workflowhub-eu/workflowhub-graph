@@ -35,9 +35,9 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
             )
 
             subjects = []
-            for version in [1, 2]:
+            for wf_id in [41, 31]:
                 json_data_abs_paths = make_paths_absolute(
-                    json_data, BASE_URL, 41, version
+                    json_data, BASE_URL, wf_id, 1,
                 )
 
                 parsed_graph = rdflib.Graph().parse(

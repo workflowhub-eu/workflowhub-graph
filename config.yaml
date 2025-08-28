@@ -8,9 +8,6 @@ base-url: "https://workflowhub.eu"
 ################################################################################
 ## Constraints
 
-# Restrict graph to first versions of workflows only
-versions: ['1']
-
 # Set the range of crate ids to process (max of 0 for all)
 min-workflow-id: '1'
 max-workflow-id: '20'

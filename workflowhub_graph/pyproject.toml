@@ -24,7 +24,6 @@ absolutize = "workflowhub_graph.absolutize:main"
 merge = "workflowhub_graph.merge:main"
 upload = "workflowhub_graph.upload:main"
 help = "workflowhub_graph.help:main"
-check-outputs = "workflowhub_graph.check_outputs:main"
 enrich-graph = "workflowhub_graph.enrich_graph:main"
 consolidate = "workflowhub_graph.consolidate:main"
 

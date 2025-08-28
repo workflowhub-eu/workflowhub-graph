@@ -20,10 +20,15 @@ cleanup_query = """
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 DELETE {
   ?local ?p ?o .
+  ?local owl:sameAs ?canonical .
+}
+INSERT {
+  ?canonical ?p ?o .
 }
 WHERE {
   ?local owl:sameAs ?canonical .
   ?local ?p ?o .
+  FILTER(?p != owl:sameAs)
 }
 """
 

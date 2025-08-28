@@ -255,7 +255,6 @@ def main():
         help="Directory to save the extracted JSON files. By default, this is 'data'.",
     )
 
-    # TODO: Change this to `dev` to use the development WorkflowHub:
     parser.add_argument(
         "-b",
         "--base-url",
