@@ -24,21 +24,15 @@ Where `./workflow-output` is the directory where the output will be stored (alre
 
 ## Structure
 
-```mermaid
-flowchart TD
-    A[Source RO Crates] --> B[Check Outputs];
-    B[Check Outputs] --> C[Report Downloaded RO Crates];
-    B[Check Outputs]-->D[Merge RO Crates];
-    D[Merge RO Crates]-->E[Create Merged Workflow Run RO Crate]
-```
+![workflow dag](docs/images/mdag.svg)
 
-- **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) and then checks 
-the output (`check_outputs.py`). This generates a list of expected file paths based on the workflow IDs and versions to 
-facilitate the workflow.
-
-- **`report_created_files`**: Optional. This rule reports the downloaded RO crates to the user.
-- **`merge_files`**: This rule merges the downloaded RO crates into a single RDF graph (`merge_ro_crates.py`).
-- **`create_ro_crate`**: This rule creates a merged workflow run RO crate from the merged RDF graph (`create_ro_crate.py`).
+- **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) 
+- **`validate_ro_creates`**: checks 
+the output (`check_outputs.py`). This generates a list of expected file paths based on the workflow IDs
+- **`create_graph`**: This rule merges the individual RO crates into a single RDF graph
+- **`enrich_graph`**: This rule processes the base graph and adds additional metadata from external sources e.g. WikiData, Orcid
+- **`merge_graphs`**: This rule merges the base graph and enrichment graphs
+- **`consolidate`**: This rule collapses duplicate entries around canonical objects to make the graph easier to navigate
 
 ## Visualisation / exploration 
 

@@ -1,0 +1,33 @@
+name: Lint and Test
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build -t knowledgegraph .
+
+      - name: Run image generation
+        run: docker run --entrypoint '' knowledgegraph snakemake --dag | dot -Tsvg > docs/images/dag.svg
+
+      - name: Commit and push if changed
+        run: |
+          if git diff --quiet dag.svg; then
+            echo "No changes to DAG"
+          else
+            git config user.name "${GITHUB_ACTOR}"
+            git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
+            git add dag.svg
+            git commit -m "[ACTION] Update DAG diagram"
+            git push
+          fi
