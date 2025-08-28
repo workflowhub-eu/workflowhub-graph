@@ -15,6 +15,10 @@ RUN if [ "$BUILD_TEST" = "true" ]; then pip install /app/workflowhub_graph[test]
 COPY Snakefile /app/Snakefile
 COPY config.yaml /app/config.yaml
 
+# Copy files needed for the RO-Crate
+COPY Dockerfile /app/Dockerfile
+COPY README.md /app/README.md
+
 # Set the entry point
 ENV XDG_CACHE_HOME=/app/output/
 ENTRYPOINT ["snakemake", "--snakefile", "Snakefile", "--configfile", "config.yaml", "--cores", "all", "--directory", "/app/output"]

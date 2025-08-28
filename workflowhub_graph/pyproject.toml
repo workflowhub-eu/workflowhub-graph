@@ -11,11 +11,13 @@ requires-python = ">=3.11"
 authors = [
   { name = "Alexander Hambley", email = "alexander.hambley@manchester.ac.uk" },
   { name = "Oliver Woolland", email = "oliver.woolland@manchester.ac.uk"},
+  { name = "Eli Chadwick", email = "eli.chadwick@manchester.ac.uk"},
 ]
 
 dependencies = [
     "arcp >=0.2.1",
     "rdflib >=6.3.2",
+    "rocrate >=0.14.0",
 ]
 
 [project.scripts]
@@ -26,6 +28,7 @@ upload = "workflowhub_graph.upload:main"
 help = "workflowhub_graph.help:main"
 enrich-graph = "workflowhub_graph.enrich_graph:main"
 consolidate = "workflowhub_graph.consolidate:main"
+create-ro-crate = "workflowhub_graph.create_ro_crate:main"
 
 [project.optional-dependencies]
 test = [
