@@ -8,13 +8,21 @@ from workflowhub_graph.absolutize import is_all_absolute, make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
 from workflowhub_graph.merge import merge_all_files
 
-BASE_URL = "https://dev.workflowhub.eu"
+import yaml
+with open('config.yaml', 'r') as f:
+    config = yaml.full_load(f)
+    
+BASE_URL = config["base-url"]
+
+def get_test_data_dir():
+    tests_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(tests_dir, "test_data")    
 
 def get_test_data_file(filename=""):
     """Returns the path to a test data file given it's relative path."""
 
-    tests_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(tests_dir, "test_data", filename)
+    tests_dir = get_test_data_dir()
+    return os.path.join(tests_dir, filename)
 
 class TestAbsolutizePaths:  # (unittest.TestCase):
     # NOTE: ids can not be found, like 634, or forbidden, like 678
@@ -58,10 +66,7 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
         graph = merge_all_files(
             manifest_file,
             base_url=BASE_URL,
-            cache_kwargs=dict(
-                cache_base_dir=get_test_data_file(),
-                write_cache=False,
-            ),
+            files_path=get_test_data_dir()
         )
 
         assert is_all_absolute(graph)
