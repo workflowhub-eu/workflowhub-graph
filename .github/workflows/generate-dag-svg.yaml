@@ -1,4 +1,4 @@
-name: Lint and Test
+name: Generate DAG diagram
 
 on:
   push:
@@ -11,6 +11,9 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - name: Install dot
+        run: sudo apt update && sudo apt install -y graphviz
+      
       - name: Checkout code
         uses: actions/checkout@v3
 
