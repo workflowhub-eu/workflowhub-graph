@@ -32,6 +32,12 @@ Where `./workflow-output` is the directory where the output will be stored (alre
 - **`merge_graphs`**: This rule merges the base graph and enrichment graphs
 - **`consolidate`**: This rule collapses duplicate entries around canonical objects to make the graph easier to navigate
 
+[!TIP]
+
+This diagram is generated with:
+
+`docker run --entrypoint '' knowledgegraph snakemake --dag | dot -Tsvg > docs/images/dag.svg`
+
 ## Visualisation / exploration 
 
 Bundled in this repo is a stack which allows the knowledge graph to be explored visually and interactively.
