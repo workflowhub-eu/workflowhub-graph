@@ -27,28 +27,10 @@ rule source_ro_crates:
         "--workflow-ids 1-{params.max_workflow_id} "
         "--output-dir {params.output_dir} "
         "--base-url {params.base_url} "
-        "--all-versions"
-
-rule validate_ro_crates:
-    input:
-        f"{config['output-dir']}/{config['sourced-list']}"
-    output:
-        f"{config['output-dir']}/{config['validated-list']}"
-    params: 
-        min_workflow_id = config['min-workflow-id'],
-        max_workflow_id = config['max-workflow-id'],
-        versions = config['versions'],
-        output_dir = config['output-dir'],
-        validated_list = config['validated-list']
-    shell:
-        "check-outputs "
-        "--workflow-ids {params.min_workflow_id}-{params.max_workflow_id} "
-        "--versions {params.versions} "
-        "--output {params.output_dir}/{params.validated_list} "
 
 rule create_graph:
     input:
-        f"{config['output-dir']}/{config['validated-list']}"
+        f"{config['output-dir']}/{config['sourced-list']}"
     output:
         f"{config['output-dir']}/{config['base-graph']}"
     params: 
