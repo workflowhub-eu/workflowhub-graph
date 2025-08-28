@@ -18,6 +18,7 @@ dependencies = [
     "arcp >=0.2.1",
     "rdflib >=6.3.2",
     "rocrate >=0.14.0",
+    "requests_cache"
 ]
 
 [project.scripts]
