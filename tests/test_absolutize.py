@@ -6,15 +6,23 @@ import rdflib
 
 from workflowhub_graph.absolutize import is_all_absolute, make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
-from workflowhub_graph.constants import BASE_URL
 from workflowhub_graph.merge import merge_all_files
 
+import yaml
+with open('config.yaml', 'r') as f:
+    config = yaml.full_load(f)
+    
+BASE_URL = config["base-url"]
+
+def get_test_data_dir():
+    tests_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(tests_dir, "test_data")    
 
 def get_test_data_file(filename=""):
     """Returns the path to a test data file given it's relative path."""
 
-    tests_dir = os.path.dirname(os.path.abspath(__file__))
-    return os.path.join(tests_dir, "test_data", filename)
+    tests_dir = get_test_data_dir()
+    return os.path.join(tests_dir, filename)
 
 class TestAbsolutizePaths:  # (unittest.TestCase):
     # NOTE: ids can not be found, like 634, or forbidden, like 678
@@ -35,9 +43,9 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
             )
 
             subjects = []
-            for version in [1, 2]:
+            for wf_id in [41, 31]:
                 json_data_abs_paths = make_paths_absolute(
-                    json_data, BASE_URL, 41, version
+                    json_data, BASE_URL, wf_id, 1,
                 )
 
                 parsed_graph = rdflib.Graph().parse(
@@ -57,10 +65,8 @@ class TestAbsolutizePaths:  # (unittest.TestCase):
         manifest_file = get_test_data_file("manifest.json")
         graph = merge_all_files(
             manifest_file,
-            cache_kwargs=dict(
-                cache_base_dir=get_test_data_file(),
-                write_cache=False,
-            ),
+            base_url=BASE_URL,
+            files_path=get_test_data_dir()
         )
 
         assert is_all_absolute(graph)

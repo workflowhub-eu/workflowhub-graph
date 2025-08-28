@@ -32,13 +32,13 @@ def is_all_absolute(G: rdflib.Graph) -> bool:
 
 
 def make_paths_absolute(
-    json_data: dict, workflowhub_url: str, workflow_id: int, workflow_version: int
+    json_data: dict, workflowhub_base_url: str, workflow_id: int, workflow_version: int
 ) -> dict:
     """
     Makes all paths in the JSON content absolute by adding an '@base' key to the JSON-LD context.
 
     :param json_data: The JSON content as a dictionary.
-    :param workflowhub_url: The base URL for WorkflowHub.
+    :param workflowhub_base_url: The base URL for WorkflowHub.
     :param workflow_id: The workflow ID to construct the absolute paths.
     :param workflow_version: The workflow version.
     :return: The modified JSON content with absolute paths.
@@ -48,7 +48,7 @@ def make_paths_absolute(
     json_data = copy.deepcopy(json_data)
 
     workflow_url = (
-        f"{workflowhub_url}/workflows/{workflow_id}/ro_crate?version={workflow_version}"
+        f"{workflowhub_base_url}/workflows/{workflow_id}/ro_crate/"
     )
 
     if "@context" not in json_data:
@@ -66,7 +66,7 @@ def make_paths_absolute(
             "The JSON content already contains an '@base' key, it was probably already processed."
         )
 
-    json_data["@context"].append({"@base": arcp.arcp_location(workflow_url)})
+    json_data["@context"].append({"@base": workflow_url})
 
     return json_data
 
