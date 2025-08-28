@@ -15,13 +15,13 @@ from workflowhub_graph.cli import update_progress_bar
 def merge_all_files(
     input_file: str,
     base_url: str,
-    crate_path: str,
+    files_path: str,
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
     :param input_file: A file containing a list of files to merge.
     :param base_url: The base URL for the WorkflowHub.
-    :param crate_path: The path to the RO Crate files
+    :param files_path: The path to the RO Crate files
     :return: The merged RDF graph.
     """
 
@@ -38,7 +38,7 @@ def merge_all_files(
             return None
         
     for i, fn in enumerate(filenames):
-        base_path = crate_path
+        base_path = files_path
         full_path = f"{base_path}/{fn}" 
         with open(full_path, "r") as f:
             update_progress_bar(i + 1, len(filenames))
@@ -76,7 +76,7 @@ def main():
     )
     parser.add_argument(
         "-p",
-        "--crate-path",
+        "--files-path",
         help="A path to the crates to merge."
     )
     parser.add_argument(
@@ -91,7 +91,7 @@ def main():
     graph = merge_all_files(
         input_file=args.input_file,
         base_url=args.base_url,
-        crate_path=args.crate_path
+        files_path=args.files_path
     )
     graph.serialize(args.output_filename, format="ttl")
 

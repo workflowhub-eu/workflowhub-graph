@@ -35,12 +35,12 @@ rule create_graph:
         f"{config['output-dir']}/{config['base-graph']}"
     params: 
         base_url = config['base-url'],
-        crate_path = config['output-dir']
+        files_path = config['output-dir']
     shell:
         "merge "
         "{output} "
         "-i '{input}' "
-        "--crate-path '{params.crate_path}' "
+        "--files-path '{params.files_path}' "
         "--base-url '{params.base_url}' "
 
 rule enrich_graph:
