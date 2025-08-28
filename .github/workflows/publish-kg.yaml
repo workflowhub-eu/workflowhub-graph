@@ -22,7 +22,7 @@ jobs:
             -v ${{ github.workspace }}/workflow-output:/app/output \
             knowledgegraph \
             --config \
-            max-workflow-id=0 \
+            max-workflow-id=100 \
             output-graph="workflowhub-graph.ttl" \
             output-dir=output
 
