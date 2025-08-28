@@ -1,10 +1,15 @@
 ################################################################################
+## URLs
+
+# Choose the workflowhub URL to fetch from
+# e.g. https://workflowhub.eu or https://dev.workflowhub.eu
+base-url: "https://workflowhub.eu"
+
+################################################################################
 ## Constraints
 
-# Restrict graph to first versions of workflows only
-versions: ['1']
-
-# Set the number of crates to process (0 for all)
+# Set the range of crate ids to process (max of 0 for all)
+min-workflow-id: '1'
 max-workflow-id: '20'
 
 ################################################################################
@@ -28,7 +33,10 @@ validated-list: "valid-rocrate-list.json"
 # The base graph (prior to enrichments)
 base-graph: "workflowhub-graph-base.ttl"
 
-# The final merged graph (with enrichments)
+# The merged graph (prior to consolidation)
+merged-graph: "workflowhub-graph-merged.ttl"
+
+# The final merged graph (consolidated, with enrichments)
 output-graph: "workflowhub-graph.ttl"
 
 ################################################################################

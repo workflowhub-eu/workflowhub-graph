@@ -11,6 +11,7 @@ requires-python = ">=3.11"
 authors = [
   { name = "Alexander Hambley", email = "alexander.hambley@manchester.ac.uk" },
   { name = "Oliver Woolland", email = "oliver.woolland@manchester.ac.uk"},
+  { name = "Eli Chadwick", email = "eli.chadwick@manchester.ac.uk"},
 ]
 
 dependencies = [
@@ -25,8 +26,8 @@ absolutize = "workflowhub_graph.absolutize:main"
 merge = "workflowhub_graph.merge:main"
 upload = "workflowhub_graph.upload:main"
 help = "workflowhub_graph.help:main"
-check-outputs = "workflowhub_graph.check_outputs:main"
 enrich-graph = "workflowhub_graph.enrich_graph:main"
+consolidate = "workflowhub_graph.consolidate:main"
 create-ro-crate = "workflowhub_graph.create_ro_crate:main"
 
 [project.optional-dependencies]

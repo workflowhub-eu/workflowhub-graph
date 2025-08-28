@@ -24,21 +24,38 @@ Where `./workflow-output` is the directory where the output will be stored (alre
 
 ## Structure
 
-```mermaid
-flowchart TD
-    A[Source RO Crates] --> B[Check Outputs];
-    B[Check Outputs] --> C[Report Downloaded RO Crates];
-    B[Check Outputs]-->D[Merge RO Crates];
-    D[Merge RO Crates]-->E[Create Merged Workflow Run RO Crate]
+![workflow dag](docs/images/mdag.svg)
+
+- **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) 
+- **`create_graph`**: This rule merges the individual RO crates into a single RDF graph
+- **`enrich_graph`**: This rule processes the base graph and adds additional metadata from external sources e.g. WikiData, Orcid
+- **`merge_graphs`**: This rule merges the base graph and enrichment graphs
+- **`consolidate`**: This rule collapses duplicate entries around canonical objects to make the graph easier to navigate
+
+[!TIP]
+
+This diagram is generated with:
+
+`docker run --entrypoint '' knowledgegraph snakemake --dag | dot -Tsvg > docs/images/dag.svg`
+
+## Visualisation / exploration 
+
+Bundled in this repo is a stack which allows the knowledge graph to be explored visually and interactively.
+
+The containers in the stack provide:
+- A triplestore to make SPARQL queries against
+- A visualisation tool
+- A one-shot tool to configure the visualisation tool
+
+To view the visualisation run:
+
+```bash
+# run the workflow as above
+cd vis
+docker compose down -v # clears configuration, skip if first run, refine if confident with Docker
+docker compose up
+# View visualisation on localhost:4200
 ```
-
-- **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) and then checks 
-the output (`check_outputs.py`). This generates a list of expected file paths based on the workflow IDs and versions to 
-facilitate the workflow.
-
-- **`report_created_files`**: Optional. This rule reports the downloaded RO crates to the user.
-- **`merge_files`**: This rule merges the downloaded RO crates into a single RDF graph (`merge_ro_crates.py`).
-- **`create_ro_crate`**: This rule creates a merged workflow run RO crate from the merged RDF graph (`create_ro_crate.py`).
 
 ## Contributing
 

@@ -9,25 +9,21 @@ import rdflib
 from workflowhub_graph.absolutize import make_paths_absolute
 from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
 from workflowhub_graph.cli import update_progress_bar
-from workflowhub_graph.constants import BASE_URL
 
 
 # TODO: check if names like "#Husen" are correctly represented in the graph
 def merge_all_files(
     input_file: str,
-    base_url: str = BASE_URL,
-    cache_kwargs: dict | None = None,
+    base_url: str,
+    files_path: str,
 ) -> rdflib.Graph:
     """
     Merges all JSON-LD files in the given pattern into a single RDF graph.
     :param input_file: A file containing a list of files to merge.
     :param base_url: The base URL for the WorkflowHub.
-    :param cache_kwargs: Keyword arguments to pass to urllib cache
+    :param files_path: The path to the RO Crate files
     :return: The merged RDF graph.
     """
-
-    if cache_kwargs is None:
-        cache_kwargs = dict()
 
     graph = rdflib.Graph()
 
@@ -42,9 +38,8 @@ def merge_all_files(
             return None
         
     for i, fn in enumerate(filenames):
-        base_path = cache_kwargs.get("cache_base_dir", "")
-        full_path = f"{base_path}{fn}" 
-
+        base_path = files_path
+        full_path = f"{base_path}/{fn}" 
         with open(full_path, "r") as f:
             update_progress_bar(i + 1, len(filenames))
 
@@ -63,8 +58,7 @@ def merge_all_files(
 
             json_data = make_paths_absolute(json.load(f), base_url, w_id, w_version)
 
-            with patch_rdflib_urlopen(**cache_kwargs):
-                graph.parse(data=json_data, format="json-ld")
+            graph.parse(data=json_data, format="json-ld")
 
     # TODO: set a total version
     return graph
@@ -80,9 +74,25 @@ def main():
         "--input-file",
         help="A file containing a list of files to merge."
     )
+    parser.add_argument(
+        "-p",
+        "--files-path",
+        help="A path to the crates to merge."
+    )
+    parser.add_argument(
+        "-b",
+        "--base-url",
+        type=str,
+        default="https://dev.workflowhub.eu",
+        help="The WorkflowHub URL to use.",
+    )
     args = parser.parse_args()
 
-    graph = merge_all_files(input_file=args.input_file)
+    graph = merge_all_files(
+        input_file=args.input_file,
+        base_url=args.base_url,
+        files_path=args.files_path
+    )
     graph.serialize(args.output_filename, format="ttl")
 
 

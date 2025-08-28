@@ -24,39 +24,28 @@ rule source_ro_crates:
         f"{config['output-dir']}/{config['sourced-list']}"
     params: 
         max_workflow_id = config['max-workflow-id'],
-        output_dir = config['output-dir']
+        output_dir = config['output-dir'],
+        base_url = config['base-url']
     shell:
         "source-crates "
         "--workflow-ids 1-{params.max_workflow_id} "
         "--output-dir {params.output_dir} "
-        "--prod "
-        "--all-versions"
-
-rule validate_ro_crates:
-    input:
-        f"{config['output-dir']}/{config['sourced-list']}"
-    output:
-        f"{config['output-dir']}/{config['validated-list']}"
-    params: 
-        max_workflow_id = config['max-workflow-id'],
-        versions = config['versions'],
-        output_dir = config['output-dir'],
-        validated_list = config['validated-list']
-    shell:
-        "check-outputs "
-        "--workflow-ids 1-{params.max_workflow_id} "
-        "--versions {params.versions} "
-        "--output {params.output_dir}/{params.validated_list} "
+        "--base-url {params.base_url} "
 
 rule create_graph:
     input:
-        f"{config['output-dir']}/{config['validated-list']}"
+        f"{config['output-dir']}/{config['sourced-list']}"
     output:
         f"{config['output-dir']}/{config['base-graph']}"
+    params: 
+        base_url = config['base-url'],
+        files_path = config['output-dir']
     shell:
         "merge "
         "{output} "
-        "-i '{input}'"
+        "-i '{input}' "
+        "--files-path '{params.files_path}' "
+        "--base-url '{params.base_url}' "
 
 rule enrich_graph:
     input:
@@ -79,13 +68,25 @@ rule merge_graphs:
             strategy=config['enrichment-strategies']
         )
     output:
-        merged=f"{config['output-dir']}/{config['output-graph']}"
+        merged=f"{config['output-dir']}/{config['merged-graph']}"
     shell:
         """
         rdfpipe --input-format=turtle --output-format=turtle \
             {input.base} {input.fragments} > {output.merged}
         """
 
+rule consolidate:
+    input:
+        merged=f"{config['output-dir']}/{config['merged-graph']}"
+    output:
+        consolidated=f"{config['output-dir']}/{config['output-graph']}"
+    shell:
+        """
+        consolidate \
+        --input-file {input.merged} \
+        --output-filename {output.consolidated}
+        """
+        
 rule create_ro_crate:
     input:
         full_graph = f"{config['output-dir']}/{config['output-graph']}",
@@ -105,4 +106,3 @@ rule create_ro_crate:
         --workflow-file {params.workflow_file} \
         --output-dir {params.output_dir}
         """
-        
