@@ -52,6 +52,9 @@ def create_canonical(g, wikidata_id):
     }}
     """
 
+    if wikidata_id == None:
+        return None
+
     # Perform query
     r = requests.get("https://query.wikidata.org/sparql",
                      params={"query": query},
