@@ -6,7 +6,7 @@ import requests
 from abc import ABC
 
 from rdflib import URIRef, Literal, Namespace
-from rdflib.namespace import RDF, FOAF
+from rdflib.namespace import RDF
 
 from workflowhub_graph.enrichment_strategies.enrichmentABC import EnrichmentABC
 
@@ -55,7 +55,7 @@ def graph_for_orcid(orcid_id, orcid_data):
     orcid_uri = URIRef(f"https://orcid.org/{orcid_id}")
     
     # Add basic information
-    graph.add((orcid_uri, RDF.type, FOAF.Person))
+    graph.add((orcid_uri, RDF.type, SCHEMA.Person))
     
     person_data = orcid_data.get('person', {})
 
@@ -63,11 +63,11 @@ def graph_for_orcid(orcid_id, orcid_data):
         name_data = person_data['name']
         if 'given-names' in name_data and 'value' in name_data['given-names']:
             given_name = name_data['given-names']['value']
-            graph.add((orcid_uri, FOAF.givenName, Literal(given_name)))
+            graph.add((orcid_uri, SCHEMA.givenName, Literal(given_name)))
             logging.info(f"Added ORCID ID {orcid_id} with given name {given_name}")
         if 'family-name' in name_data and 'value' in name_data['family-name']:
             family_name = name_data['family-name']['value']
-            graph.add((orcid_uri, FOAF.familyName, Literal(family_name)))
+            graph.add((orcid_uri, SCHEMA.familyName, Literal(family_name)))
             logging.info(f"Added ORCID ID {orcid_id} with name {given_name} {family_name}")
     
     # add employment information
