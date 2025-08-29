@@ -1,0 +1,60 @@
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX schema: <http://http://schema.org/>
+
+construct {
+	?cls a :Class ;
+    	:label ?localName ;
+    	:icon "far fa-circle" ;
+        :colorIndex 1 ;
+        :searchPrio 1 .
+}
+where {
+    {
+        select distinct ?cls ?localName where {
+            ?subject a ?cls .
+            bind(replace(str(?cls), "^.*[/#]", "") AS ?localName)
+            MINUS {
+                # --- blocklist ---
+                VALUES ?cls {
+                    rdf:Property
+                    owl:TransitiveProperty
+                    owl:SymmetricProperty
+                    rdf:List
+                    rdfs:Class
+                    rdfs:Datatype
+                    rdfs:ContainerMembershipProperty
+                    # -----------------------------------
+                    <http://www.w3.org/ns/shacl#NodeShape>
+                    <http://www.w3.org/ns/shacl#PropertyShape>
+                    <http://www.w3.org/ns/shacl#PropertyGroup>
+                    <http://www.w3.org/ns/shacl#Group>
+                    # -----------------------------------
+                    <http://www.w3.org/ns/prov#Activity>
+                    <https://barnard-prov.described.at/Codebase>
+                    <https://barnard-prov.described.at/PipelineRunCollection>
+                    <https://barnard-prov.described.at/Commit>
+                    <https://barnard-prov.described.at/PipelineRun>            
+                    <https://barnard-prov.described.at/Job>
+                    # -----------------------------------
+                    <https://flux.described.at/Detail>
+                    <https://flux.described.at/Link>
+                    <https://flux.described.at/CompositionToNodeLink>
+                    <https://flux.described.at/Aggregate>
+                    <https://flux.described.at/Composition>            
+                    <https://flux.described.at/Hierarchy>
+                    <https://flux.described.at/Container>
+                    <https://flux.described.at/ConnectionPoint>
+                    # -----------------------------------
+                    <https://ld.flux.zazuko.com/shapes/metadata/ClassShape>
+                    <https://ld.flux.zazuko.com/shapes/metadata/ClassMetadataShape>
+                    <https://ld.flux.zazuko.com/shapes/metadata/ClassDetailShape>
+                } 
+            }
+            # --- general exclusions ---
+            FILTER ( !regex(str(?cls), "WorkflowSketch$") )
+        } order by ?localName ?cls
+    }      
+}

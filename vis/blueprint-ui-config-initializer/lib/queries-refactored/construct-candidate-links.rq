@@ -1,0 +1,38 @@
+PREFIX schema: <http://schema.org/>
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  ?cls :link [
+    :label ?label ;
+    :to ?linkType ;
+    :path ?property
+  ]
+}
+WHERE {
+  {
+    SELECT DISTINCT ?cls ?property ?linkType ?label WHERE {
+      ?subject a ?cls .
+      ?subject ?property ?object .
+      ?object a ?linkType .
+      
+      # Bind local names for better readability
+      BIND(REPLACE(STR(?cls), "^.*[/#]", "") AS ?clsLocalName)
+      BIND(REPLACE(STR(?property), "^.*[/#]", "") AS ?propertyLocalName)
+      
+      # Filter to only include schema.org types and properties
+      #      FILTER (?cls IN (schema:Person, schema:Organization, schema:Event))
+      #      FILTER (?linkType IN (schema:Person, schema:Organization, schema:Event))
+      
+      # Optional: Get labels for properties if available
+      OPTIONAL {
+        ?property rdfs:label ?propertyLabel
+      }
+
+      # Otherwise, generate a label from the property's local name
+      BIND(COALESCE(?propertyLabel, ?propertyLocalName) AS ?label)
+    }
+    order by ?clsLocalName ?cls ?propertyLocalName ?property ?linkType
+  }
+}

@@ -1,0 +1,57 @@
+PREFIX schema: <http://schema.org/>
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+
+CONSTRUCT {
+  ?cls a :Class ;
+        :label ?localName ;
+        :icon ?icon;
+        :colorIndex ?colorIndex ;
+        :searchPrio 1 .
+}
+WHERE {
+  {
+    SELECT DISTINCT ?cls ?localName ?icon ?colorIndex WHERE {
+      ?subject a ?cls .
+      bind(replace(str(?cls), "^.*[/#]", "") AS ?localName)
+     
+      # Assigning an icon and color to the type
+      BIND(IF(STR(?cls) = "http://schema.org/Person", "fas fa-user", "fas fa-circle") AS ?icon)
+      BIND(IF(STR(?cls) = "http://schema.org/Person", 2, 1) AS ?colorIndex)
+
+      # Filtering out well-known types that are less relevant
+      MINUS {
+        VALUES ?cls {
+          schema:Property
+          schema:URL
+          schema:Thing
+          schema:DefinedTerm
+          # -----------------------------------
+          rdf:Property
+          owl:TransitiveProperty
+          owl:SymmetricProperty
+          rdf:List
+          rdfs:Class
+          rdfs:Datatype
+          rdfs:ContainerMembershipProperty
+          # -----------------------------------
+          <https://flux.described.at/Detail>
+          <https://flux.described.at/Link>
+          <https://flux.described.at/CompositionToNodeLink>
+          <https://flux.described.at/Aggregate>
+          <https://flux.described.at/Composition>            
+          <https://flux.described.at/Hierarchy>
+          <https://flux.described.at/Container>
+          <https://flux.described.at/ConnectionPoint>
+          # -----------------------------------
+          <https://ld.flux.zazuko.com/shapes/metadata/ClassShape>
+          <https://ld.flux.zazuko.com/shapes/metadata/ClassMetadataShape>            
+          <https://ld.flux.zazuko.com/shapes/metadata/ClassDetailShape>
+        }
+      }
+    }
+    ORDER BY ?localName ?cls
+  }
+}
