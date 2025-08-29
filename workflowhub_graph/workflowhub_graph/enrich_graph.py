@@ -1,10 +1,16 @@
 import argparse
-import os
+import logging
 
 from workflowhub_graph.enrichment_strategies import STRATEGY_REGISTRY
 
 def main():
     parser = argparse.ArgumentParser(description="Enrich RDF graph with additional data.")
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Enable verbose logging",
+    )
     parser.add_argument(
         "--graph",
         help="The RDF graph file to enrich.",
@@ -26,6 +32,12 @@ def main():
 
     # Parse the command line arguments
     args = parser.parse_args()
+
+    # Set up logging
+    logging.basicConfig(
+        level=logging.DEBUG if args.verbose else logging.INFO,
+        format="%(asctime)s - %(levelname)s - %(message)s",
+    )
 
     # Extract the arguments
     graph_file = args.graph
