@@ -60,33 +60,36 @@ def graph_for_orcid(orcid_id, orcid_data):
     person_data = orcid_data.get('person', {})
     name_data = person_data.get('name', {})
 
-    if name_data:
-        given_name = name_data.get('given-names', {}).get('value')
-        if given_name:
-            graph.add((orcid_uri, SCHEMA.givenName, Literal(given_name)))
-            logging.info(f"Added ORCID ID {orcid_id} with given name {given_name}")
+    try:
+        if name_data:
+            given_name = name_data.get('given-names', {}).get('value')
+            if given_name:
+                graph.add((orcid_uri, SCHEMA.givenName, Literal(given_name)))
+                logging.debug(f"Added ORCID ID {orcid_id} with given name {given_name}")
 
-        family_name = name_data.get('family-name', {}).get('value')
-        if family_name:
-            graph.add((orcid_uri, SCHEMA.familyName, Literal(family_name)))
-            logging.info(f"Added ORCID ID {orcid_id} with name {given_name} {family_name}")
+            family_name = name_data.get('family-name', {}).get('value')
+            if family_name:
+                graph.add((orcid_uri, SCHEMA.familyName, Literal(family_name)))
+                logging.debug(f"Added ORCID ID {orcid_id} with name {given_name} {family_name}")
+
+        # add employment information
+        #  jq '._decoded_content["activities-summary"].employments["affiliation-group"] | .[] | .summaries[0]["employment-summary"].organization.name'
+
+        activities = orcid_data.get('activities-summary', {})
+        if activities:
+            employments = activities.get('employments', {}).get('affiliation-group', [])
+            for employment in employments:
+                summaries = employment.get('summaries', [])
+                if summaries and len(summaries) > 0:
+                    employment_summary = summaries[0].get('employment-summary', {})
+                    organization = employment_summary.get('organization', {})
+                    org_name = organization.get('name')
+                    if org_name:
+                        graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
+                        logging.debug(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
+    except Exception as e:
+        logging.warn(f"Error creating ORCID object {e}")
     
-    # add employment information
-    #  jq '._decoded_content["activities-summary"].employments["affiliation-group"] | .[] | .summaries[0]["employment-summary"].organization.name'
-
-    activities = orcid_data.get('activities-summary', {})
-    if activities:
-        employments = activities.get('employments', {}).get('affiliation-group', [])
-        for employment in employments:
-            summaries = employment.get('summaries', [])
-            if summaries and len(summaries) > 0:
-                employment_summary = summaries[0].get('employment-summary', {})
-                organization = employment_summary.get('organization', {})
-                org_name = organization.get('name')
-                if org_name:
-                    graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
-                    logging.info(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
-
     return graph
 
 
