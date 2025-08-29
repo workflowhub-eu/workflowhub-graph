@@ -24,7 +24,7 @@ Where `./workflow-output` is the directory where the output will be stored (alre
 
 ## Structure
 
-![workflow dag](docs/images/mdag.svg)
+![workflow dag](docs/images/dag.svg)
 
 - **`source_ro_crates`**: This rule sources RO crates from the WorkflowHub API (`source_crates.py`) 
 - **`create_graph`**: This rule merges the individual RO crates into a single RDF graph
