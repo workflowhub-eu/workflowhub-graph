@@ -47,11 +47,9 @@ services:
     container_name: wfh-blueprint-config
     environment:
       - SPARQL_ENDPOINT=http://wfh-fuseki:3030/wfh/query
-      - SPARQL_UPLOAD_ENDPOINT=http://wfh-fuseki:3030/wfh/data
+      - SPARQL_UPLOAD_ENDPOINT=http://wfh-fuseki:3030/wfh
       - SPARQL_USER=admin
       - SPARQL_PASS=admin
-    volumes:
-      - jena-data:/config/
     depends_on:
       fuseki:
         condition: service_healthy
