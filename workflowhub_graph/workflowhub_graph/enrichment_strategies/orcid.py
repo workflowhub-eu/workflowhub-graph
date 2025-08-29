@@ -73,14 +73,16 @@ def graph_for_orcid(orcid_id, orcid_data):
     # add employment information
     #  jq '._decoded_content["activities-summary"].employments["affiliation-group"] | .[] | .summaries[0]["employment-summary"].organization.name'
 
-    if 'activities-summary' in orcid_data and 'employments' in orcid_data['activities-summary']:
-        employments = orcid_data['activities-summary']['employments'].get('affiliation-group', [])
-        for employment in employments:
-            summaries = employment.get('summaries', [])
-            if summaries:
-                org_name = summaries[0]['employment-summary']['organization']['name']
-                graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
-                logging.info(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
+    activities = orcid_data.get('activities-summary', {})
+    employments = activities.get('employments', {}).get('affiliation-group', [])
+    for employment in employments:
+        summaries = employment.get('summaries', [])
+        employment_summary = summaries[0].get('employment-summary', {})
+        organization = employment_summary.get('organization', {})
+        org_name = organization.get('name')
+        if org_name:
+            graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
+            logging.info(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
 
     return graph
 
