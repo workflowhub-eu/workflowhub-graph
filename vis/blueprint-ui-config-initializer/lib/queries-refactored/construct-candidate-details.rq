@@ -1,0 +1,44 @@
+PREFIX schema: <http://schema.org/>
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+CONSTRUCT {
+  ?cls :detailGroup ?detailGroup .
+
+  ?detailGroup :label "Info" ;
+               :order 0 ;
+               :detail [
+                 :label ?label ;
+                 :path ?property ;
+                 :order 0
+               ] .
+}
+WHERE {
+  {
+    SELECT DISTINCT ?detailGroup ?cls ?label ?property WHERE {
+      ?subject a ?cls .
+      ?subject ?property ?object .
+      FILTER(isLiteral(?object))
+
+      # Only consider schema.org types and properties
+      #FILTER (?cls IN (schema:Person, schema:Organization, schema:Event))
+      #FILTER (?property IN (schema:familyName, schema:givenName, schema:jobTitle))
+
+      # Bind the local names and detail group URIs
+      BIND(REPLACE(STR(?property), "^.*[/#]", "") AS ?propertyLocalName)
+      BIND(REPLACE(STR(?cls), "^.*[/#]", "") AS ?clsLocalName)
+      BIND(CONCAT(?clsLocalName, "-info-", ENCODE_FOR_URI(STR(?cls))) AS ?localDetailGroupId)
+      BIND(IRI(CONCAT("http://data.example.org/blueprint-ui-config-initializer/detailgroup/", ?localDetailGroupId)) AS ?detailGroup)
+
+        # Bind the label
+      OPTIONAL {
+        ?property rdfs:label ?propertyLabel
+      }
+
+      # Otherwise, generate a label from the property's local name
+      BIND(COALESCE(?propertyLabel, ?propertyLocalName) AS ?label)
+    }    
+  ORDER BY ?cls ?label
+  }
+}
