@@ -58,7 +58,7 @@ def create_canonical(g, wikidata_id):
                      params={"query": query},
                      headers={
                          "Accept": "application/sparql-results+json",
-                         "User-Agent": "WorkflowGraphBot/1.0 (workflowhub-admin@listserv.manchester.ac.uk)" }
+                         "User-Agent": "WorkflowGraphBot/1.0 (workflowhub-admin@listserv.manchester.ac.uk)"
                      },
                      timeout=10)
     r.raise_for_status()
