@@ -23,12 +23,13 @@ rule source_ro_crates:
     output:
         f"{config['output-dir']}/{config['sourced-list']}"
     params: 
+        min_workflow_id = config['min-workflow-id'],
         max_workflow_id = config['max-workflow-id'],
         output_dir = config['output-dir'],
         base_url = config['base-url']
     shell:
         "source-crates "
-        "--workflow-ids 1-{params.max_workflow_id} "
+        "--workflow-ids {params.min_workflow_id}-{params.max_workflow_id} "
         "--output-dir {params.output_dir} "
         "--base-url {params.base_url} "
 
