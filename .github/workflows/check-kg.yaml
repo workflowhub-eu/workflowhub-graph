@@ -1,0 +1,33 @@
+name: Build test knowledge graph
+
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build-and-export:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t knowledgegraph .
+
+      - name: Run container to generate TTL
+        run: |
+          docker run --rm \
+            -v ${{ github.workspace }}/workflow-output:/app/output \
+            knowledgegraph \
+            --config \
+            max-workflow-id=20 \
+            output-graph="workflowhub-graph.ttl" \
+            output-dir=output
+
+      - name: Upload RO-Crate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: "workflowhub-graph-ro-crate"
+          path: ${{ github.workspace }}/workflow-output/output/crate
