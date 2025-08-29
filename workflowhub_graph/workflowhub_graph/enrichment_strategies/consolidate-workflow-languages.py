@@ -23,10 +23,11 @@ def query_wikidata(label):
         "format": "json",
         "limit": 1
     }
+    headers = { "User-Agent": "WorkflowGraphBot/1.0 (workflowhub-admin@listserv.manchester.ac.uk)" }
 
     # Make the request to WikiData
     try:
-        resp = requests.get(url, params=params, timeout=5)
+        resp = requests.get(url, params=params, timeout=5, headers=headers)
         resp.raise_for_status()
         data = resp.json()
     except requests.RequestException as e:
@@ -52,13 +53,13 @@ def create_canonical(g, wikidata_id):
     }}
     """
 
-    if wikidata_id == None:
-        return None
-
     # Perform query
     r = requests.get("https://query.wikidata.org/sparql",
                      params={"query": query},
-                     headers={"Accept": "application/sparql-results+json"},
+                     headers={
+                         "Accept": "application/sparql-results+json",
+                         "User-Agent": "WorkflowGraphBot/1.0 (workflowhub-admin@listserv.manchester.ac.uk)" }
+                     },
                      timeout=10)
     r.raise_for_status()
 
