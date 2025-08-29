@@ -77,12 +77,13 @@ def graph_for_orcid(orcid_id, orcid_data):
     employments = activities.get('employments', {}).get('affiliation-group', [])
     for employment in employments:
         summaries = employment.get('summaries', [])
-        employment_summary = summaries[0].get('employment-summary', {})
-        organization = employment_summary.get('organization', {})
-        org_name = organization.get('name')
-        if org_name:
-            graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
-            logging.info(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
+        if summaries and len(summaries) > 0:
+            employment_summary = summaries[0].get('employment-summary', {})
+            organization = employment_summary.get('organization', {})
+            org_name = organization.get('name')
+            if org_name:
+                graph.add((orcid_uri, SCHEMA.affiliation, Literal(org_name)))
+                logging.info(f"Added affiliation {org_name} for ORCID ID {orcid_id}")
 
     return graph
 
