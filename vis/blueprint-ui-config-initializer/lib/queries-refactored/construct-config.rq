@@ -1,0 +1,91 @@
+PREFIX schema: <http://schema.org/>
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sh: <http://www.w3.org/ns/shacl#>
+PREFIX blueprintMetaShapes: <https://ld.flux.zazuko.com/shapes/metadata/>
+PREFIX blueprint: <https://flux.described.at/>
+
+CONSTRUCT {
+    ?cls blueprint:showIn blueprint:UI .
+
+    ?clsMetadataShape a blueprintMetaShapes:ClassMetadataShape ;
+        rdfs:label ?label ;
+        sh:targetNode ?cls ;
+        blueprint:faIcon ?clsIcon ;
+        blueprint:colorIndex ?clsColorIndex ;
+        blueprint:searchPrio ?clsSearchPrio .
+
+    ?link a sh:PropertyShape, blueprint:Link ;
+        sh:name ?linkLabel ;
+        sh:targetClass ?cls ;
+        sh:class ?toCls ;
+        sh:path ?linkPath .
+
+    ?detailGroup a blueprintMetaShapes:ClassDetailShape ;
+        rdfs:label ?detailGroupLabel ;
+        sh:order ?detailGroupOrder .
+
+    ?detailShape a blueprintMetaShapes:ClassDetailShape ;
+        rdfs:label ?detailLabel ;
+        sh:path ?detailPath ;
+        sh:order ?detailOrder ;
+        blueprint:showAs blueprintMetaShapes:Plain ;
+        sh:targetClass ?cls ;
+        sh:group ?detailGroup .
+} 
+WHERE {
+	{
+		SELECT * WHERE {
+
+		    # Class metadata
+		    {
+		        ?cls a :Class ;
+		        	:colorIndex ?clsColorIndex ;
+		        	:icon ?clsIcon ;
+		        	:searchPrio ?clsSearchPrio .
+		        OPTIONAL { ?cls rdfs:label ?label }
+		        bind(iri(concat("http://data.example.org/blueprint-ui-config/app/class-metadata-shape/", encode_for_uri(str(?cls)))) AS ?clsMetadataShape)
+		    }
+
+		    # Links (relationships between classes)
+		    UNION
+		    {
+		        ?cls :link [
+		            :label ?linkLabel ;
+		            :to ?toCls ;
+		            :path ?linkPath
+		        ] .
+		        bind(concat(encode_for_uri(str(?cls)), "-", encode_for_uri(str(?linkPath)), "-", encode_for_uri(str(?toCls))) AS ?localLinkId)
+		        bind(iri(concat("http://data.example.org/blueprint-ui-config/app/link/", ?localLinkId)) AS ?link)
+		    }
+
+		    # Detail groups and details
+		    UNION
+		    {
+		        ?cls :detailGroup [
+		            :label ?detailGroupLabel ;
+		            :detail ?detail
+		        ] .
+
+		        ?detail :label ?detailLabel ;
+		                :path ?detailPath ;
+		                :order ?detailOrder .
+
+		        bind(concat(encode_for_uri(str(?cls)), "-", encode_for_uri(str(?detailPath))) AS ?localDetailId)
+		        bind(iri(concat("http://data.example.org/blueprint-ui-config/app/class-detail-shape/", ?localDetailId)) AS ?detailShape)
+		    }
+
+		    # Detail group ordering
+		    UNION
+		    {
+		        ?cls :detailGroup [
+		            :label ?detailGroupLabel ;
+		            :order ?detailGroupOrder
+		        ] .
+		        bind(concat(encode_for_uri(str(?cls)), "-detailgroup-", encode_for_uri(?detailGroupLabel)) AS ?localDetailGroupId)
+		        bind(iri(concat("http://data.example.org/blueprint-ui-config/app/class-detail-group/", ?localDetailGroupId)) AS ?detailGroup)
+		    }
+		} ORDER BY ?cls ?detailGroupLabel ?detailLabel ?detailPath ?linkLabel ?linkPath ?toCls
+	}
+}

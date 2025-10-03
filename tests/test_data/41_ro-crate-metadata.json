@@ -1,0 +1,441 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.0/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.jsonld",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": " 4_ Variation",
+      "url": "https://github.com/galaxyproject/SARS-CoV-2/blob/master/genomics/deploy/workflows/4-Variation.ga",
+      "mainEntity": {
+        "@id": "4-Variation.ga"
+      },
+      "hasPart": [
+        {
+          "@id": "4-Variation.ga"
+        },
+        {
+          "@id": "var_wf.png"
+        },
+        {
+          "@id": "all_covid_tools.yaml"
+        },
+        {
+          "@id": "variation_analysis.ipynb"
+        },
+        {
+          "@id": "SRR11241255.vcf.gz"
+        },
+        {
+          "@id": "current.txt"
+        },
+        {
+          "@id": "SRR11278092.vcf.gz"
+        },
+        {
+          "@id": "SRR11140746.vcf.gz"
+        },
+        {
+          "@id": "current_metadata.txt"
+        },
+        {
+          "@id": "SRR11278167.vcf.gz"
+        },
+        {
+          "@id": "var_map.png"
+        },
+        {
+          "@id": "SRR11177792.vcf.gz"
+        },
+        {
+          "@id": "SRR11241254.vcf.gz"
+        },
+        {
+          "@id": "SRR11278168.vcf.gz"
+        },
+        {
+          "@id": "SRR11059942.vcf.gz"
+        },
+        {
+          "@id": "SRR11059944.vcf.gz"
+        },
+        {
+          "@id": "genbank.txt"
+        },
+        {
+          "@id": "acc2exclude.txt"
+        },
+        {
+          "@id": "var_wf_pe.png"
+        },
+        {
+          "@id": "cdc_primers.txt"
+        },
+        {
+          "@id": "SRR11140750.vcf.gz"
+        },
+        {
+          "@id": "igv_snapshot.png"
+        },
+        {
+          "@id": "SRR11247078.vcf.gz"
+        },
+        {
+          "@id": "SRR11278091.vcf.gz"
+        },
+        {
+          "@id": "requirements.txt"
+        },
+        {
+          "@id": "SRR11059947.vcf.gz"
+        },
+        {
+          "@id": "SRR11140744.vcf.gz"
+        },
+        {
+          "@id": "SRR11278090.vcf.gz"
+        },
+        {
+          "@id": "SRR11278165.vcf.gz"
+        },
+        {
+          "@id": "SRR10903402.vcf.gz"
+        },
+        {
+          "@id": "union.txt"
+        },
+        {
+          "@id": "sra.txt"
+        },
+        {
+          "@id": "SRR11059941.vcf.gz"
+        },
+        {
+          "@id": "SRR11247077.vcf.gz"
+        },
+        {
+          "@id": "SRR11059943.vcf.gz"
+        },
+        {
+          "@id": "var_wf_se.png"
+        },
+        {
+          "@id": "README.md"
+        },
+        {
+          "@id": "fetch_sra_acc.sh"
+        },
+        {
+          "@id": "current_gridion.txt"
+        },
+        {
+          "@id": "SRR11059940.vcf.gz"
+        },
+        {
+          "@id": "SRR11314339.vcf.gz"
+        },
+        {
+          "@id": "SRR11059946.vcf.gz"
+        },
+        {
+          "@id": "variant_list.tsv"
+        },
+        {
+          "@id": "SRR11140748.vcf.gz"
+        },
+        {
+          "@id": "SRR10903401.vcf.gz"
+        },
+        {
+          "@id": "S_var.png"
+        },
+        {
+          "@id": "current_illumina.txt"
+        },
+        {
+          "@id": "SRR11278164.vcf.gz"
+        },
+        {
+          "@id": "SRR11247076.vcf.gz"
+        },
+        {
+          "@id": "SRR11059945.vcf.gz"
+        },
+        {
+          "@id": "SRR10971381.vcf.gz"
+        },
+        {
+          "@id": "SRR11278166.vcf.gz"
+        },
+        {
+          "@id": "ncbi.txt"
+        },
+        {
+          "@id": "SRR11247075.vcf.gz"
+        }
+      ]
+    },
+    {
+      "@id": "4-Variation.ga",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "Workflow"
+      ],
+      "programmingLanguage": {
+        "@id": "#galaxy"
+      },
+      "name": " 4_ Variation",
+      "contentSize": 21389,
+      "dependencies": [
+        {
+          "@id": "all_covid_tools.yaml"
+        }
+      ],
+      "image": {
+        "@id": "var_wf.png"
+      }
+    },
+    {
+      "@id": "var_wf.png",
+      "@type": [
+        "File",
+        "ImageObject",
+        "WorkflowSketch"
+      ],
+      "contentSize": 295038
+    },
+    {
+      "@id": "all_covid_tools.yaml",
+      "@type": "File"
+    },
+    {
+      "@id": "variation_analysis.ipynb",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11241255.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "current.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278092.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11140746.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "current_metadata.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278167.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "var_map.png",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11177792.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11241254.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278168.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059942.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059944.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "genbank.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "acc2exclude.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "var_wf_pe.png",
+      "@type": "File"
+    },
+    {
+      "@id": "cdc_primers.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11140750.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "igv_snapshot.png",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11247078.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278091.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "requirements.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059947.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11140744.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278090.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278165.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR10903402.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "union.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "sra.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059941.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11247077.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059943.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "var_wf_se.png",
+      "@type": "File"
+    },
+    {
+      "@id": "README.md",
+      "@type": "File"
+    },
+    {
+      "@id": "fetch_sra_acc.sh",
+      "@type": "File"
+    },
+    {
+      "@id": "current_gridion.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059940.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11314339.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059946.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "variant_list.tsv",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11140748.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR10903401.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "S_var.png",
+      "@type": "File"
+    },
+    {
+      "@id": "current_illumina.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278164.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11247076.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11059945.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR10971381.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11278166.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "ncbi.txt",
+      "@type": "File"
+    },
+    {
+      "@id": "SRR11247075.vcf.gz",
+      "@type": "File"
+    },
+    {
+      "@id": "#galaxy",
+      "@type": "ComputerLanguage",
+      "name": "Galaxy",
+      "identifier": {
+        "@id": "https://galaxyproject.org/"
+      },
+      "url": {
+        "@id": "https://galaxyproject.org/"
+      }
+    }
+  ]
+}

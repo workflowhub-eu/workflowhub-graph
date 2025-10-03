@@ -1,0 +1,31 @@
+PREFIX : <http://schema.example.org/blueprint-ui-config-initializer/>
+    
+CONSTRUCT {
+    ?cls :link [
+            :label ?propertylocalName ;            
+            :to ?linktype ;
+	        :path ?property
+    ]
+} WHERE {
+	{
+		SELECT * WHERE {
+		    {
+		        SELECT distinct ?cls ?property ?linktype WHERE {
+		            ?subject a ?cls .
+		            ?subject ?property ?object .
+		            ?object a ?linktype .
+		        }
+		    }
+		    bind(replace(str(?cls), "^.*[/#]", "") AS ?clsLocalName)
+		    bind(replace(str(?property), "^.*[/#]", "") AS ?propertylocalName)
+
+VALUES ?cls {%%values-cls%%
+}
+
+			
+		} order by ?clsLocalName ?cls ?propertylocalName ?property ?linktype
+	}
+}
+
+VALUES ?linktype {%%values-linktype%%
+}

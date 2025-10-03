@@ -1,0 +1,669 @@
+{
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@id": "ro-crate-metadata.json",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "conformsTo": [
+        {
+          "@id": "https://w3id.org/ro/crate/1.1"
+        },
+        {
+          "@id": "https://w3id.org/workflowhub/workflow-ro-crate/1.0"
+        }
+      ]
+    },
+    {
+      "@id": "ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "creator": [
+        {
+          "@id": "https://orcid.org/0000-0003-0606-2512"
+        },
+        {
+          "@id": "https://orcid.org/0000-0003-2941-5499"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-8291-8071"
+        }
+      ],
+      "datePublished": "2022-10-05T13:38:03+00:00",
+      "description": "Hypermatrix size 2x2 blocks, block size 2x2 elements",
+      "hasPart": [
+        {
+          "@id": "application_sources/src/main/java/matmul/files/Matmul.java"
+        },
+        {
+          "@id": "complete_graph.eps"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/Block.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/MatmulImpl.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/MatmulImpl.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/MatmulItf.java"
+        },
+        {
+          "@id": "App_Profile.json"
+        },
+        {
+          "@id": "compss_command_line_arguments.txt"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/Matmul.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/MatmulItf.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/files/Block.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/Block.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/MatmulItf.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/Matmul.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/Matmul.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/MatmulItf.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/objects/Block.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/MatmulImpl.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/MatmulImpl.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/MatmulItf.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/Matmul.java"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/Matmul.class"
+        },
+        {
+          "@id": "application_sources/src/main/java/matmul/arrays/MatmulItf.class"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.1"
+        }
+      ],
+      "license": "Apache-2.0",
+      "mainEntity": {
+        "@id": "application_sources/src/main/java/matmul/files/Matmul.java"
+      },
+      "name": "COMPSs Matrix Multiplication, out-of-core using files",
+      "publisher": [
+        {
+          "@id": "https://ror.org/01z1gye03"
+        },
+        {
+          "@id": "https://ror.org/05sd8tv96"
+        }
+      ]
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/Matmul.java",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "ComputationalWorkflow"
+      ],
+      "contentSize": 4503,
+      "description": "Main file of the COMPSs workflow source files",
+      "encodingFormat": "text/plain",
+      "image": {
+        "@id": "complete_graph.eps"
+      },
+      "input": [
+
+      ],
+      "name": "Matmul.java",
+      "output": [
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.1"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.0"
+        },
+        {
+          "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.1"
+        }
+      ],
+      "programmingLanguage": {
+        "@id": "#compss"
+      }
+    },
+    {
+      "@id": "complete_graph.eps",
+      "@type": [
+        "File",
+        "ImageObject",
+        "WorkflowSketch"
+      ],
+      "about": {
+        "@id": "application_sources/src/main/java/matmul/files/Matmul.java"
+      },
+      "contentSize": 18962,
+      "description": "The graph diagram of the workflow, automatically generated by COMPSs runtime",
+      "encodingFormat": [
+        [
+          "application/png",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/276"
+          }
+        ]
+      ],
+      "name": "complete_graph.eps"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/Block.java",
+      "@type": "File",
+      "contentSize": 4341,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "Block.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/MatmulImpl.class",
+      "@type": "File",
+      "contentSize": 577,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "MatmulImpl.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/MatmulImpl.java",
+      "@type": "File",
+      "contentSize": 940,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "MatmulImpl.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/MatmulItf.java",
+      "@type": "File",
+      "contentSize": 1456,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "MatmulItf.java"
+    },
+    {
+      "@id": "App_Profile.json",
+      "@type": "File",
+      "contentSize": 930,
+      "description": "COMPSs application Tasks profile",
+      "encodingFormat": [
+        "application/json",
+        {
+          "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817"
+        }
+      ],
+      "name": "App_Profile.json"
+    },
+    {
+      "@id": "compss_command_line_arguments.txt",
+      "@type": "File",
+      "contentSize": 24,
+      "description": "COMPSs command line execution command, including parameters passed",
+      "encodingFormat": "text/plain",
+      "name": "compss_command_line_arguments.txt"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/Matmul.class",
+      "@type": "File",
+      "contentSize": 3683,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "Matmul.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/MatmulItf.class",
+      "@type": "File",
+      "contentSize": 775,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "MatmulItf.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/files/Block.class",
+      "@type": "File",
+      "contentSize": 3732,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "Block.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/Block.java",
+      "@type": "File",
+      "contentSize": 2598,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "Block.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/MatmulItf.java",
+      "@type": "File",
+      "contentSize": 932,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "MatmulItf.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/Matmul.java",
+      "@type": "File",
+      "contentSize": 3844,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "Matmul.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/Matmul.class",
+      "@type": "File",
+      "contentSize": 3297,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "Matmul.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/MatmulItf.class",
+      "@type": "File",
+      "contentSize": 430,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "MatmulItf.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/objects/Block.class",
+      "@type": "File",
+      "contentSize": 2567,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "Block.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/MatmulImpl.class",
+      "@type": "File",
+      "contentSize": 661,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "MatmulImpl.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/MatmulImpl.java",
+      "@type": "File",
+      "contentSize": 1182,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "MatmulImpl.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/MatmulItf.java",
+      "@type": "File",
+      "contentSize": 1162,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "MatmulItf.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/Matmul.java",
+      "@type": "File",
+      "contentSize": 3615,
+      "description": "Auxiliary File",
+      "encodingFormat": "text/plain",
+      "name": "Matmul.java"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/Matmul.class",
+      "@type": "File",
+      "contentSize": 2920,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "Matmul.class"
+    },
+    {
+      "@id": "application_sources/src/main/java/matmul/arrays/MatmulItf.class",
+      "@type": "File",
+      "contentSize": 548,
+      "description": "Auxiliary File",
+      "encodingFormat": [
+        [
+          "Java .class",
+          {
+            "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415"
+          }
+        ]
+      ],
+      "name": "MatmulItf.class"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.0",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "A.0.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.0.1",
+      "@type": "File",
+      "contentSize": 76,
+      "name": "A.0.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.0",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "A.1.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/A.1.1",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "A.1.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.0",
+      "@type": "File",
+      "contentSize": 77,
+      "name": "B.0.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.0.1",
+      "@type": "File",
+      "contentSize": 73,
+      "name": "B.0.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.0",
+      "@type": "File",
+      "contentSize": 76,
+      "name": "B.1.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/B.1.1",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "B.1.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.0",
+      "@type": "File",
+      "contentSize": 74,
+      "name": "C.0.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.0.1",
+      "@type": "File",
+      "contentSize": 74,
+      "name": "C.0.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.0",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "C.1.0",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "file://s07r1b51-ib0/gpfs/home/bsc19/bsc19057/COMPSs-DP/tutorial_apps/java/matmul/C.1.1",
+      "@type": "File",
+      "contentSize": 75,
+      "name": "C.1.1",
+      "sdDatePublished": "2022-10-05T13:38:03+00:00"
+    },
+    {
+      "@id": "https://about.workflowhub.eu/Workflow-RO-Crate/",
+      "@type": "CreativeWork",
+      "name": "Workflow RO-Crate Profile",
+      "version": "0.2.0"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-0606-2512",
+      "@type": "Person",
+      "affiliation": {
+        "@id": "https://ror.org/05sd8tv96"
+      },
+      "contactPoint": {
+        "@id": "mailto:Raul.Sirvent@bsc.es"
+      },
+      "name": "Raül Sirvent"
+    },
+    {
+      "@id": "mailto:Raul.Sirvent@bsc.es",
+      "@type": "ContactPoint",
+      "contactType": "Author",
+      "email": "Raul.Sirvent@bsc.es",
+      "identifier": "Raul.Sirvent@bsc.es",
+      "url": "https://orcid.org/0000-0003-0606-2512"
+    },
+    {
+      "@id": "https://ror.org/05sd8tv96",
+      "@type": "Organization",
+      "name": "Barcelona Supercomputing Center"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-2941-5499",
+      "@type": "Person",
+      "affiliation": {
+        "@id": "https://ror.org/05sd8tv96"
+      },
+      "contactPoint": {
+        "@id": "mailto:Rosa.M.Badia@bsc.es"
+      },
+      "name": "Rosa M. Badia"
+    },
+    {
+      "@id": "mailto:Rosa.M.Badia@bsc.es",
+      "@type": "ContactPoint",
+      "contactType": "Author",
+      "email": "Rosa.M.Badia@bsc.es",
+      "identifier": "Rosa.M.Badia@bsc.es",
+      "url": "https://orcid.org/0000-0003-2941-5499"
+    },
+    {
+      "@id": "https://orcid.org/0000-0002-8291-8071",
+      "@type": "Person",
+      "affiliation": {
+        "@id": "https://ror.org/01z1gye03"
+      },
+      "contactPoint": {
+        "@id": "mailto:adam.hospital@irbbarcelona.org"
+      },
+      "name": "Adam Hospital"
+    },
+    {
+      "@id": "mailto:adam.hospital@irbbarcelona.org",
+      "@type": "ContactPoint",
+      "contactType": "Author",
+      "email": "adam.hospital@irbbarcelona.org",
+      "identifier": "adam.hospital@irbbarcelona.org",
+      "url": "https://orcid.org/0000-0002-8291-8071"
+    },
+    {
+      "@id": "https://ror.org/01z1gye03",
+      "@type": "Organization",
+      "name": "IRB Barcelona"
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/x-fmt/415",
+      "@type": "WebSite",
+      "name": "Java Compiled Object Code"
+    },
+    {
+      "@id": "#compss",
+      "@type": "ComputerLanguage",
+      "alternateName": "COMPSs",
+      "citation": "https://doi.org/10.1007/s10723-013-9272-5",
+      "name": "COMPSs Programming Model",
+      "url": "http://compss.bsc.es/",
+      "version": "3.0"
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/276",
+      "@type": "WebSite",
+      "name": "Acrobat PDF 1.7 - Portable Document Format"
+    },
+    {
+      "@id": "https://www.nationalarchives.gov.uk/PRONOM/fmt/817",
+      "@type": "WebSite",
+      "name": "JSON Data Interchange Format"
+    }
+  ]
+}

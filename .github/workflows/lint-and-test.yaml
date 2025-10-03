@@ -1,0 +1,24 @@
+name: Lint and Test
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Build Docker image
+        run: docker build --build-arg BUILD_TEST=true -t knowledgegraph .
+
+      - name: Run linter
+        run: docker run --entrypoint '' -v ${{ github.workspace }}/tests:/app/tests knowledgegraph pylint -v --errors-only workflowhub_graph/workflowhub_graph
+
+      - name: Run tests
+        run: docker run --entrypoint '' -v ${{ github.workspace }}/tests:/app/tests knowledgegraph pytest

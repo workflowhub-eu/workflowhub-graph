@@ -1,0 +1,85 @@
+import json
+import os
+
+import pytest
+import rdflib
+
+from workflowhub_graph.absolutize import is_all_absolute, make_paths_absolute
+from workflowhub_graph.cached_url_open import patch_rdflib_urlopen
+from workflowhub_graph.merge import merge_all_files
+
+import yaml
+with open('config.yaml', 'r') as f:
+    config = yaml.full_load(f)
+    
+BASE_URL = config["base-url"]
+
+def get_test_data_dir():
+    tests_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(tests_dir, "test_data")    
+
+def get_test_data_file(filename=""):
+    """Returns the path to a test data file given it's relative path."""
+
+    tests_dir = get_test_data_dir()
+    return os.path.join(tests_dir, filename)
+
+class TestAbsolutizePaths:  # (unittest.TestCase):
+    # NOTE: ids can not be found, like 634, or forbidden, like 678
+    @pytest.mark.parametrize("workflow_id", [41, 31, 552, 883, 1046])
+    def test_make_paths_absolute(self, workflow_id):
+        with patch_rdflib_urlopen(get_test_data_file(), write_cache=False):
+            with open(
+                get_test_data_file(f"{workflow_id}_ro-crate-metadata.json"), "r"
+            ) as f:
+                json_data = json.load(f)
+            
+            if workflow_id == 1046:
+                # this is a special case where ther are two contexts
+                assert len(json_data["@context"]) == 2
+
+            assert not is_all_absolute(
+                rdflib.Graph().parse(data=json.dumps(json_data), format="json-ld")
+            )
+
+            subjects = []
+            for wf_id in [41, 31]:
+                json_data_abs_paths = make_paths_absolute(
+                    json_data, BASE_URL, wf_id, 1,
+                )
+
+                parsed_graph = rdflib.Graph().parse(
+                    data=json.dumps(json_data_abs_paths), format="json-ld"
+                )
+
+                assert is_all_absolute(parsed_graph)
+
+                subject = parsed_graph.query(
+                    "SELECT ?s WHERE { ?s a <http://schema.org/CreativeWork>  }"
+                ).bindings[0]["s"]
+                subjects.append(subject)
+
+            assert subjects[0] != subjects[1]
+
+    def test_merged(self):
+        manifest_file = get_test_data_file("manifest.json")
+        graph = merge_all_files(
+            manifest_file,
+            base_url=BASE_URL,
+            files_path=get_test_data_dir()
+        )
+
+        assert is_all_absolute(graph)
+
+        # checking that we got some useful data about the authors
+
+        bindings = graph.query(
+            """SELECT DISTINCT ?author
+            WHERE {
+                ?s <http://schema.org/author> ?author
+            }"""
+        ).bindings
+
+        assert set([b["author"] for b in bindings]) == {
+            rdflib.term.Literal("Arnaud Meng, Maxim Scheremetjew, Michael Crusoe")
+        }
