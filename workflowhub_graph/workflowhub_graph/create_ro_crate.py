@@ -2,13 +2,14 @@
 # pylint: disable=unsupported-assignment-operation
 
 import argparse
+import json
 import os
 import shutil
 import sys
 import uuid
 from datetime import datetime
 
-from rocrate.model import ContextEntity, Person
+from rocrate.model import ContextEntity, Entity, Person
 from rocrate.rocrate import ROCrate
 
 
@@ -28,104 +29,6 @@ def create_ro_crate(
     :param output_dir: The output directory to store the RO-Crate metadata file.
     """
     crate = ROCrate()
-
-    crate.name = "WorkflowHub Knowledge Graph"
-    crate.description = (
-        "This RO-Crate contains a knowledge graph built from RO-Crates "
-        "on WorkflowHub, enriched with metadata from additional sources. "
-        "The source code used to create the knowledge graph, including the enrichments, "
-        "is also included."
-    )
-
-    org_uniman = crate.add(
-        ContextEntity(
-            crate,
-            "https://ror.org/027m9bs27",
-            properties={"@type": "Organization", "name": "University of Manchester"},
-        )
-    )
-    org_geneva = crate.add(
-        ContextEntity(
-            crate,
-            "https://ror.org/01swzsf04",
-            properties={"@type": "Organization", "name": "University of Geneva"},
-        )
-    )
-    org_epfl = crate.add(
-        ContextEntity(
-            crate,
-            "https://ror.org/02s376052",
-            properties={
-                "@type": "Organization",
-                "name": "École Polytechnique Fédérale de Lausanne",
-            },
-        )
-    )
-
-    # Add authors:
-    auth_alex = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0003-1193-6632",
-            properties={
-                "givenName": "Alexander",
-                "familyName": "Hambley",
-            },
-        )
-    )
-    auth_alex["affiliation"] = org_uniman
-    auth_eli = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0002-0035-6475",
-            properties={
-                "givenName": "Eli",
-                "familyName": "Chadwick",
-            },
-        )
-    )
-    auth_eli["affiliation"] = org_uniman
-    auth_oliver = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0002-4565-9760",
-            properties={
-                "givenName": "Oliver",
-                "familyName": "Woolland",
-            },
-        )
-    )
-    auth_oliver["affiliation"] = org_uniman
-    auth_stian = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0001-9842-9718",
-            properties={
-                "givenName": "Stian",
-                "familyName": "Soiland-Reyes",
-            },
-        )
-    )
-    auth_stian["affiliation"] = org_uniman
-    auth_volodymyr = crate.add(
-        Person(
-            crate,
-            "https://orcid.org/0000-0001-6353-0808",
-            properties={
-                "givenName": "Volodymyr",
-                "familyName": "Savchenko",
-            },
-        )
-    )
-    auth_volodymyr["affiliation"] = [org_geneva, org_epfl]
-
-    crate.root_dataset["author"] = [
-        auth_alex,
-        auth_eli,
-        auth_oliver,
-        auth_stian,
-        auth_volodymyr,
-    ]
 
     # Add dataset and files:
     crate.add_dataset(
@@ -168,14 +71,6 @@ def create_ro_crate(
             "encodingFormat": "text/turtle",
         },
     )
-
-    full_graph_entity["author"] = [
-        auth_alex,
-        auth_eli,
-        auth_oliver,
-        auth_stian,
-        auth_volodymyr,
-    ]
 
     # Add data and workflow entities:
     enrichment_files = crate.add_dataset(
@@ -287,7 +182,6 @@ def create_ro_crate(
         lang="snakemake",
     )
 
-    workflow_entity["author"] = [auth_alex, auth_eli, auth_oliver, auth_stian]
     workflow_entity["input"] = config_file_param
     workflow_entity["output"] = [
         full_graph_file_param,
@@ -319,18 +213,15 @@ def create_ro_crate(
 
     crate.root_dataset.append_to("conformsTo", wrroc_profile)
 
-    # Add license:
-    license = crate.add(
-        ContextEntity(
-            crate,
-            "https://spdx.org/licenses/BSD-2-Clause.html",
-            properties={
-                "@type": "CreativeWork",
-                "name": 'BSD 2-Clause "Simplified" License',
-            },
-        )
-    )
-    crate.license = license
+    # add reusable fragment
+    update_crate_from_fragment(crate, "/app/config-ro-crate-metadata.json")
+    # future idea: select parts of the fragment and/or entity they should be attached to
+    # update_crate_from_fragment(crate, "/app/config-ro-crate-metadata.json", target_entity=full_graph_entity, include_properties="author")
+    # update_crate_from_fragment(crate, "/app/config-ro-crate-metadata.json", target_entity=workflow_entity, include_properties="author")
+
+    # add unique info to name & description (which came from the fragment) for disambiguation
+    crate.name = crate.name + f" ({datetime.today()})"
+    crate.description = crate.description + f"\nCrate generated at {datetime.now()}."
 
     # Writing the RO-Crate metadata:
     crate.write(output_dir)
@@ -385,6 +276,28 @@ def main():
         workflow_file=workflow_file,
         output_dir=output_dir,
     )
+
+
+def update_crate_from_fragment(
+    crate: ROCrate,
+    fragment_crate_path: str,
+    target_entity: Entity = None,
+    include_properties: list[str] = [],
+):
+    """Demo - eventually this would be integrated into ro-crate-py
+
+    :param crate: the main crate
+    :param fragment_crate_path: path to a fragment RO-Crate
+
+    Not implemented: future ideas
+    :param target_entity: an entity in the main crate, defaults to None (root dataset)
+    :param include_properties: which properties to include from the root dataset of the fragment, defaults to [] (all)
+    """
+    with open(fragment_crate_path) as f:
+        json_data = json.load(f)
+
+    for d in json_data.get("@graph", []):
+        crate.add_or_update_jsonld(d)
 
 
 if __name__ == "__main__":
