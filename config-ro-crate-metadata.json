@@ -1,0 +1,112 @@
+{
+    "@context": "https://w3id.org/ro/crate/1.2/context",
+    "@graph": [
+        {
+            "@id": "./",
+            "@type": "Dataset",
+            "author": [
+                {
+                    "@id": "https://orcid.org/0000-0003-1193-6632"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0002-0035-6475"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0002-4565-9760"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0001-9842-9718"
+                },
+                {
+                    "@id": "https://orcid.org/0000-0001-6353-0808"
+                }
+            ],
+            "datePublished": "2026-08-10T16:09:04+00:00",
+            "description": "This RO-Crate contains a knowledge graph built from RO-Crates on WorkflowHub, enriched with metadata from additional sources. The source code used to create the knowledge graph, including the enrichments, is also included.",
+            "license": {
+                "@id": "https://spdx.org/licenses/BSD-2-Clause.html"
+            },
+            "name": "WorkflowHub Knowledge Graph"
+        },
+        {
+            "@id": "ro-crate-metadata.json",
+            "@type": "CreativeWork",
+            "about": {
+                "@id": "./"
+            },
+            "conformsTo": {
+                "@id": "https://w3id.org/ro/crate/1.2"
+            }
+        },
+        {
+            "@id": "https://ror.org/027m9bs27",
+            "@type": "Organization",
+            "name": "University of Manchester"
+        },
+        {
+            "@id": "https://ror.org/01swzsf04",
+            "@type": "Organization",
+            "name": "University of Geneva"
+        },
+        {
+            "@id": "https://ror.org/02s376052",
+            "@type": "Organization",
+            "name": "École Polytechnique Fédérale de Lausanne"
+        },
+        {
+            "@id": "https://orcid.org/0000-0003-1193-6632",
+            "@type": "Person",
+            "affiliation": {
+                "@id": "https://ror.org/027m9bs27"
+            },
+            "familyName": "Hambley",
+            "givenName": "Alexander"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-0035-6475",
+            "@type": "Person",
+            "affiliation": {
+                "@id": "https://ror.org/027m9bs27"
+            },
+            "familyName": "Chadwick",
+            "givenName": "Eli"
+        },
+        {
+            "@id": "https://orcid.org/0000-0002-4565-9760",
+            "@type": "Person",
+            "affiliation": {
+                "@id": "https://ror.org/027m9bs27"
+            },
+            "familyName": "Woolland",
+            "givenName": "Oliver"
+        },
+        {
+            "@id": "https://orcid.org/0000-0001-9842-9718",
+            "@type": "Person",
+            "affiliation": {
+                "@id": "https://ror.org/027m9bs27"
+            },
+            "familyName": "Soiland-Reyes",
+            "givenName": "Stian"
+        },
+        {
+            "@id": "https://orcid.org/0000-0001-6353-0808",
+            "@type": "Person",
+            "affiliation": [
+                {
+                    "@id": "https://ror.org/01swzsf04"
+                },
+                {
+                    "@id": "https://ror.org/02s376052"
+                }
+            ],
+            "familyName": "Savchenko",
+            "givenName": "Volodymyr"
+        },
+        {
+            "@id": "https://spdx.org/licenses/BSD-2-Clause.html",
+            "@type": "CreativeWork",
+            "name": "BSD 2-Clause \"Simplified\" License"
+        }
+    ]
+}
