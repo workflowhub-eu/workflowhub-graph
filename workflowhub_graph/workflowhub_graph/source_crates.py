@@ -52,7 +52,7 @@ def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes |
     :return: Returns either the JSON content, or None if no file was found.
     """
     try:
-        response = requests.get(target_url)
+        response = requests.get(target_url, headers={"Accept": "application/json"})
         response.raise_for_status()
 
         # Check if the response is a JSON file:
@@ -210,9 +210,7 @@ def process_workflow_ids(
 
                 if json_content:
                     filename = f"{workflow_id}_{w_version}_ro-crate-metadata.json"
-                    output_file_path = os.path.join(
-                        output_dir, filename
-                    )
+                    output_file_path = os.path.join(output_dir, filename)
                     with open(output_file_path, "wb") as output_file:
                         output_file.write(json_content)
 
@@ -273,17 +271,17 @@ def main():
 
     # Set workflow URL
     workflows_url = f"{args.base_url}/workflows.json"
-    
+
     # Example usage:
     all_workflow_ids = download_workflow_ids(workflows_url)
-    filtered_workflows = all_workflow_ids["data"] # initialise with all workflows
+    filtered_workflows = all_workflow_ids["data"]  # initialise with all workflows
 
-    if args.workflow_ids: # no filtering if option not used
+    if args.workflow_ids:  # no filtering if option not used
         min_str, max_str = args.workflow_ids.split("-")
         min_workflow_id = int(min_str) if min_str else None
         max_workflow_id = int(max_str) if max_str else None
-        
-        if (max_workflow_id != 0): # no filtering if max id 0
+
+        if max_workflow_id != 0:  # no filtering if max id 0
             filtered_workflows = []
             for workflow in all_workflow_ids["data"]:
                 w_id = int(workflow["id"])
@@ -292,7 +290,7 @@ def main():
 
     if not filtered_workflows:
         raise ValueError("No workflows matched the provided workflow ID range.")
-    
+
     process_workflow_ids(
         {"data": filtered_workflows},
         is_metadata_endpoint=not args.zip,
