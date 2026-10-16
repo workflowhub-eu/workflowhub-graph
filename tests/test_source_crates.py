@@ -2,8 +2,10 @@ import pytest
 import os
 from unittest.mock import patch, MagicMock
 
-import pytest
-import requests
+from requests import Session, RequestException
+from requests.adapters import HTTPAdapter
+from urllib3.util import Retry
+from urllib3.exceptions import MaxRetryError
 
 from workflowhub_graph.source_crates import (
     download_and_extract_json_from_metadata_endpoint,
@@ -19,6 +21,34 @@ def mock_requests_get():
         yield mock_get
 
 
+# Source - https://stackoverflow.com/a/49407265
+# Posted by Blafkees, modified by community. See post 'Timeline' for change history
+# Retrieved 2026-10-15, License - CC BY-SA 3.0
+@pytest.fixture
+def mock_session_get():
+    with patch.object(Session, "get") as mock_get:
+        yield mock_get
+
+
+@pytest.fixture(scope="module")
+def setup_session():
+    session = Session()
+    retries = Retry(
+        total=3,
+        backoff_factor=0.1,  # much shorter than reality to save time in tests
+        status_forcelist=[
+            500,
+            503,
+            *range(520, 531),
+        ],  # server availability errors + Cloudflare errors
+        allowed_methods={"GET"},
+        raise_on_status=True,
+    )
+    session.mount("https://", HTTPAdapter(max_retries=retries))
+    yield session
+    session.close()
+
+
 @pytest.fixture
 def setup_output_dir():
     output_dir = "test_output"
@@ -31,47 +61,74 @@ def setup_output_dir():
 
 
 class TestDownloadAndExtractJsonFromMetadataEndpoint:
-    def test_json_from_metadata_endpoint_download_successful(self, mock_requests_get):
+    def test_json_from_metadata_endpoint_download_successful(
+        self, setup_session, mock_session_get
+    ):
         """Mock a successful JSON response"""
 
         mock_response = MagicMock()
         mock_response.raise_for_status.return_value = None
         mock_response.headers = {"Content-Type": "application/json"}
         mock_response.content = b'{"key": "value"}'
-        mock_requests_get.return_value = mock_response
+        mock_session_get.return_value = mock_response
 
         result = download_and_extract_json_from_metadata_endpoint(
-            "http://example.com/json"
+            "http://example.com/json", setup_session
         )
         assert result == b'{"key": "value"}'
 
-    def test_json_from_metadata_endpoint_no_json_content_type(self, mock_requests_get):
+    def test_json_from_metadata_endpoint_no_json_content_type(
+        self, capsys, setup_session, mock_session_get
+    ):
         """Mock a response with a non-JSON content type"""
 
         mock_response = MagicMock()
         mock_response.raise_for_status.return_value = None
         mock_response.headers = {"Content-Type": "text/html"}
-        mock_requests_get.return_value = mock_response
+        mock_session_get.return_value = mock_response
 
         result = download_and_extract_json_from_metadata_endpoint(
-            "http://example.com/html"
+            "http://example.com/html", setup_session
         )
         assert result is None
 
-    def test_json_from_metadata_endpoint_request_exception(self, mock_requests_get):
+        captured = capsys.readouterr()
+        assert "No JSON file found at: " in captured.out
+
+    def test_json_from_metadata_endpoint_request_exception(
+        self, setup_session, mock_session_get
+    ):
         """Mock a request exception"""
 
-        mock_requests_get.side_effect = requests.RequestException("Error")
+        mock_session_get.side_effect = RequestException("Error")
 
         result = download_and_extract_json_from_metadata_endpoint(
-            "http://example.com/error"
+            "http://example.com/error", setup_session
         )
         assert result is None
+
+    def test_json_from_metadata_endpoint_max_retries(
+        self, capsys, caplog, setup_session
+    ):
+        """Mock a request exception where max retries were reached.
+
+        This calls a live URL without mocking, so technically it is an integration test.
+        However, ensuring the retries actually occur when mocking Session.get
+        is not straightforward and this is a much easier way to do it.
+        """
+
+        result = download_and_extract_json_from_metadata_endpoint(
+            "https://postman-echo.com/status/503", setup_session
+        )
+        assert result is None
+
+        captured = capsys.readouterr()
+        assert "Max retries exceeded" in captured.out
 
 
 class TestDownloadAndExtractJsonFromZip:
     def test_download_and_extract_json_from_zip_incorrect_file_extension(
-        self, mock_requests_get
+        self, setup_session, mock_session_get
     ):
         """Mock a response with a non-Zip file"""
 
@@ -83,14 +140,16 @@ class TestDownloadAndExtractJsonFromZip:
             b"PK\x05\x06",
         ]
 
-        mock_requests_get.return_value = mock_response
+        mock_session_get.return_value = mock_response
 
         with patch("workflowhub_graph.source_crates.ZipFile") as mock_zipfile:
             mock_zipfile.return_value.__enter__.return_value.namelist.return_value = [
                 "not-json-file.txt"
             ]
 
-            result = download_and_extract_json_from_zip("http://example.com/test.zip")
+            result = download_and_extract_json_from_zip(
+                "http://example.com/test.zip", setup_session
+            )
             assert result is None
 
 

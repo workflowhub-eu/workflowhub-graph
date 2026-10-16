@@ -3,6 +3,10 @@ import json
 import os
 import sys
 import traceback
+from urllib3.util import Retry
+from urllib3.exceptions import MaxRetryError
+from requests import Session
+from requests.adapters import HTTPAdapter
 
 import requests
 from io import BytesIO
@@ -17,7 +21,7 @@ from workflowhub_graph.constants import (
 )
 
 
-def get_dot_json_endpoint(target_url: str) -> dict | None:
+def get_dot_json_endpoint(target_url: str, session: Session) -> dict | None:
     """
     Returns the endpoint to download a JSON file from WorkflowHub.
 
@@ -25,7 +29,7 @@ def get_dot_json_endpoint(target_url: str) -> dict | None:
     :return: The endpoint to download the JSON file or None.
     """
     try:
-        response = requests.get(target_url)
+        response = session.get(target_url)
         response.raise_for_status()
 
         if "application/vnd.api+json" in response.headers["Content-Type"]:
@@ -44,7 +48,9 @@ def get_dot_json_endpoint(target_url: str) -> dict | None:
         return None
 
 
-def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes | None:
+def download_and_extract_json_from_metadata_endpoint(
+    target_url: str, session: Session
+) -> bytes | None:
     """
     Downloads a JSON file from WorkflowHub (or specified URL) of a specific workflow and returns its content.
 
@@ -52,7 +58,7 @@ def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes |
     :return: Returns either the JSON content, or None if no file was found.
     """
     try:
-        response = requests.get(target_url, headers={"Accept": "application/json"})
+        response = session.get(target_url, headers={"Accept": "application/json"})
         response.raise_for_status()
 
         # Check if the response is a JSON file:
@@ -61,7 +67,7 @@ def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes |
         else:
             print(f"No JSON file found at: '{target_url}'")
             return None
-    except requests.RequestException as e:
+    except (requests.RequestException, MaxRetryError) as e:
         print(f"Failed to download the JSON file from {target_url}. Error: {e}")
         return None
     except Exception as e:
@@ -72,7 +78,7 @@ def download_and_extract_json_from_metadata_endpoint(target_url: str) -> bytes |
 
 
 def download_and_extract_json_from_zip(
-    target_url: str, target_file_name: str = TARGET_FILE_NAME
+    target_url: str, session: Session, target_file_name: str = TARGET_FILE_NAME
 ) -> bytes | None:
     """
     Downloads a zip file from WorkflowHub (or specified URL), extracts JSON metadata file and returns its content.
@@ -83,7 +89,7 @@ def download_and_extract_json_from_zip(
     :return: Returns either the content of the extracted file, or None if no file was found.
     """
     try:
-        response = requests.get(target_url, stream=True)
+        response = session.get(target_url, stream=True)
 
         if response.status_code == 200:
             zip_file = BytesIO()
@@ -161,6 +167,20 @@ def process_workflow_ids(
     n_successful = 0
     manifest = []
 
+    session = Session()
+    retries = Retry(
+        total=3,
+        backoff_factor=15,  # wait 15 seconds between retries for server errors
+        status_forcelist=[
+            500,
+            503,
+            *range(520, 531),
+        ],  # server availability errors + Cloudflare errors
+        allowed_methods={"GET"},
+        raise_on_status=True,
+    )
+    session.mount("https://", HTTPAdapter(max_retries=retries))
+
     try:
         workflows = workflows_data.get("data", [])
 
@@ -170,7 +190,7 @@ def process_workflow_ids(
             update_progress_bar(i_workflow + 1, len(workflows))
 
             workflow_json = get_dot_json_endpoint(
-                base_url + DOT_JSON_ENDPOINT.format(w_id=workflow_id)
+                base_url + DOT_JSON_ENDPOINT.format(w_id=workflow_id), session=session
             )
 
             try:
@@ -198,14 +218,14 @@ def process_workflow_ids(
                         w_id=workflow_id, w_version=w_version
                     )
                     json_content = download_and_extract_json_from_metadata_endpoint(
-                        base_url + endpoint
+                        base_url + endpoint, session=session
                     )
                 else:
                     endpoint = ZIP_ENDPOINT.format(
                         w_id=workflow_id, w_version=w_version
                     )
                     json_content = download_and_extract_json_from_zip(
-                        base_url + endpoint
+                        base_url + endpoint, session=session
                     )
 
                 if json_content:
