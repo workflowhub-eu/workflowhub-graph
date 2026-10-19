@@ -169,8 +169,9 @@ def process_workflow_ids(
 
     session = Session()
     retries = Retry(
-        total=3,
-        backoff_factor=15,  # wait 15 seconds between retries for server errors
+        total=7,
+        backoff_factor=15,  # wait 15*(number of retries) seconds between retries for server errors
+        backoff_max=900,  # max 15 min wait
         status_forcelist=[
             500,
             503,
