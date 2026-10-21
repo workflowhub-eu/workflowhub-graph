@@ -58,7 +58,7 @@ def download_and_extract_json_from_metadata_endpoint(
     :return: Returns either the JSON content, or None if no file was found.
     """
     try:
-        response = session.get(target_url, headers={"Accept": "application/json"})
+        response = session.get(target_url)
         response.raise_for_status()
 
         # Check if the response is a JSON file:
