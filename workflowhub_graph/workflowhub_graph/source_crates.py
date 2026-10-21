@@ -168,10 +168,11 @@ def process_workflow_ids(
     manifest = []
 
     session = Session()
+    # retries to compensate for an "outage" up to 465 seconds, or just under 8 min
     retries = Retry(
-        total=7,
+        total=5,
         backoff_factor=15,  # wait 15*(number of retries) seconds between retries for server errors
-        backoff_max=900,  # max 15 min wait
+        backoff_max=240,  # max 4 min wait
         status_forcelist=[
             500,
             503,
