@@ -1,4 +1,4 @@
-FROM snakemake/snakemake:latest
+FROM snakemake/snakemake:v9.21.1
 ARG BUILD_TEST=false # Override at build time to install test dependencies
 
 # Working directory
@@ -18,6 +18,7 @@ COPY config.yaml /app/config.yaml
 # Copy files needed for the RO-Crate
 COPY Dockerfile /app/Dockerfile
 COPY README.md /app/README.md
+COPY config-ro-crate-metadata.json /app/config-ro-crate-metadata.json
 
 # Set the entry point
 ENV XDG_CACHE_HOME=/app/output/
