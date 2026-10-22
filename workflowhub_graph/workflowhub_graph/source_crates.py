@@ -58,7 +58,7 @@ def download_and_extract_json_from_metadata_endpoint(
     :return: Returns either the JSON content, or None if no file was found.
     """
     try:
-        response = session.get(target_url, headers={"Accept": "application/json"})
+        response = session.get(target_url)
         response.raise_for_status()
 
         # Check if the response is a JSON file:
@@ -168,9 +168,11 @@ def process_workflow_ids(
     manifest = []
 
     session = Session()
+    # retries to compensate for an "outage" up to 465 seconds, or just under 8 min
     retries = Retry(
-        total=3,
-        backoff_factor=15,  # wait 15 seconds between retries for server errors
+        total=5,
+        backoff_factor=15,  # wait 15*(number of retries) seconds between retries for server errors
+        backoff_max=240,  # max 4 min wait
         status_forcelist=[
             500,
             503,
