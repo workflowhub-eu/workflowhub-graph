@@ -5,6 +5,7 @@ import argparse
 import os
 import shutil
 import sys
+import subprocess
 import uuid
 from datetime import datetime
 
@@ -277,6 +278,9 @@ def create_ro_crate(
     enrichment_files_param["workExample"] = crate.root_dataset
     crate.root_dataset["exampleOfWork"] = ro_crate_param
 
+    p = subprocess.run(["snakemake", "--version"], capture_output=True)
+    snakemake_version = p.stdout.rstrip().decode("utf-8")
+
     workflow_entity = crate.add_workflow(
         source=workflow_file,
         properties={
@@ -285,6 +289,7 @@ def create_ro_crate(
         },
         main=True,
         lang="snakemake",
+        lang_version=snakemake_version,
     )
 
     workflow_entity["author"] = [auth_alex, auth_eli, auth_oliver, auth_stian]
@@ -308,11 +313,11 @@ def create_ro_crate(
     wrroc_profile = crate.add(
         ContextEntity(
             crate,
-            "https://w3id.org/ro/wfrun/workflow/0.5",
+            "https://w3id.org/ro/wfrun/workflow/0.6",
             properties={
-                "@type": "CreativeWork",
+                "@type": ["CreativeWork", "Profile"],
                 "name": "Workflow Run Crate",
-                "version": "0.4",
+                "version": "0.6",
             },
         )
     )
